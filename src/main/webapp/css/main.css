@@ -117,7 +117,8 @@ footer {
 }
 
 
-/*네비바 css*/
+/* ===============네비바 css=================== */
+
 .nav {
   	margin: auto;
   	padding: 10px 0 10px 0;
@@ -218,6 +219,35 @@ footer {
 	text-align: left;
 	flex-grow: 0.3;
 }
+
+/* ==============테이블================ */
+
+.posttable {
+  border: 1px solid #ddd;
+  border-collapse: collapse;
+  margin: 0 auto;
+  width: 80%;
+}
+
+.posttable th,
+.posttable td {
+  padding: 10px;
+  text-align: center;
+  
+}
+
+.posttable th {
+  background-color: #f5f2ea;
+}
+
+.posttable tr {
+  border: 1px solid #ddd;
+}
+
+.posttable tr:hover {
+  background-color: #f5f5f5;
+}
+
 .container {
   padding-right: 15px;
   padding-left: 15px;

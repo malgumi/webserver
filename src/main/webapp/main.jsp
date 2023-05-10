@@ -10,18 +10,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width-device-width, initial-scale=1">
 <link rel="stylesheet" href="css/main.css">
-<title>시빌레</title>
+<title>씨밀레</title>
 </head>
 <body>
 
 	<div>
-		<h1>시빌레</h1>
+		<h1>씨밀레</h1>
 		<jsp:include page="nav/navbar.jsp"/> <!-- 네비바 -->
 		
 		<div class="container"> <div class="row">
 		<!-- 이곳에 글 목록 출력 -->
 			<div>
-	<table class="table">
+	<table class="posttable">
 		<thead>
 			<tr>
 				<th>글 번호</th>
@@ -30,6 +30,7 @@
 				<th>작성일</th>
 			</tr>
 		</thead>
+		<!-- 글 목록 출력 -->
 		<tbody>
 			<%
 				PostDAO postDAO = new PostDAO();
