@@ -9,18 +9,24 @@ import java.util.ArrayList;
 public class PostDAO {
 	private Connection conn;
 	private ResultSet rs;
-	
-	public PostDAO() {
-		try {
-			String dbURL = "jdbc:h2:~/webserver";
-	        String dbID = "eagles";
-	        String dbPassword = "1234";
-	        Class.forName("org.h2.Driver");
-			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	final String JDBC_DRIVER = "org.h2.Driver";
+	final String JDBC_URL = "jdbc:h2:tcp://localhost/~/webserver";
+    String dbID = "eagles";
+    String dbPassword = "1234";
+    
+	public Connection open() {
+		conn = null;
+	    try {
+	    	Class.forName(JDBC_DRIVER);
+	    	conn = DriverManager.getConnection(JDBC_URL, dbID, dbPassword);
+	    	System.out.println("데이터베이스 연결 성공!!");
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        System.out.println("데이터베이스 연결 실패");
+	    }
+	    return conn;
 	}
+
 
 	public String getDate() {
 		String SQL = "SELECT NOW()";
@@ -73,22 +79,25 @@ public class PostDAO {
 	}
 
 	public ArrayList<Post> getList(int pageNumber){
-		String SQL = "SELECT * FROM POST WHERE post_id < ? AND available = 1 ORDER BY post_id DESC LIMIT 10";
+		Connection conn = open();
+		String SQL = "SELECT * FROM POST WHERE available = 1 ORDER BY post_id DESC LIMIT ?, 10";
 		ArrayList<Post> list = new ArrayList<Post>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
-			rs = pstmt.executeQuery();
-			while (rs.next()) { 
-				Post post = new Post();
-				post.setPost_id(rs.getInt(1));
-				post.setPost_title(rs.getString(2));
-				post.setPost_content(rs.getString(3));
-				post.setUser_id(rs.getString(4));
-				post.setBoard_id(rs.getInt(5));
-				post.setDate(rs.getString(6));
-				post.setAvailable(rs.getInt(7));
-				list.add(post);
+			pstmt.setInt(1, (pageNumber - 1) * 10);
+			ResultSet rs = pstmt.executeQuery();
+			try(conn; pstmt; rs){
+				while (rs.next()) { 
+					Post post = new Post();
+					post.setPost_id(rs.getInt(1));
+					post.setPost_title(rs.getString(2));
+					post.setPost_content(rs.getString(3));
+					post.setUser_id(rs.getString(4));
+					post.setBoard_id(rs.getInt(5));
+					post.setDate(rs.getString(6));
+					post.setAvailable(rs.getInt(7));
+					list.add(post);
+				}
 			}
 		}
 		catch (Exception e){
