@@ -4,7 +4,6 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="post.Post" %>
 <%@ page import="post.PostDAO" %>
-<!-- 주석 -->
 <!DOCTYPE html>
 <html>
 <head>
