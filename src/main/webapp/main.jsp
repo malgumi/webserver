@@ -13,7 +13,7 @@
 <title>씨밀레</title>
 </head>
 <body>
-
+<!-- 테스트 주석 -->
 	<div>
 		<h1>씨밀레</h1>
 		<jsp:include page="nav/navbar.jsp"/> <!-- 네비바 -->
