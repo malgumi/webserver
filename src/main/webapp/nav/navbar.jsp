@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="http://localhost:8080/webserver/css/main.css">
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
-<title>LRAK</title>
+<title>씨밀레</title>
 </head>
 <body>
 	<%

@@ -33,7 +33,7 @@ img{
 
 .nav {
   	margin: auto;
-  	padding: 10px 0 10px 0;
+  	padding: 7px 0 10px 0;
   	border-top: 5px;
   	list-style: none;
   	background-color: #cec7b4;
@@ -42,6 +42,7 @@ img{
   	max-height: 50px;
   	display: flex;
   	align-items: center;
+  	vertical-align: center;
 }
 .nav img {
   object-fit: contain; 
@@ -56,6 +57,7 @@ img{
 	/*text-align: center;  메뉴 가운데 정렬*/
 	margin: 0;
 	padding: 0;
+	vertical-align: center;
 }
 
 .nav > div > ul > li {
@@ -64,6 +66,7 @@ img{
 	margin: 5px 30px;
 	padding: 0;
 	text-decoration: none;
+	vertical-align: center;
 }
 .nav > div > ul > li > a {
 	font-size: 18px;
@@ -71,6 +74,7 @@ img{
   	color: white;
   	padding: 10px 15px;
   	text-decoration: none;
+  	vertical-align: center;
 }
 .nav > div > ul > li > a:hover{
 	color: #2d2d2d;
@@ -126,10 +130,9 @@ img{
 	opacity: 1;
 }
 .logo{
-	margin-right: auto;
+	margin: auto;
 	padding: 0;
-	text-align: left;
-	flex-grow: 0.3;
+	vertical-align: center;
 }
 
 /* ==============테이블================ */

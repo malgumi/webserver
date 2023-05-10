@@ -15,7 +15,7 @@
 <body>
 <!-- 테스트 주석 -->
 	<div>
-		<h1>씨밀레</h1>
+		<h1 style="padding-top: 10px;"><img src="http://localhost:8080/webserver/img/logo.png"></h1>
 		<jsp:include page="nav/navbar.jsp"/> <!-- 네비바 -->
 		
 		<div class="container"> <div class="row">
