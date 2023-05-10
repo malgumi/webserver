@@ -44,7 +44,7 @@
 				<input type="button" value="회원가입" id="m_button" onclick="location.href='#'"><br><br>
 				<input type="button" value="로그인" id="m_button" onclick="location.href='#'">
 			</aside>
-		</div>
+		</div> 
 		
 		<div>
 			<section class='section' id="section-l">
