@@ -1,50 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter" %>
+<%@ page import="bbs.BbsDAO" %>
+<%@ page import="bbs.Bbs" %><!-- 자유게시판DB -->
+<%@ page import="bbs_notice.Bbs_NoticeDAO" %>
+<%@ page import="bbs_notice.Bbs_Notice" %><!-- 공지DB -->
+<%@ page import="bbs_QnA.Bbs_QnADAO" %>
+<%@ page import="bbs_QnA.Bbs_QnA" %><!-- Q&A DB -->
+<%@ page import="bbs_Portfolio.Bbs_PortfolioDAO" %>
+<%@ page import="bbs_Portfolio.Bbs_Portfolio" %><!-- 포트폴리오 DB -->
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="user.UserDAO" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width-device-width, initial-scale=1">
 <link rel="stylesheet" href="css/main.css">
-<title>시빌레</title>
+<link rel="stylesheet" href="css/bootstrap.css">
+<title>LRAK</title>
 </head>
 <body>
 
 	<div>
-		<h1>시빌레</h1> <!-- 헤더 --> 
-	<nav>
-		<div class="nav">
-			<div class="logo"><ul>
-				<li>로고자리</li>
-			</ul></div>
-			<div class="menu"><ul>
-				<li>공지사항</li>
-				<li>자유게시판</li>
-				<li>Q&amp;A게시판</li>
-				<li>포트폴리오</li>
-			</ul></div>
-			<div class="loginmenu">
-			<ul>
-				<li><a href="#">접속하기</a>
-					<ul class="dropdown-menu">
-						<li>로그인</li>
-						<li>회원가입</li>
-					</ul>
-				</li>
-			</ul>
-
-			</div>
-		</div>
-	</nav>
-	
+		<h1>LRAK</h1> <!-- 헤더 --> 
+		<%@ include file="./nav/navbar.jsp" %>		
 		<div>
 			<aside>
 				<br><br><br><br><br><br>		
-				<input type="button" value="회원가입" id="m_button" onclick="location.href='#'"><br><br>
-				<input type="button" value="로그인" id="m_button" onclick="location.href='#'">
+				<input type="button" value="회원가입" id="m_button" onclick="location.href='http://localhost:8080/BBS/join.jsp'"><br><br>
+				<input type="button" value="로그인" id="m_button" onclick="location.href='http://localhost:8080/BBS/login.jsp'">
 			</aside>
-		</div> 
+		</div> <!-- 로그인/회원가입창 -->
 		
 		<div>
 			<section class='section' id="section-l">
