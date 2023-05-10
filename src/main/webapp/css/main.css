@@ -117,13 +117,13 @@ footer {
 }
 
 
-/*네비바 css 23.02.01~ 유말그미 추가*/
+/*네비바 css*/
 .nav {
   	margin: auto;
   	padding: 10px 0 10px 0;
   	border-top: 5px;
   	list-style: none;
-  	background-color: #f8f8f8;
+  	background-color: #cec7b4;
   	text-decoration: none;
   	height: auto;
   	max-height: 50px;
@@ -155,7 +155,7 @@ footer {
 .nav > div > ul > li > a {
 	font-size: 18px;
  	position: relative;
-  	color: #777;
+  	color: white;
   	padding: 10px 15px;
   	text-decoration: none;
 }
