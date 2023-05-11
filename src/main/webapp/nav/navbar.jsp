@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="http://localhost:8080/webserver/css/main.css">
-<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 <title>씨밀레</title>
 </head>
@@ -30,8 +29,7 @@
 			<div class="menu"><ul>
 				<li><a href="http://localhost:8080/webserver/notice/notice_bbs.jsp">공지사항</a></li>
 				<li><a href="http://localhost:8080/webserver/bbs/bbs.jsp">자유게시판</a></li>
-				<li><a href="http://localhost:8080/webserver/QnA/QnA_bbs.jsp">Q&amp;A게시판</a></li>
-				<li><a href="http://localhost:8080/webserver/Portfolio/portfolio_bbs.jsp">포트폴리오</a></li>
+				<li><a href="http://localhost:8080/webserver/adv/adv_bbs.jsp">홍보게시판</a></li>
 			</ul></div>
 			<div class="loginmenu">
 				<%-- <%

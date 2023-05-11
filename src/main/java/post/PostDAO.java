@@ -139,12 +139,13 @@ public class PostDAO {
 	}
 
 	public Post getPost(int post_id) {
+	    Connection conn = open();
 	    String SQL = "SELECT * FROM POST WHERE post_id = ?";
 	    try {
 	        PreparedStatement pstmt = conn.prepareStatement(SQL);
 	        pstmt.setInt(1, post_id);
 	        rs = pstmt.executeQuery();
-	        if(rs.next()) {
+	        if (rs.next()) {
 	            Post post = new Post();
 	            post.setPost_id(rs.getInt(1));
 	            post.setPost_title(rs.getString(2));
@@ -157,9 +158,17 @@ public class PostDAO {
 	        }
 	    } catch (Exception e){
 	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (rs != null) rs.close();
+	            if (conn != null) conn.close();
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
 	    }
 	    return null;
 	}
+
 
 	public int updatePost(int post_id, String post_title, String post_content) {
 	    String SQL = "UPDATE POST SET post_title = ?, post_content = ? WHERE post_id =?";

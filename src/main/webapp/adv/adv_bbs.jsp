@@ -11,6 +11,7 @@ pageEncoding="UTF-8"%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale= 1">
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="../css/main.css">
 <title>씨밀레</title>
 </head>
@@ -19,7 +20,7 @@ pageEncoding="UTF-8"%>
 <%@ include file="../nav/navbar.jsp" %>
 
 		<div class="container">
-		<p class="board">자유게시판</p>
+		<p class="board">홍보게시판</p>
 <table class="posttable">
 		<thead>
 			<tr>
@@ -36,7 +37,7 @@ pageEncoding="UTF-8"%>
 			ArrayList<Post> postList = postDAO.getList(pageNumber);
 			BoardDAO boardDAO = new BoardDAO();
 			for(Post post : postList){
-				if (post.getBoard_id() == 1) { // board_id가 1인 글만 출력
+				if (post.getBoard_id() == 2) { // board_id가 2인 글만 출력
 		%>
 			<tr>
 				<td><%=post.getPost_id()%></td>
