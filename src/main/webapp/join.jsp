@@ -9,17 +9,17 @@
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/join.css">
 
-<title>LRAK</title>
+<title>씨밀레</title>
 </head>
 <body>
 <%@ include file="./nav/navbar.jsp" %>
 <% String link = request.getHeader("referer"); %>
 <%	
-if (userID != null) {
+if (User_id != null) {
 	PrintWriter script = response.getWriter();
 	script.println("<script>");
 	script.println("alert('잘못된 접근입니다.')");
-	script.println("location.href='http://localhost:8080/BBS/main.jsp'");
+	script.println("location.href='http://localhost:8080/webserver/main.jsp'");
 	script.println("</script>");
 } %>
 
@@ -39,32 +39,20 @@ if (userID != null) {
 					<!-- <span>ID</span> -->
 					<label>
 						<p style="text-align: left; font-size: 12px; color: #666">userID</p>
-						<input type="text" class="size" placeholder="아이디" name="userID" maxlength="20">
+						<input type="text" class="size" placeholder="아이디" name="User_id" maxlength="20">
 						<p></p>
 					</label>
 					<!--아이디-->
 
 					<label> <!-- <span>PW</span> -->
 						<p style="text-align: left; font-size: 12px; color: #666">Password</p> 
-						<input type="password" class="size" placeholder="비밀번호" name="userPassword" maxlength="20">
+						<input type="password" class="size" placeholder="비밀번호" name="Password" maxlength="20">
 					</label>
 					
 
 					<label> <!-- <span>PW</span> -->
 						<p style="text-align: left; font-size: 12px; color: #666">userName</p> 
-						<input type="text" class="size" placeholder="이름" name="userName" maxlength="20">
-					</label>
-					
-					<label> <!-- <span>PW</span> -->
-						<p style="text-align: left; font-size: 12px; color: #666">Gender</p>
-						<label class="size btn num3">
-							<input type="radio" name="userGender" autocomplete="off" value="남자" checked>남자 
-						</label>
-						<label class="size btn num3">
-							<input type="radio" name="userGender" autocomplete="off" value="여자" checked>여자 
-                		</label>
-                			
-            							
+						<input type="text" class="size" placeholder="이름" name="Name" maxlength="20">
 					</label>
 
 
@@ -73,11 +61,6 @@ if (userID != null) {
 						<input type="email" class="size" placeholder="이메일" name="userEmail" maxlength="20">
 					</label>
 					<!--이메일-->
-					<label> 
-						<p style="text-align: left; font-size: 12px; color: #666">닉네임</p>
-						<input type="text" class="size" placeholder="닉네임" name="userNickname" maxlength="20">
-					</label>
-
 
 					<br>
 					

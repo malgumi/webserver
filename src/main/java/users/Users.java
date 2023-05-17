@@ -1,16 +1,17 @@
 package users;
 
 public class Users {
-	private int user_id;
+	private String user_id;
 	private String password;
 	private String name;
-	private String permission;
+	private int permission;
 	private String email;
-	public int getUser_id() {
+	
+	public String getUser_id() {
 		return user_id;
 	}
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setUser_id(String string) {
+		this.user_id = string;
 	}
 	public String getPassword() {
 		return password;
@@ -24,10 +25,10 @@ public class Users {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getPermission() {
+	public int getPermission() {
 		return permission;
 	}
-	public void setPermission(String permission) {
+	public void setPermission(int permission) {
 		this.permission = permission;
 	}
 	public String getEmail() {

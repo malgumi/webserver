@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ page import="user.UserDAO" %>
+ <%@ page import="users.UsersDAO" %>
  <%@ page import="java.io.PrintWriter" %> 
 
 
@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>LRAK</title>
+<title>씨밀레</title>
 </head>
 
 <body>

@@ -12,9 +12,9 @@
 </head>
 <body>
 	<%
-		String userID = null;
-		if(session.getAttribute("userID")!=null){
-			userID = (String) session.getAttribute("userID");
+		String User_id = null;
+		if(session.getAttribute("User_id")!=null){
+			User_id = (String) session.getAttribute("User_id");
 		}
 		int pageNumber = 1; //기본 첫 페이지
 		if (request.getParameter("pageNumber") != null){ //파라미터가 넘어오면 페이지 넘버 삽입
