@@ -4,9 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-//import java.util.ArrayList;
-//
-//import users.Users;
 
 public class UsersDAO {
 	private Connection conn;
@@ -34,6 +31,8 @@ public class UsersDAO {
 		String SQL = "SELECT password FROM USERS WHERE user_id = ?";
 		
 		try {
+			Connection conn = open();
+			
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, user_id);
 			rs = pstmt.executeQuery();
@@ -54,14 +53,15 @@ public class UsersDAO {
 	}
 	
 	public int join(Users users) {
-		String SQL = "INSERT INTO USERS VALUES (?, ?, ?, ?, ?)";
+		String SQL = "INSERT INTO USERS VALUES (?, ?, ?, 1, ?)";
 		try {
+			conn = open();
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, users.getUser_id());
 			pstmt.setString(2, users.getPassword());
 			pstmt.setString(3, users.getName());
-			pstmt.setInt(4, users.getPermission());
-			pstmt.setString(5, users.getEmail());
+			//pstmt.setInt(4, users.getPermission());
+			pstmt.setString(4, users.getEmail());
 			//pstmt.setString(6, users.getUserNickname());
 
 			return pstmt.executeUpdate(); //결과를 집어넣는거??
@@ -98,6 +98,25 @@ public class UsersDAO {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public int name(String name) {//닉네임 중복 체크 
+		String SQL = "SELECT Name from USERS where Name = ?";
+		try {
+			pstmt = conn.prepareStatement(SQL); 
+			pstmt.setString(1, name);//SQL 인젝션같은 해킹기법 방어
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) { //결과가 존재 한다면 실행
+				if(rs.getString(1).equals(name)) {
+					return -1;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		
+		return 1;
 	}
 	
 	public int updateUserdata(String User_id, String Password, String Name, int Permission, String Email) {

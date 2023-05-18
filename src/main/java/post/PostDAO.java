@@ -62,6 +62,8 @@ public class PostDAO {
 	public int write(String post_title, String user_id, String post_content, int board_id) {
 		String SQL = "INSERT INTO POST VALUES(?, ?, ?, ?, ?, ?, ?)";
 		try {
+			Connection conn = open();
+
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, getNext());
 			pstmt.setString(2, post_title);

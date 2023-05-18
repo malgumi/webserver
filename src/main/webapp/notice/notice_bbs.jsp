@@ -40,7 +40,7 @@ pageEncoding="UTF-8"%>
 		%>
 			<tr>
 				<td><%=post.getPost_id()%></td>
-				<td><a href="http://localhost:8080/webserver/view.jsp?post_id=<%= post.getPost_id()%>" style="text-decoration: none; color: black;"><%=post.getPost_title()%></a></td>
+				<td><a href="http://localhost:8080/webserver/notice_view.jsp?post_id=<%= post.getPost_id()%>" style="text-decoration: none; color: black;"><%=post.getPost_title()%></a></td>
 				<td><%=post.getUser_id()%></td>
 				<td><%=post.getDate()%></td>
 			</tr>
@@ -75,7 +75,7 @@ pageEncoding="UTF-8"%>
 			
 			<%} %>
 							
-			<a href="write.jsp" class="button">글쓰기</a>
+			<a href="notice_write.jsp" class="button">글쓰기</a>
 		</div>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>

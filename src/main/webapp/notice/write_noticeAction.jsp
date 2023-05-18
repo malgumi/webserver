@@ -1,15 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="bbs_notice.Bbs_NoticeDAO" %> <!-- bbs데이터 객체를 이용해서 받아오는 것 -->
+<%@ page import="post.PostDAO"%> <!-- bbs데이터 객체를 이용해서 받아오는 것 -->
+<%@ page import="post.Post" %> 
 <%@ page import="java.io.PrintWriter" %> 
 
  <% request.setCharacterEncoding("UTF-8"); %> <!-- 데이터를 UTF형식으로 받기 -->
- <jsp:useBean id="bbs_notice" class="bbs_notice.Bbs_Notice" scope="page" />
+ <jsp:useBean id="post" class="post.Post" scope="page" />
  <!-- 데이터 받아오는거 -->
- <jsp:setProperty name="bbs_notice" property="notice_bbsTitle" />
- <jsp:setProperty name="bbs_notice" property="notice_bbsContent" />
- <%@ page import="user.User" %>
- <%@ page import="user.UserDAO" %>
+ <jsp:setProperty name="post" property="post_title" />
+ <jsp:setProperty name="post" property="post_content" />
+  <%@ page import="users.Users" %>
+ <%@ page import="users.UsersDAO" %>
 
 
 <!DOCTYPE html>
@@ -19,18 +20,18 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>JSP 게시판</title>
+<title>씨밀레</title>
 </head>
 
 <body>
 	<%
 	
-		String userID = null;
-		if(session.getAttribute("userID")!= null){ //유저 ID에 해당 세션 값 넣기
-			userID = (String) session.getAttribute("userID");
+		String user_id = null;
+		if(session.getAttribute("user_id")!= null){ //유저 ID에 해당 세션 값 넣기
+			user_id = (String) session.getAttribute("user_id");
 			
 		}
-		if (userID == null) {
+		if (user_id == null) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('로그인을 해주세요.')");
@@ -40,7 +41,7 @@
 		
 		else{
 			//뭔가 입력이 안됐을때
-			if(bbs_notice.getNotice_bbsTitle() == null || bbs_notice.getNotice_bbsContent() == null || bbs_notice.getNotice_bbsContent().replaceAll("\\s", "").equals("") || bbs_notice.getNotice_bbsTitle().replaceAll("\\s", "").equals("")){
+			if(post.getPost_title() == null || post.getPost_content() == null || post.getPost_content().replaceAll("\\s", "").equals("") || post.getPost_title().replaceAll("\\s", "").equals("")){
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('입력이 안 된 사항이 있습니다.')");
@@ -48,12 +49,11 @@
 				script.println("</script>");
 			} 
 			else{ //입력이 됐다면 데이터베이스로 보내버리기
-				UserDAO userDAO = new UserDAO();
-				String name = userDAO.nameserach(userID);//유저 닉네임 가져오기 
-				Bbs_NoticeDAO bbs_noticeDAO = new Bbs_NoticeDAO();
-					int result = bbs_noticeDAO.write(bbs_notice.getNotice_bbsTitle(), userID, bbs_notice.getNotice_bbsContent(), name);
+				UsersDAO UsersDAO = new UsersDAO();
+				PostDAO postDAO = new PostDAO();
+					int result = postDAO.write(post.getPost_title(), user_id, post.getPost_content(), 3);
 					if (result == -1) { //데이터베이스 오류
-						System.out.println(name);
+						//System.out.println(name);
 						PrintWriter script = response.getWriter();
 						script.println("<script>");
 						script.println("alert('글쓰기에 실패했습니다.')");

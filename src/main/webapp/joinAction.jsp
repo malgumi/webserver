@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" %>
  <%@ page import="users.UsersDAO" %>
  <%@ page import="java.io.PrintWriter" %> 
  <% request.setCharacterEncoding("UTF-8"); %> <!-- 데이터를 UTF형식으로 받기 -->
- <jsp:useBean id="user" class="users.Users" scope="page" />
- <jsp:setProperty name="user" property="user_id" /> <!-- user ID 받아오는거 -->
- <jsp:setProperty name="user" property="password" />
- <jsp:setProperty name="user" property="Name" /> 
- <jsp:setProperty name="user" property="permission" /> 
- <jsp:setProperty name="user" property="Email" /> 
+ <jsp:useBean id="users" class="users.Users" scope="page" />
+ <jsp:setProperty name="users" property="user_id" /> <!-- user ID 받아오는거 -->
+ <jsp:setProperty name="users" property="password" />
+ <jsp:setProperty name="users" property="name" /> 
+ <jsp:setProperty name="users" property="permission" /> 
+ <jsp:setProperty name="users" property="email" /> 
 <!DOCTYPE html>
 <html>
 
@@ -35,7 +35,7 @@
 			response.sendRedirect(link);
 		}
 			
-		if(user.getUser_id() == null || user.getPassword() == null || user.getName() == null || user.getPermission() >= 1 || user.getEmail() == null){
+		if(users.getUser_id() == null || users.getPassword() == null || users.getName() == null  || users.getEmail() == null){
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('입력이 안된 곳이 있습니다!');");
@@ -45,7 +45,7 @@
 		else{
 			UsersDAO userDAO = new UsersDAO();
 			//변수 받아서 login 함수로 보내버리기
-				int result = userDAO.join(user);
+				int result = userDAO.join(users);
 				if (result == -1) {
 					PrintWriter script = response.getWriter();
 					script.println("<script>");
@@ -54,7 +54,7 @@
 					script.println("</script>");
 				}
 				else {
-					session.setAttribute("user_id", user.getUser_id());
+					session.setAttribute("user_id", users.getUser_id());
 					PrintWriter script = response.getWriter();
 					response.sendRedirect(link);
 				}

@@ -39,26 +39,26 @@ if (User_id != null) {
 					<!-- <span>ID</span> -->
 					<label>
 						<p style="text-align: left; font-size: 12px; color: #666">userID</p>
-						<input type="text" class="size" placeholder="아이디" name="User_id" maxlength="20">
+						<input type="text" class="size" placeholder="아이디" name="user_id" maxlength="20">
 						<p></p>
 					</label>
 					<!--아이디-->
 
 					<label> <!-- <span>PW</span> -->
 						<p style="text-align: left; font-size: 12px; color: #666">Password</p> 
-						<input type="password" class="size" placeholder="비밀번호" name="Password" maxlength="20">
+						<input type="password" class="size" placeholder="비밀번호" name="password" maxlength="20">
 					</label>
 					
 
 					<label> <!-- <span>PW</span> -->
 						<p style="text-align: left; font-size: 12px; color: #666">userName</p> 
-						<input type="text" class="size" placeholder="이름" name="Name" maxlength="20">
+						<input type="text" class="size" placeholder="이름" name="name" maxlength="20">
 					</label>
 
 
 					<label> <!-- <span>PW</span> -->
 						<p style="text-align: left; font-size: 12px; color: #666">E-mail</p>
-						<input type="email" class="size" placeholder="이메일" name="userEmail" maxlength="20">
+						<input type="email" class="size" placeholder="이메일" name="email" maxlength="20">
 					</label>
 					<!--이메일-->
 

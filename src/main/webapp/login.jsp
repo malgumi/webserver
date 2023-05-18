@@ -9,7 +9,7 @@
 <meta name="viewport" content="width-device-width, initial-scale=1">
 
 
-<title>LRAK</title>
+<title>씨밀레</title>
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/loginback.css">
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -34,11 +34,11 @@
 
 					<hr>
 					<label style="text-align: left; font-size: 12px; color: #666"> <!-- <span>ID</span> -->
-						<span>Username</span> <br> <br>
-						<input type="text" class=" size" placeholder="아이디" name="userID" maxlength="20">
+						<span>User name</span> <br> <br>
+						<input type="text" class=" size" placeholder="아이디" name="user_id" maxlength="20">
 					</label> <br> <label style="text-align: left; font-size: 12px; color: #666"> <!-- <span>PW</span> -->
 						<br> <span>Password</span> <br> <br>
-						<input type="password" class=" size" placeholder="비밀번호" name="userPassword" maxlength="20">
+						<input type="password" class=" size" placeholder="비밀번호" name="password" maxlength="20">
 					</label>
 						<input type="hidden" name="link" value=<%= link %>><!-- 전 페이지의 링크를 담아서 보냄  -->
 					<p>

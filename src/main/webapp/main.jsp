@@ -35,13 +35,13 @@ pageEncoding="UTF-8"%>
 			ArrayList<Post> postList = postDAO.getList(1);
 			BoardDAO boardDAO = new BoardDAO();
 			for(Post post : postList){
-				String boardTitle = boardDAO.getBoardTitle(post.getBoard_id());
+				String board_title = boardDAO.getBoard_title(post.getBoard_id());
 		%>
 			<tr>
-				<td><%=boardTitle%></td>
+				<td><%=board_title%></td>
 				<td><a href="http://localhost:8080/webserver/view.jsp?post_id=<%= post.getPost_id()%>" style="text-decoration: none; color: black;"><%=post.getPost_title()%></a></td>
 				<td><%=post.getUser_id()%></td>
-				<td><%=post.getDate()%></td>
+				<td><%= post.getDate().substring(0,11) + post.getDate().substring(11, 13) + "시" + post.getDate().substring(14,16) + "분" %></td>
 			</tr>
 			<%}%>
 		</tbody>

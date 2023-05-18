@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
  <%@ page import="users.Users" %>
+ <%@ page import="users.UsersDAO" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,9 +13,9 @@
 </head>
 <body>
 	<%
-		String User_id = null;
-		if(session.getAttribute("User_id")!=null){
-			User_id = (String) session.getAttribute("User_id");
+		String user_id = null;
+		if(session.getAttribute("user_id")!=null){
+			user_id = (String) session.getAttribute("user_id");
 		}
 		int pageNumber = 1; //기본 첫 페이지
 		if (request.getParameter("pageNumber") != null){ //파라미터가 넘어오면 페이지 넘버 삽입
@@ -32,9 +33,9 @@
 				<li><a href="http://localhost:8080/webserver/adv/adv_bbs.jsp">홍보게시판</a></li>
 			</ul></div>
 			<div class="loginmenu">
-				<%-- <%
-				if(userID == null){
-			%> --%>
+				<%
+				if(user_id == null) {
+			%>
 			<ul>
 				<li><a href="#">접속하기</a>
 					<ul class="dropdown-menu">
@@ -43,18 +44,18 @@
 					</ul>
 				</li>
 			</ul>
-			<%-- <%
+			<%
 				}
-				else{
-					UserDAO userDAO = new UserDAO();
-					int result = userDAO.serach(userID);
-					User user = new UserDAO().getUserdata(userID);
+				else {
+					UsersDAO UserDAO = new UsersDAO();
+					
+					Users user = new UsersDAO().getUserdata(user_id);
 			%>
 			<ul>
 				<li><a href="#">회원관리</a>
 					<ul class="dropdown-menu">
 						<li><img src="https://t1.daumcdn.net/cfile/tistory/24283C3858F778CA2E" style="width:80px; height:80px; border-radius:50%; overflow: hidden;"></li>
-						<li style="font-size:12px;">닉네임 넣는 칸</li>
+						
 						<li><a href="http://localhost:8080/webserver/Userpage/password_Userpage.jsp">회원정보관리</a></li>
 						<li><a href="http://localhost:8080/webserver/logoutAction.jsp">로그아웃</a></li>
 					</ul>
@@ -62,7 +63,7 @@
 			</ul>
 			<% 
 				}
-			%> --%>
+			%>
 			</div>
 		</div>
 	</nav>

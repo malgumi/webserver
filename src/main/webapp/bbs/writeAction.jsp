@@ -7,8 +7,8 @@
  <% request.setCharacterEncoding("UTF-8"); %> <!-- 데이터를 UTF형식으로 받기 -->
  <jsp:useBean id="post" class="post.Post" scope="page" />
  <!-- 데이터 받아오는거 -->
- <jsp:setProperty name="post" property="Post_title" />
- <jsp:setProperty name="post" property="Post_content" />
+ <jsp:setProperty name="post" property="post_title" />
+ <jsp:setProperty name="post" property="post_content" />
   <%@ page import="users.Users" %>
  <%@ page import="users.UsersDAO" %>
 
@@ -27,11 +27,11 @@
 <body>
 	<%
 	
-		String User_id = null;
-		if(session.getAttribute("User_id")!= null){ //유저 ID에 해당 세션 값 넣기
-			User_id = (String) session.getAttribute("User_id");
+		String user_id = null;
+		if(session.getAttribute("user_id")!= null){ //유저 ID에 해당 세션 값 넣기
+			user_id = (String) session.getAttribute("user_id");
 		}
-		if (User_id == null) {
+		if (user_id == null) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('로그인을 해주세요.')");
@@ -52,7 +52,7 @@
 				UsersDAO userDAO = new UsersDAO();
 				//String name = userDAO.//nameserach(User_id);//닉네임가져와서 데이터베이스로 저장 
 				PostDAO postDAO = new PostDAO();
-					int result = postDAO.write(post.getPost_title(), User_id, post.getPost_content(), 1);//1->자유게시판 board_id
+					int result = postDAO.write(post.getPost_title(), user_id, post.getPost_content(), 1);//1->자유게시판 board_id
 					if (result == -1) { //데이터베이스 오류
 						PrintWriter script = response.getWriter();
 						script.println("<script>");

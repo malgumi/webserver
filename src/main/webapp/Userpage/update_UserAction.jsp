@@ -1,44 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ page import="user.UserDAO" %>
-  <%@ page import="user.User" %>
+ <%@ page import="users.UsersDAO" %>
+  <%@ page import="users.Users" %>
  <%@ page import="java.io.PrintWriter" %> 
  <% request.setCharacterEncoding("UTF-8"); %> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>우리끼리 게시판</title>
+<title>씨밀레</title>
 </head>
 
 <body>
 	<%
-		String userID = null;
-		if(session.getAttribute("userID")!= null){ //유저 ID에 해당 세션 값 넣기
-			userID = (String) session.getAttribute("userID");
+		String User_id = null;
+		int Permission = 0;
+		if(session.getAttribute("User_id")!= null){ //유저 ID에 해당 세션 값 넣기
+			User_id = (String) session.getAttribute("User_id");
+			Permission = (int) session.getAttribute("Permission");
 		}
-		if (userID == null) {
+		if (User_id == null) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('로그인을 해주세요.')");
-			script.println("location.href = 'http://localhost:8080/BBS/login.jsp'");
+			script.println("location.href = 'http://localhost:8080/webserver/login.jsp'");
 			script.println("</script>");
 		}
-		User user = new UserDAO().getUserdata(userID);
-		if (!userID.equals(user.getUserID())){
+		Users user = new UsersDAO().getUserdata(User_id);
+		if (!User_id.equals(user.getUser_id())){
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('본인 외의 정보는 수정 불가능합니다.')");
-			script.println("location.href = 'http://localhost:8080/BBS/main.jsp'");
+			script.println("location.href = 'http://localhost:8080/webserver/main.jsp'");
 			script.println("</script>");
 		}
 		else{
-			if(request.getParameter("userPassword").replaceAll("\\s", "").equals("") || request.getParameter("userName").replaceAll("\\s", "").equals("") 
-					|| request.getParameter("userGender").replaceAll("\\s", "").equals("") || request.getParameter("userEmail").replaceAll("\\s", "").equals("")
-					|| request.getParameter("userNickname").replaceAll("\\s", "").equals("")
-					|| request.getParameter("userPassword") == null || request.getParameter("userName") == null 
-					|| request.getParameter("userGender") == null || request.getParameter("userEmail") == null 
-					|| request.getParameter("userNickname") == null){ 
+			if(request.getParameter("Password").replaceAll("\\s", "").equals("") || request.getParameter("Name").replaceAll("\\s", "").equals("") 
+					|| request.getParameter("Email").replaceAll("\\s", "").equals("")
+					|| request.getParameter("Password") == null || request.getParameter("Name") == null 
+					|| request.getParameter("Email") == null){ 
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('입력이 안 된 사항이 있습니다.')");
@@ -46,9 +46,9 @@
 				script.println("</script>");
 			} 
 			else{
-				UserDAO userDAO = new UserDAO();
-					int result = userDAO.updateUserdata(userID, request.getParameter("userPassword"), request.getParameter("userName"), 
-							request.getParameter("userGender"), request.getParameter("userEmail"), request.getParameter("userNickname"));
+				UsersDAO UserDAO = new UsersDAO();
+					int result = UserDAO.updateUserdata(User_id, request.getParameter("Password"), request.getParameter("Name"), Permission, 
+							request.getParameter("Email"));
 					if (result == -1) { //데이터베이스 오류
 						PrintWriter script = response.getWriter();
 						script.println("<script>");

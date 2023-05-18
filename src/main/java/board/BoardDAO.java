@@ -26,12 +26,12 @@ public class BoardDAO {
 	    return conn;
 	}
 
-    public String getBoardTitle(int boardId) {
+    public String getBoard_title(int board_id) {
     	Connection conn = open();
         String SQL = "SELECT BOARD_TITLE FROM BOARD WHERE BOARD_ID = ?";
         try {
             PreparedStatement pstmt = conn.prepareStatement(SQL);
-            pstmt.setInt(1, boardId);
+            pstmt.setInt(1, board_id);
             rs = pstmt.executeQuery();
             if (rs.next()) {
                 return rs.getString(1);

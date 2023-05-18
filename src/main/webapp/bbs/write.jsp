@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width-device-width, initial-scale=1">
 <link rel="stylesheet" href="../css/bootstrap.css">
-<title>LRAK</title>
+<title>씨밀레</title>
 </head>
 <body>
 <%@ include file="../nav/navbar.jsp" %>
@@ -23,10 +23,10 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td><input type= "text" class="form-control" placeholder="제목" name="bbsTitle" maxlength="50"></td>
+						<td><input type= "text" class="form-control" placeholder="제목" name="post_title" maxlength="50"></td>
 					</tr>
 					<tr>
-						<td><textarea class="form-control" placeholder="내용" name="bbsContent" maxlength="2048" style="height:350px;"></textarea></td>
+						<td><textarea class="form-control" placeholder="내용" name="post_content" maxlength="2048" style="height:350px;"></textarea></td>
 					</tr>
 				</tbody>
 				
