@@ -4,24 +4,24 @@
  <%@ page import="java.io.PrintWriter" %> 
  <% request.setCharacterEncoding("UTF-8"); %> <!-- 데이터를 UTF형식으로 받기 -->
  <jsp:useBean id="user" class="users.Users" scope="page" />
- <jsp:setProperty name="user" property="User_id" />
- <jsp:setProperty name="user" property="Password" />
+ <jsp:setProperty name="user" property="user_id" />
+ <jsp:setProperty name="user" property="password" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>LRAK</title>
+<title>씨밀레</title>
 </head>
 
 <body>
 	<%
-		String User_id = null;
-		if(session.getAttribute("User_id")!= null){ //유저 ID에 해당 세션 값 넣기
-			User_id = (String) session.getAttribute("User_id");
+		String user_id = null;
+		if(session.getAttribute("user_id")!= null){ //유저 ID에 해당 세션 값 넣기
+			user_id = (String) session.getAttribute("user_id");
 		}
-		UsersDAO UsersDAO = new UsersDAO();
+		UsersDAO usersDAO = new UsersDAO();
 	//변수 받아서 login 함수로 보내버리기
-		int result = UsersDAO.login(User_id, user.getPassword());
+		int result = usersDAO.login(user_id, user.getPassword());
 		if (result == 1) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");

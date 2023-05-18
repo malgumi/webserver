@@ -8,7 +8,7 @@
 <meta name="viewport" content="width-device-width, initial-scale=1">
 
 
-<title>LRAK</title>
+<title>씨밀레</title>
 <link rel="stylesheet" href="../css/bootstrap.css">
 <link rel="stylesheet" href="../css/loginback.css">
 <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -26,7 +26,7 @@
 					<hr>
 					<label style="text-align: left; font-size: 12px; color: #666">
 						<br> <span>정보 수정을 위해 비밀번호를 입력해주세요.</span> <br> <br>
-						<input type="password" class="size" placeholder="비밀번호" name="userPassword" maxlength="20">
+						<input type="password" class="size" placeholder="비밀번호" name="password" maxlength="20">
 					</label>
 
 					<p>
