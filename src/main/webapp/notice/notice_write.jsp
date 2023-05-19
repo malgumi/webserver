@@ -15,7 +15,7 @@
 	<div class="container">
 		<div class="row">
 		<form method="post" action="write_noticeAction.jsp">
-			<table class="table table-striped" style="text-align: center; border:1px solid #dddddd">
+			<table class="table table-striped" style="text-align: center; border:1px solid #dddddd width: 100%; height: 450px;">
 				<thead>
 					<tr>
 						<th colspan="2" style ="background-color: #eeeeee; text-align: center;">공지사항 등록</th>
