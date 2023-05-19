@@ -15,7 +15,7 @@
 <%@ include file="./nav/navbar.jsp" %>
 <% String link = request.getHeader("referer"); %>
 <%	
-if (User_id != null) {
+if (user_id != null) {
 	PrintWriter script = response.getWriter();
 	script.println("<script>");
 	script.println("alert('잘못된 접근입니다.')");
