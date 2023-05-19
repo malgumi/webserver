@@ -110,7 +110,7 @@
 			
 			<!-- 댓글입력 -->
 				<%
-				if (User_id != null) {
+				if (user_id != null) {
 				%>
 				<div class="container">
 					<div class="row">
@@ -129,7 +129,7 @@
 						<a onclick="history.back()" class="btn btn-primary" id="btns">뒤로가기</a>
 						<a href = "bbs.jsp" class="btn btn-primary" id="btns">목록</a> <!-- 글 목록으로 되돌아가기 -->
 					<%
-						if (User_id != null && User_id.equals(post.getUser_id())){ //만약 글 쓴 유저가 해당 유저라면 글 수정, 삭제 가능하게 하기
+						if (user_id != null && user_id.equals(post.getUser_id())){ //만약 글 쓴 유저가 해당 유저라면 글 수정, 삭제 가능하게 하기
 					%>
 						<a href="update.jsp?post_id=<%= post_id %>" class="btn btn-primary" id="btns">글 수정</a>
 						<a onclick="return confirm('삭제하시겠습니까?')" href="deleteAction.jsp?post_id=<%= post_id %>" class="btn btn-primary" id="btns">삭제</a>
