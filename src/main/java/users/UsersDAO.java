@@ -89,8 +89,8 @@ public class UsersDAO {
 				user.setUser_id(rs.getString(1));
 				user.setPassword(rs.getString(2));
 				user.setName(rs.getString(3));
-				user.setPermission(rs.getInt(4));
-				user.setEmail(rs.getString(5));
+				//user.setPermission(rs.getInt(4));
+				user.setEmail(rs.getString(4));
 				return user;
 			}
 		}

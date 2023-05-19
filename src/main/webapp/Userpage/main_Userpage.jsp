@@ -22,8 +22,8 @@
 	<script src="../js/bootstrap.min.js"></script>
 	
 	<% 
-		Users user = new UsersDAO().getUserdata(User_id);
-	if (User_id == null) {
+		Users user = new UsersDAO().getUserdata(user_id);
+	if (user_id == null) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('로그인을 해주세요.')");
@@ -36,7 +36,7 @@
 	<div id="con">
 		<div id="login">
 			<div id="login_form" style="margin-top:100px;">
-				<form method="post" action="update_UserAction.jsp?User_id=<%= User_id %>">
+				<form method="post" action="update_UserAction.jsp?user_id=<%= user_id %>">
 					<h3 style="text-align: center;">회원 정보 수정</h3> 
 					<hr>
 					<label style="text-align: left; font-size: 14px; color: #666">
@@ -46,17 +46,17 @@
 						<br><br>
 					<label style="text-align: left; font-size: 14px; color: #666">
 						<span >비밀번호</span><br>
-						<input type="password" class="size" name="userPassword" maxlength="50" style="width: 258px; border:none;" value="<%=user.getPassword()%>">	
+						<input type="password" class="size" name="password" maxlength="50" style="width: 258px; border:none;" value="<%=user.getPassword()%>">	
 					</label>
 					<br><br>
 					<label style="text-align: left; font-size: 14px; color: #666">
 						<span>이름</span><br>
-						<input type="text" class="size" placeholder="이름" name="userName" maxlength="50" style="width: 258px; border:none;" value="<%= user.getName() %>">		
+						<input type="text" class="size" placeholder="이름" name="name" maxlength="50" style="width: 258px; border:none;" value="<%= user.getName() %>">		
 					</label>
 					<br><br>
 					<label style="text-align: left; font-size: 14px; color: #666">
 						<span>이메일</span><br>
-						<input type="email" class="size" placeholder="이메일" name="userEmail" maxlength="50" style="width: 258px; border:none;" value="<%= user.getEmail() %>">		
+						<input type="email" class="size" placeholder="이메일" name="email" maxlength="50" style="width: 258px; border:none;" value="<%= user.getEmail() %>">		
 					</label>
 					<br><br>
 					<input onclick="return confirm('수정하시겠습니까?')" type="submit" class="btn btn-primary pull-right" value="수정하기">

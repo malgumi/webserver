@@ -16,7 +16,7 @@ pageEncoding="UTF-8"%>
 <body>
 		<h1 style="padding-top: 10px;"><img src="http://localhost:8080/webserver/img/logo.png"></h1>
 		<jsp:include page="nav/navbar.jsp"/> <!-- 네비바 -->
-		
+		<!-- 뭐가 문제지 -->
 		<!-- 이곳에 글 목록 출력 -->
 			<div class="container">
 	<table class="posttable">
