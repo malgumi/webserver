@@ -9,7 +9,7 @@
  <% request.setCharacterEncoding("UTF-8"); %> <!-- 데이터를 UTF형식으로 받기 -->
  <jsp:useBean id="comment" class="comment.Comment" scope="page" />
  <!-- 데이터 받아오는거 -->
- <jsp:setProperty name="comment" property="comment_comment" />
+ <jsp:setProperty name="comment" property="comment_content" />
 <!DOCTYPE html>
 <html>
 
@@ -24,11 +24,11 @@
 	<%
 		Post post = new Post();
 		CommentDAO CommentDAO = new CommentDAO();
-		String User_id = null;
-		if(session.getAttribute("User_id")!= null){ //유저 ID에 해당 세션 값 넣기
-			User_id = (String) session.getAttribute("User_id");
+		String user_id = null;
+		if(session.getAttribute("user_id")!= null){ //유저 ID에 해당 세션 값 넣기
+			user_id = (String) session.getAttribute("user_id");
 		}
-		if (User_id == null) {
+		if (user_id == null) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('로그인을 해주세요.')");
@@ -59,7 +59,7 @@
 			else{ //입력이 됐다면 데이터베이스로 보내버리기
 				UsersDAO UsersDAO = new UsersDAO();
 				CommentDAO commentDAO = new CommentDAO();
-					int result = commentDAO.comment_write(User_id, Post_id, comment.getComment_content(), 1);//1<-아마 available
+					int result = commentDAO.comment_write(user_id, Post_id, comment.getComment_content(), 1);//1<-아마 available
 					if (result == -1) { //데이터베이스 오류
 						PrintWriter script = response.getWriter();
 						script.println("<script>");

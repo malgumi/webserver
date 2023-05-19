@@ -15,8 +15,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale= 1">
-<link rel="stylesheet" href="../css/bootstrap.css" type="text/css">
-<link rel="stylesheet" href="../css/view.css" type="text/css">
 <title>씨밀레</title>
 </head>
 
@@ -59,7 +57,8 @@
     			<h1 class="cho"><span>자유게시판</span></h1>
    				 <section class="board">
       				  <div class="header">
-       				     <h3 class="title"><%= post.getPost_title()%></h3>
+       				     <h3 class="title" style="font-size: 35px"><%= post.getPost_title()%></h3>
+       				     <hr>     				     
        				     <div class="info">
         			        <p>
         			        <span>작성자</span> <%= post.getUser_id() %>
@@ -79,7 +78,7 @@
 		<!-- 댓글 -->
 			<div class="container">
 				<div class="row">
-				<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
+				<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd; width: 100%;">
 						<thead>
 							<tr>
 								<th colspan="4" style="background-color: #eeeeee; text-align: center;">댓글</th>
@@ -97,7 +96,7 @@
 					 	<td style="text-align: center;"><%= list.get(i).getComment_content() %></td>
 					 	<td style="text-align: end; font-size: 10px; color: gray;"><%= list.get(i).getDate().substring(0,11) + list.get(i).getDate().substring(11, 13) + "시" + list.get(i).getDate().substring(14,16) + "분" %></td>
 					 	<td style="text-align: end; font-size: 10px; color: gray;"><a href="#">수정</a>&nbsp;&nbsp;
-					 	<a onclick="return confirm('삭제하시겠습니까?')" href="comment_deleteAction.jsp?comment_num=<%= list.get(i).getComment_id() %>">삭제</a></td>
+					 	<a onclick="return confirm('삭제하시겠습니까?')" href="comment_deleteAction.jsp?comment_id=<%= list.get(i).getComment_id() %>">삭제</a></td>
 					 	</tr>
 					</tbody>
 
@@ -115,10 +114,10 @@
 				<div class="container">
 					<div class="row">
 						<form method="post" action="commentAction.jsp?post_id=<%= post_id %>"> <!-- wrtieAction페이지로 내용 숨겨서 전송 -->
-							<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
+							<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd; width: 100%">
 								<tbody>
 									<tr>						
-										<td><textarea class="form-control" placeholder="댓글을 입력하세요." name="Comment_content" maxlength="300" style="height: 100px"></textarea></td>
+										<td><textarea class="form-control" placeholder="댓글을 입력하세요." name="Comment_content" maxlength="300" style="height: 100px; width: 100%; padding-top: 5px; padding-left: 5px;"></textarea></td>
 										
 									</tr>			
 								</tbody>
@@ -126,12 +125,12 @@
 							</table>
 							<input type="submit" class="btn btn-primary pull-right" id="btns" value="댓글쓰기">
 						</form>
-						<a onclick="history.back()" class="btn btn-primary" id="btns">뒤로가기</a>
-						<a href = "bbs.jsp" class="btn btn-primary" id="btns">목록</a> <!-- 글 목록으로 되돌아가기 -->
+						<a onclick="history.back()" class="btn btn-primary" id="btns">뒤로가기&nbsp;</a>
+						<a href = "bbs.jsp" class="btn btn-primary" id="btns">목록&nbsp;</a> <!-- 글 목록으로 되돌아가기 -->
 					<%
 						if (user_id != null && user_id.equals(post.getUser_id())){ //만약 글 쓴 유저가 해당 유저라면 글 수정, 삭제 가능하게 하기
 					%>
-						<a href="update.jsp?post_id=<%= post_id %>" class="btn btn-primary" id="btns">글 수정</a>
+						<a href="update.jsp?post_id=<%= post_id %>" class="btn btn-primary" id="btns">글 수정&nbsp;</a>
 						<a onclick="return confirm('삭제하시겠습니까?')" href="deleteAction.jsp?post_id=<%= post_id %>" class="btn btn-primary" id="btns">삭제</a>
 					<%
 						}
@@ -159,7 +158,7 @@
 							<%
 								if(postDAO.getPost(post_id+1).getAvailable() != 0){ //다음 글이 존재하고, 삭제되지 않았을 경우
 							%>
-									<td><b>다음글</b></td>
+									<td><b>다음글&nbsp;</b></td>
 									<td><a href="view.jsp?post_id=<%= post_id + 1 %>"><%= postDAO.getPost(post_id+1).getPost_title() %></a></td>
 							<%
 								}
@@ -200,8 +199,6 @@
 		</div>
 	</div>	
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script src="../js/bootstrap.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
 
 </body>
 </html>
