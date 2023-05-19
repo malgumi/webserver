@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width-device-width, initial-scale=1">
-<link rel="stylesheet" href="../css/bootstrap.css">
 <title>씨밀레</title>
 </head>
 <body>
@@ -15,23 +14,23 @@
 	<div class="container">
 		<div class="row">
 		<form method="post" action="writeAction.jsp">
-			<table class="table table-striped" style="text-align: center; border:1px solid #dddddd">
+			<table class="table table-striped" style="text-align: center; border:1px solid #dddddd; width: 100%; height: 450px;">
 				<thead>
 					<tr>
-						<th colspan="2" style ="background-color: #eeeeee; text-align: center;">게시판 글쓰기 양식 </th>
+						<th colspan="2" style ="background-color: #eeeeee; text-align: center; height: 30px;"> 자유게시판 글 작성 </th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td><input type= "text" class="form-control" placeholder="제목" name="post_title" maxlength="50"></td>
+						<td><input type= "text" class="form-control" placeholder="제목을 입력하세요" name="post_title" maxlength="50" style="width: 90%; height: 25px; margin-top: 10px; padding-left: 5px;"></td>
 					</tr>
 					<tr>
-						<td><textarea class="form-control" placeholder="내용" name="post_content" maxlength="2048" style="height:350px;"></textarea></td>
+						<td><textarea class="form-control" placeholder="작성할 내용을 입력하세요" name="post_content" maxlength="2048" style="height:350px; width: 90%; padding-left: 5px; padding-top: 5px;"></textarea></td>
 					</tr>
 				</tbody>
 				
 			</table>
-			<input type="submit" class = "btn btn-primary pull-right" value="제출">
+			<input type="submit" class = "btn btn-primary pull-right" value="제출" style="height: 30px; width: 50px; margin-top: 10px;">
 		
 		
 		</form>
@@ -42,8 +41,6 @@
 	
  
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script src="../js/bootstrap.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
 
 </body>
 </html>
