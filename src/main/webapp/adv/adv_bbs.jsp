@@ -76,7 +76,7 @@ pageEncoding="UTF-8"%>
 			
 			<%} %>
 							
-			<a href="write.jsp" class="button">글쓰기</a>
+			<a href="adv_write.jsp" class="button">글쓰기</a>
 		</div>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
