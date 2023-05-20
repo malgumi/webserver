@@ -15,6 +15,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale= 1">
+<link rel="stylesheet" type="text/css" href="../css/main.css">
+<link rel="stylesheet" type="text/css" href="../css/view.css">
 <title>씨밀레</title>
 </head>
 
@@ -54,10 +56,10 @@
 	<div class="container">
 		<div class="row">
 			<div class="main">
-    			<h1 class="cho"><span>자유게시판</span></h1>
+    			<h1 class="boardTitle"><span>자유게시판</span></h1>
    				 <section class="board">
       				  <div class="header">
-       				     <h3 class="title" style="font-size: 35px"><%= post.getPost_title()%></h3>
+       				     <h3 class="title"><%= post.getPost_title()%></h3>
        				     <hr>     				     
        				     <div class="info">
         			        <p>
@@ -74,14 +76,24 @@
     				  	</div>
     				  </div>
     				</section>
+    				<div style="text-align: right;">
+    				<%
+						if (user_id != null && user_id.equals(post.getUser_id())){ //만약 글 쓴 유저가 해당 유저라면 글 수정, 삭제 가능하게 하기
+					%>
+						<a href="update.jsp?post_id=<%= post_id %>" class="modify">글 수정&nbsp;</a>
+						<a onclick="return confirm('삭제하시겠습니까?')" href="deleteAction.jsp?post_id=<%= post_id %>" class="cdelete">삭제</a>
+					<%
+						}
+					%>
+    				</div>
 			</div>
 		<!-- 댓글 -->
-			<div class="container">
-				<div class="row">
-				<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd; width: 100%;">
+			<!-- <div class="container">
+				<div class="row"> -->
+				<table class="commenttitle">
 						<thead>
 							<tr>
-								<th colspan="4" style="background-color: #eeeeee; text-align: center;">댓글</th>
+								<th colspan="4" style="background-color: #F7F2E0; text-align: center;">댓글</th>
 							</tr>
 						</thead>
 					<%
@@ -104,39 +116,32 @@
 						}
 					%>
 				</table>
-				</div>
-			</div>
+				<!-- </div>
+			</div> -->
 			
 			<!-- 댓글입력 -->
 				<%
 				if (user_id != null) {
 				%>
-				<div class="container">
-					<div class="row">
+				<!-- <div class="container">
+					<div class="row"> -->
 						<form method="post" action="commentAction.jsp?post_id=<%= post_id %>"> <!-- wrtieAction페이지로 내용 숨겨서 전송 -->
 							<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd; width: 100%">
 								<tbody>
 									<tr>						
-										<td><textarea class="form-control" placeholder="댓글을 입력하세요." name="Comment_content" maxlength="300" style="height: 100px; width: 100%; padding-top: 5px; padding-left: 5px;"></textarea></td>
-										
+										<td><textarea class="commentform" placeholder="댓글을 입력하세요." name="Comment_content" maxlength="300"></textarea></td>
+										<td><input type="submit" class="btns" value="댓글쓰기"></td>
 									</tr>			
 								</tbody>
 								
 							</table>
-							<input type="submit" class="btn btn-primary pull-right" id="btns" value="댓글쓰기">
+							
 						</form>
-						<a onclick="history.back()" class="btn btn-primary" id="btns">뒤로가기&nbsp;</a>
-						<a href = "bbs.jsp" class="btn btn-primary" id="btns">목록&nbsp;</a> <!-- 글 목록으로 되돌아가기 -->
-					<%
-						if (user_id != null && user_id.equals(post.getUser_id())){ //만약 글 쓴 유저가 해당 유저라면 글 수정, 삭제 가능하게 하기
-					%>
-						<a href="update.jsp?post_id=<%= post_id %>" class="btn btn-primary" id="btns">글 수정&nbsp;</a>
-						<a onclick="return confirm('삭제하시겠습니까?')" href="deleteAction.jsp?post_id=<%= post_id %>" class="btn btn-primary" id="btns">삭제</a>
-					<%
-						}
-					%>
-					</div>
-				</div>
+						<!-- <a onclick="history.back()" id="btns">뒤로가기&nbsp;</a> -->
+						<!-- <a href = "bbs.jsp" class="golist">글 목록&nbsp;</a> --> <!-- 글 목록으로 되돌아가기 -->
+					
+					<!-- </div>
+				</div> -->
 					
 				<%
 				}
@@ -150,50 +155,52 @@
 				
 				<!-- 2023.01.29 유말그미 추가 -->
 				<div class = "row" style="text-align: center; margin-top: 20px;">
-					<table class="table table-striped">
+					<table class="table table-striped" style="width: 100%;">
 					<%
-						if(postDAO.getPost(post_id+1) != null){ //다음 글이 존재할 경우.
+						if (postDAO.getPost(post_id-1) != null) { // 이전 글이 존재할 경우.
 					%>
 						<tr style="border: 1px solid #dddddd">
-							<%
-								if(postDAO.getPost(post_id+1).getAvailable() != 0){ //다음 글이 존재하고, 삭제되지 않았을 경우
-							%>
-									<td><b>다음글&nbsp;</b></td>
-									<td><a href="view.jsp?post_id=<%= post_id + 1 %>"><%= postDAO.getPost(post_id+1).getPost_title() %></a></td>
-							<%
-								}
-								else if(postDAO.getPost(post_id+2) != null){ // 다음 글이 존재하고, 삭제되었고, 삭제된 글의 다음 글이 존재하는 경우
-									%>
-									<td><b>다음글</b></td>
-									<td><a href="view.jsp?post_id=<%= post_id + 2 %>"><%= postDAO.getPost(post_id+2).getPost_title() %></a></td>
-							<%
-								}
-							%>
-							
-						</tr>
 					<%
-						} 
-						if(postDAO.getPost(post_id-1) != null){ //이전 글이 존재할 경우.
+						if (postDAO.getPost(post_id-1).getAvailable() != 0) { // 이전 글이 존재하고, 삭제되지 않았을 경우
 					%>
-						<tr style="border: 1px solid #dddddd">
-							<%
-								if(postDAO.getPost(post_id-1).getAvailable() != 0){ //이전 글이 존재하고, 삭제되지 않았을 경우
-							%>
-									<td><b>이전글</b></td>
-									<td><a href="view.jsp?post_id=<%= post_id - 1 %>"><%= postDAO.getPost(post_id-1).getPost_title() %></a></td>
-							<%
-								}
-								else if(postDAO.getPost(post_id-2) != null){ //이전 글이 존재하고, 삭제되었고, 삭제된 글의 이전 글이 존재할 경우
-							%>
-									<td><b>이전글</b></td>
-									<td><a href="view.jsp?post_id=<%= post_id - 2 %>"><%= postDAO.getPost(post_id-2).getPost_title() %></a></td>
-							<%	
-								}
-							%>
-						</tr>
+							<td align="left"><b>이전글&nbsp;</b>
+							<a href="view.jsp?post_id=<%= post_id - 1 %>"><%= postDAO.getPost(post_id-1).getPost_title() %></a></td>
+					<%
+						}
+						else if (postDAO.getPost(post_id-2) != null) { // 이전 글이 존재하고, 삭제되었고, 삭제된 글의 이전 글이 존재할 경우
+					%>
+							<td align="left"><b>이전글&nbsp;</b>
+							<td> --><a href="view.jsp?post_id=<%= post_id - 2 %>"><%= postDAO.getPost(post_id-2).getPost_title() %></a></td>
+					<%	
+						}
+					%>
+					<%
+						}
+					%>
+							<td align="right"><a href = "bbs.jsp" class="golist">글 목록&nbsp;</a> <!-- 글 목록으로 되돌아가기 -->
+					<%
+					if (postDAO.getPost(post_id+1) != null) { // 다음 글이 존재할 경우.
+					%>
+						<!-- <tr style="border: 1px solid #dddddd"> -->
+						<%
+							if (postDAO.getPost(post_id+1).getAvailable() != 0) { // 다음 글이 존재하고, 삭제되지 않았을 경우
+						%>
+							<td align="right"><b>다음글&nbsp;</b><!-- </td>
+							<td align="left"> --><a href="view.jsp?post_id=<%= post_id + 1 %>"><%= postDAO.getPost(post_id+1).getPost_title() %></a></td>
 						<%
 						}
+						else if (postDAO.getPost(post_id+2) != null) { // 다음 글이 존재하고, 삭제되었고, 삭제된 글의 다음 글이 존재하는 경우
 						%>
+							<td align="right"><b>다음글&nbsp;</b><!-- </td>
+							<td align="left"> --><a href="view.jsp?post_id=<%= post_id + 2 %>"><%= postDAO.getPost(post_id+2).getPost_title() %></a></td>
+						<%
+						}
+						%>	
+					</tr>
+					<%
+					}
+					%>
+
 					</table>
 				</div>
 		</div>
