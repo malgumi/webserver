@@ -28,32 +28,50 @@ h2 {
 	font-family: 'Hanna';
 }
 
+h4 {
+	font-family: 'Hanna';
+}
+
 img{
 	vertical-align: unset;
 }
 /* ==============본문 디자인============== */
+.boardview {
+	width: 90%;
+	padding-left: 10%;
+	border: 1px black;
+}
 .boardTitle {
-	font-size: 40px;
+	font-size: 20px;
+	text-align: left;
+	color: #cec7b4;
 }
 .title {
 	font-size: 30px;
 	color: black;
 	padding-bottom: 3px;
+	border: 1px black;
+	background-color: #F5ECCE;
+	text-align: center;
+	width: 100%;
 }
 .content {
 	color: black;
 	padding-top: 5px;
+	padding-left: 5px;
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 15px;
 }
 
 /* =================댓글 디자인=================== */
-.commenttitle {
+.commentlist {
+	font-size: 15px;
+	color: black;
+	padding-bottom: 3px;
+	border: 1px black;
+	background-color: #F5ECCE;
 	text-align: center;
-	border: 1px solid #eeeeee;
 	width: 100%;
-	margin-top: 20px;
-	background-color: F5ECCE;
 }
 .commentform {
 	width: 100%;
@@ -77,6 +95,31 @@ img{
 	border: 0;
 }
 
+/*==========기타============*/
+.white{
+	color: white;
+}
+.listinfo {
+	text-align: center;
+	width: 45%;
+	border: 1px black;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*===========기타=============*/
 .golist {
 	text-decoration: none;
@@ -85,8 +128,12 @@ img{
 }
 .modify {
 	text-decoration: none;
-	color: #0431B4;
+	color: black;
+	background-color: #F5ECCE;
 	text-align: right;
+	width: 50px;
+	height: 100px;
+	border: 1px;
 }
 .cdelete {
 	text-decoration: none;
