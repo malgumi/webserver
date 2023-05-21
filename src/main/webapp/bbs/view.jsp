@@ -70,10 +70,10 @@
 				<td>빈칸</td>
 			</tr>
 		</table>
-		<table>
+		<table class="clistinfo">
 			<tr><h4 class="commentlist">댓글 목록</h4></tr>
 
-			<tr class="listinfo">
+			<tr>
 				<td>작성자</td>
 				<td>내용</td>
 				<td>작성일</td>
@@ -84,18 +84,37 @@
 				<td>작성일 뜰자리</td>
 			</tr>
 		</table>
+
 		<table>
 			<tr><h4 class="commentlist">댓글 작성</h4></tr>
-			<tr></tr>
 		</table>
-	</div>
-	
-	
-<!-- 수정중 -->
-	<div class="container">
-		<div class="row">
-			<div class="main">
-    				<div style="text-align: right;">
+		<!-- 댓글 입력 -->
+		<%
+				if (user_id != null) {
+				%>
+						<form method="post" action="commentAction.jsp?post_id=<%= post_id %>"> <!-- wrtieAction페이지로 내용 숨겨서 전송 -->
+							<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd; width: 100%">
+								<tbody>
+									<tr>						
+										<td><textarea class="commentform" placeholder="댓글을 입력하세요." name="Comment_content" maxlength="300"></textarea></td>
+										<td></td>
+									</tr>			
+								</tbody>
+								
+							</table>							
+						</form>		
+						<input type="submit" class="cbtn" value="작성">			
+				<%
+				}
+				else {
+					%>
+					<p class="container table table-striped" style="text-align: center; border: 1px solid #dddddd">댓글 작성을 위해서 <a href="../login.jsp">로그인이 필요합니다.</a></p>
+				<%
+				}
+				PostDAO postDAO = new PostDAO();
+				%>
+		<!-- 수정 및 삭제 버튼 -->
+		
     				<%
 						if (user_id != null && user_id.equals(post.getUser_id())){ //만약 글 쓴 유저가 해당 유저라면 글 수정, 삭제 가능하게 하기
 					%>
@@ -104,8 +123,14 @@
 					<%
 						}
 					%>
-    				</div>
-			</div>
+		
+    	
+	</div>
+	
+	
+
+	 <div>
+    				
 		<!-- 댓글 -->
 			<!-- <div class="container">
 				<div class="row"> -->
@@ -130,34 +155,8 @@
 						}
 					%>
 				</table>
-				<!-- </div>
-			</div> -->
-			
-			<!-- 댓글입력 -->
-				<%
-				if (user_id != null) {
-				%>
-						<form method="post" action="commentAction.jsp?post_id=<%= post_id %>"> <!-- wrtieAction페이지로 내용 숨겨서 전송 -->
-							<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd; width: 100%">
-								<tbody>
-									<tr>						
-										<td><textarea class="commentform" placeholder="댓글을 입력하세요." name="Comment_content" maxlength="300"></textarea></td>
-										<td></td>
-									</tr>			
-								</tbody>
-								
-							</table>							
-						</form>		
-						<input type="submit" class="btns" value="댓글쓰기">			
-				<%
-				}
-				else {
-					%>
-					<p class="container table table-striped" style="text-align: center; border: 1px solid #dddddd">댓글 작성을 위해서 <a href="../login.jsp">로그인이 필요합니다.</a></p>
-				<%
-				}
-				PostDAO postDAO = new PostDAO();
-				%>
+				
+		
 				
 				<!-- 2023.01.29 유말그미 추가 -->
 				<div class = "row" style="text-align: center; margin-top: 20px;">
@@ -209,8 +208,7 @@
 
 					</table>
 				</div>
-		</div>
-	</div>	
+	</div>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
 </body>
