@@ -11,7 +11,7 @@
 
 <title>씨밀레</title>
 
-<link rel="stylesheet" type="text/css" href="./css/login.css">
+<link rel="stylesheet" type="text/css" href="./css/user.css">
 
 
 </head>
@@ -20,18 +20,26 @@
 
 <% String link = request.getHeader("referer"); %>
 	<div class="loginbox">
-		<h3 class="ltitle">로그인</h3>
-		<hr>
-		<div class="loginform">
-			아이디<br><br>
-			<input type="text" id="insert" placeholder="아이디를 입력하세요" name="user_id" maxlength="20">
-			<br><br>
-			비밀번호<br><br>
-			<input type="password" id="insert" placeholder="비밀번호를 입력하세요" name="password" maxlength="20">
-			<input type="hidden" name="link" value=<%= link %>>
-			<br><br><br><br>
-			<input type="submit" value="로그인하기" id="loginbtn">
-		</div>
+		<form method="post" action="loginAction.jsp">
+			<h3 class="ltitle">로그인</h3>
+			<hr>
+			<div class="loginform">
+				<label>
+					아이디<br><br>
+					<input type="text" class ="insert" placeholder="아이디를 입력하세요" name="user_id" maxlength="20">
+				</label><br><br>
+				<label>
+					비밀번호<br><br>
+					<input type="password" class ="insert" placeholder="비밀번호를 입력하세요" name="password" maxlength="20">
+				</label>
+				<br><br>
+				
+				<input type="hidden" name="link" value=<%= link %>>
+				<br><br>
+				<input type="submit" value="로그인하기" id="loginbtn">
+			</div>
+		</form>
+		
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

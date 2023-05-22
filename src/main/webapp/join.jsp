@@ -6,10 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width-device-width, initial-scale=1">
-<link rel="stylesheet" href="css/bootstrap.css">
-<link rel="stylesheet" href="css/join.css">
-
 <title>씨밀레</title>
+<link rel="stylesheet" type="text/css" href="./css/user.css">
 </head>
 <body>
 <%@ include file="./nav/navbar.jsp" %>
@@ -22,8 +20,37 @@ if (user_id != null) {
 	script.println("location.href='http://localhost:8080/webserver/main.jsp'");
 	script.println("</script>");
 } %>
+	<div class ="loginbox">
+		<form method="post" action="joinAction.jsp">
+			<h3 class ="ltitle">회원가입</h3>
+			<hr>
+			<div class ="loginform">
+				아이디<br><br>
+				<input type="text" class="insert" placeholder="아이디" name="user_id" maxlength="20">
+				<br><br>비밀번호<br><br>
+				<input type="password" class="insert" placeholder="비밀번호" name="password" maxlength="20">
+				<br><br>이름<br><br>
+				<input type="text" class="insert" placeholder="이름" name="name" maxlength="20">
+				<br><br>이메일<br><br>
+				<input type="email" class="insert" placeholder="이메일" name="email" maxlength="20">
+				<br><br><br>
+				<input type="hidden" name="link" value=<%= link %>>
+				<input type="submit" id="submitbtn" value="회원가입">
+			</div>
+			<%-- <%
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('회원가입을 축하합니다!')");
+			script.println("location.href='http://localhost:8080/webserver/main.jsp'");
+			script.println("</script>");
+		%> --%>
+		</form>
+		
+	</div>
 
-	<div id="con">
+
+
+	<%-- <div id="con">
 		<div id="logi">
 			<div id="login_form">
 				<!--로그인 폼-->
@@ -74,9 +101,7 @@ if (user_id != null) {
 				<hr>
 			</div>
 		</div>
-	</div>
+	</div> --%>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/bootstrap.js"></script>
 </body>
 </html>

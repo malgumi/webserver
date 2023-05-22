@@ -60,7 +60,7 @@ hr{
 	margin-top: 30px;
 	padding-bottom: 30px;
 }
-#insert {
+.insert {
 	padding: 7px;
 	width: 100%;
 	border: none;
@@ -71,6 +71,14 @@ hr{
 	width: 40%;
 	height: 40px;
 	margin-left: 30%;
+	border: none;
+	background-color: #F5ECCE;
+}
+#submitbtn {
+	text-align: center;
+	width: 20%;
+	height: 40px;
+	margin-left: 80%;
 	border: none;
 	background-color: #F5ECCE;
 }
