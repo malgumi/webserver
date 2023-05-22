@@ -7,6 +7,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width-device-width, initial-scale=1">
 <title>씨밀레</title>
+
+<!-- 글 쓰기, 글 삭제, 글 수정 공용 기능으로 통합하기-->
+
+
 </head>
 <body>
 <%@ include file="../nav/navbar.jsp" %>
