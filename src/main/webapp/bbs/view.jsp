@@ -36,7 +36,7 @@
 			script.println("</script>");
 		}
 		Post post = new PostDAO().getPost(post_id); //해당 글 가져옴
-		if(post == null){ //2023.01.29 유말그미 추가 존재하지 않는 글일경우
+		if(post == null){
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('유효하지 않은 글입니다.')");

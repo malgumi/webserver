@@ -56,7 +56,11 @@
 				else {
 					session.setAttribute("user_id", users.getUser_id());
 					PrintWriter script = response.getWriter();
-					response.sendRedirect(link);
+					script.println("<script>");
+					script.println("alert('회원가입에 성공했습니다.');");
+					script.println("location.href='http://localhost:8080/webserver/main.jsp'");
+					script.println("</script>");
+					//response.sendRedirect(link);
 				}
 		}
 		
