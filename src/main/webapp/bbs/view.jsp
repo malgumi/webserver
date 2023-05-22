@@ -71,6 +71,7 @@
 			</tr>
 		</table>
 		<table class="clistinfo">
+					
 			<tr><h4 class="commentlist">댓글 목록</h4></tr>
 
 			<tr>
@@ -78,11 +79,19 @@
 				<td>내용</td>
 				<td>작성일</td>
 			</tr>
+			<%
+						CommentDAO CommentDAO = new CommentDAO();
+						ArrayList<Comment> list = CommentDAO.comment_getList(post_id);
+						for(int i = list.size()-1; i>=0; i--){
+					%>
 			<tr>
-				<td>작성자 뜰자리</td>
-				<td>내용 뜰 자리</td>
-				<td>작성일 뜰자리</td>
+				<td style="text-align: center;"><%= list.get(i).getUser_id() %></td>
+				<td style="text-align: center;"><%= list.get(i).getComment_content() %></td>
+				<td style="text-align: end; font-size: 10px; color: gray;"><%= list.get(i).getDate().substring(0,11) + list.get(i).getDate().substring(11, 13) + "시" + list.get(i).getDate().substring(14,16) + "분" %></td>
 			</tr>
+			<%
+						}
+					%>
 		</table>
 
 		<table>
@@ -108,7 +117,7 @@
 				}
 				else {
 					%>
-					<p class="container table table-striped" style="text-align: center; border: 1px solid #dddddd">댓글 작성을 위해서 <a href="../login.jsp">로그인이 필요합니다.</a></p>
+					<p class="needlogin" style="text-align: center; border: 1px solid #dddddd">댓글 작성을 위해서 <a href="../login.jsp">로그인이 필요합니다.</a></p>
 				<%
 				}
 				PostDAO postDAO = new PostDAO();
@@ -123,6 +132,52 @@
 					<%
 						}
 					%>
+					<table style="width: 100%;">
+					<%
+						if (postDAO.getPost(post_id-1) != null) { // 이전 글이 존재할 경우.
+					%>
+						<tr style="border: 1px solid #dddddd">
+					<%
+						if (postDAO.getPost(post_id-1).getAvailable() != 0) { // 이전 글이 존재하고, 삭제되지 않았을 경우
+					%>
+							<td class="previousp" align="left"><b>이전글&nbsp;</b>
+							<a href="view.jsp?post_id=<%= post_id - 1 %>"><%= postDAO.getPost(post_id-1).getPost_title() %></a></td>
+					<%
+						}
+						else if (postDAO.getPost(post_id-2) != null) { // 이전 글이 존재하고, 삭제되었고, 삭제된 글의 이전 글이 존재할 경우
+					%>
+							<td class="previousp" align="left"><b>이전글&nbsp;</b>
+							<td> --><a href="view.jsp?post_id=<%= post_id - 2 %>"><%= postDAO.getPost(post_id-2).getPost_title() %></a></td>
+					<%	
+						}
+					%>
+					<%
+						}
+					%>
+							<td><a href = "bbs.jsp" class="golist">글 목록&nbsp;</a> <!-- 글 목록으로 되돌아가기 -->
+					<%
+					if (postDAO.getPost(post_id+1) != null) { // 다음 글이 존재할 경우.
+					%>
+
+						<%
+							if (postDAO.getPost(post_id+1).getAvailable() != 0) { // 다음 글이 존재하고, 삭제되지 않았을 경우
+						%>
+							<td class="nextp" align="right"><b>다음글&nbsp;</b>
+							<a href="view.jsp?post_id=<%= post_id + 1 %>"><%= postDAO.getPost(post_id+1).getPost_title() %></a></td>
+						<%
+						}
+						else if (postDAO.getPost(post_id+2) != null) { // 다음 글이 존재하고, 삭제되었고, 삭제된 글의 다음 글이 존재하는 경우
+						%>
+							<td class="nextp" align="right"><b>다음글&nbsp;</b>
+							<a href="view.jsp?post_id=<%= post_id + 2 %>"><%= postDAO.getPost(post_id+2).getPost_title() %></a></td>
+						<%
+						}
+						%>	
+					</tr>
+					<%
+					}
+					%>
+					</table>
 		
     	
 	</div>
@@ -135,32 +190,32 @@
 			<!-- <div class="container">
 				<div class="row"> -->
 				<table class="commenttitle">
-					<%
+					<%-- <%
 						CommentDAO CommentDAO = new CommentDAO();
 						ArrayList<Comment> list = CommentDAO.comment_getList(post_id);
 						for(int i = list.size()-1; i>=0; i--){
-					%>
+					%> --%>
 
 					 <tbody>
 					 	<tr style="background-color: transparent;">
 					 	<%-- <td><%= list.get(i).getCOMMENT_userNickname() %></td> --%>
-					 	<td style="text-align: center;"><%= list.get(i).getComment_content() %></td>
-					 	<td style="text-align: end; font-size: 10px; color: gray;"><%= list.get(i).getDate().substring(0,11) + list.get(i).getDate().substring(11, 13) + "시" + list.get(i).getDate().substring(14,16) + "분" %></td>
-					 	<td style="text-align: end; font-size: 10px; color: gray;"><a href="#">수정</a>&nbsp;&nbsp;
-					 	<a onclick="return confirm('삭제하시겠습니까?')" href="comment_deleteAction.jsp?comment_id=<%= list.get(i).getComment_id() %>">삭제</a></td>
+					 	<%-- <td style="text-align: center;"><%= list.get(i).getComment_content() %></td> --%>
+					 	<%-- <td style="text-align: end; font-size: 10px; color: gray;"><%= list.get(i).getDate().substring(0,11) + list.get(i).getDate().substring(11, 13) + "시" + list.get(i).getDate().substring(14,16) + "분" %></td> --%>
+					 	<!-- <td style="text-align: end; font-size: 10px; color: gray;"><a href="#">수정</a>&nbsp;&nbsp; -->
+					 	<%-- <a onclick="return confirm('삭제하시겠습니까?')" href="comment_deleteAction.jsp?comment_id=<%= list.get(i).getComment_id() %>">삭제</a></td> --%>
 					 	</tr>
 					</tbody>
 
-					<%
+					<%-- <%
 						}
-					%>
+					%> --%>
 				</table>
 				
 		
 				
 				<!-- 2023.01.29 유말그미 추가 -->
 				<div class = "row" style="text-align: center; margin-top: 20px;">
-					<table class="table table-striped" style="width: 100%;">
+					<%-- <table class="table table-striped" style="width: 100%;">
 					<%
 						if (postDAO.getPost(post_id-1) != null) { // 이전 글이 존재할 경우.
 					%>
@@ -205,8 +260,7 @@
 					<%
 					}
 					%>
-
-					</table>
+					</table> --%>
 				</div>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
