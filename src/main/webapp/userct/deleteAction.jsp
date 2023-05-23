@@ -62,7 +62,7 @@
 						PrintWriter script = response.getWriter();
 						script.println("<script>");
 						script.println("alert('글을 삭제했습니다.')");
-						script.println("location.href='http://localhost:8080/webserver/bbs/bbs.jsp?board_id='"+board_id);
+						script.println("location.href='http://localhost:8080/webserver/bbs/bbs.jsp?board_id=" + board_id + "'");
 						script.println("</script>");
 					}
 		}

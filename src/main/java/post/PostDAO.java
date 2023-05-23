@@ -173,6 +173,7 @@ public class PostDAO {
 
 
 	public int updatePost(int post_id, String post_title, String post_content) {
+		Connection conn = open();
 	    String SQL = "UPDATE POST SET post_title = ?, post_content = ? WHERE post_id =?";
 	    try {
 	        PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -187,6 +188,7 @@ public class PostDAO {
 	}
 
 	public int deletePost(int post_id) {
+		Connection conn = open();
 	    String SQL = "UPDATE POST SET available = 0 WHERE post_id = ?";
 	    try {
 	        PreparedStatement pstmt = conn.prepareStatement(SQL);

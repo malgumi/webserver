@@ -130,7 +130,7 @@
 					%>
 					<div>
 						<a href="update.jsp?post_id=<%= post_id %>" class="button">수정</a>
-						<a onclick="return confirm('삭제하시겠습니까?')" href="deleteAction.jsp?post_id=<%= post_id %>" class="button">삭제</a>
+						<a onclick="return confirm('삭제하시겠습니까?')" href="http://localhost:8080/webserver/userct/deleteAction.jsp?post_id=<%= post_id %>" class="button">삭제</a>
 					<%
 						}
 					%>
