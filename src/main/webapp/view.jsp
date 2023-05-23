@@ -64,20 +64,19 @@
 		<table class="viewtable">
 			<tr><th colspan="2"><%= post.getPost_title()%></th></tr>
 			<tr class="viewect">
-				<td>작성자: <%= post.getUser_id() %> <br> 작성일: <%= post.getDate().substring(0,11) + post.getDate().substring(11, 13) + ":" + post.getDate().substring(14,16) %></td>
-				
+				<td>작성자: <%= post.getUser_id() %> <br> 작성일: <%= post.getDate().substring(0,11) + post.getDate().substring(11, 13) + ":" + post.getDate().substring(14,16) %></td>	
 			</tr>
 			<tr>
 				<td><%= post.getPost_content().replaceAll("\" ", "&quot;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("&", "&amp;").replaceAll("\n", "<br>").replaceAll("\"", "&quot;") %></td>
 			</tr>
 		</table>
+		<br><br>
+		<p class="board">댓글 목록</p> 
 		<table class="commenttable">
-					<br><br>
-			<tr><th colspan="3">댓글 목록</th></tr>
 			<tr>
-				<td>작성자</td>
-				<td>내용</td>
-				<td>작성일</td>
+				<th>작성자</th>
+				<th>내용</th>
+				<th>작성일</th>
 			</tr>
 			<%
 						CommentDAO CommentDAO = new CommentDAO();
@@ -95,20 +94,15 @@
 		</table>
 
 		<div>
-			<p class="commentlist"><b>댓글 작성</b></p>
 		<!-- 댓글 입력 -->
 		<%
 				if (user_id != null) {
 				%>
 						<form method="post" action="commentAction.jsp?post_id=<%= post_id %>">
-							<table style="text-align: center; border: 1px solid #dddddd; width: 100%">
-								<tbody>
+							<table style="text-align: center; border: 1px solid #dddddd; width: 100%"> 
 									<tr>						
-										<td><textarea placeholder="댓글을 입력하세요." name="Comment_content" maxlength="300"></textarea></td>
-										<td></td>
-									</tr>			
-								</tbody>
-								
+										<td><textarea class="commentform" placeholder="댓글을 입력하세요." name="Comment_content" maxlength="300"></textarea></td>
+									</tr>		
 							</table>							
 						</form>		
 								<!-- 수정 및 삭제 버튼 -->
