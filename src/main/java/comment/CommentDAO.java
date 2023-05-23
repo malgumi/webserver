@@ -8,8 +8,6 @@ import java.util.ArrayList;
 
 //import COMMENT.Comment;
 
-//import COMMENT.Comment;
-
 public class CommentDAO {
 	private Connection conn;
 	private ResultSet rs;
@@ -23,16 +21,16 @@ public class CommentDAO {
 	    try {
 	    	Class.forName(JDBC_DRIVER);
 	    	conn = DriverManager.getConnection(JDBC_URL, dbID, dbPassword);
-	    	System.out.println("데이터베이스 연결 성공!!");
 	    } catch (Exception e) {
 	        e.printStackTrace();
-	        System.out.println("데이터베이스 연결 실패");
+	        System.out.println("데이터베이스 연결 실패-CommentDAO");
 	    }
 	    return conn;
 	}
 
 
 	public String comment_getDate() {
+		Connection conn = open();
 		String SQL = "SELECT NOW()";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -48,6 +46,7 @@ public class CommentDAO {
 	}
 
 	public int comment_getNext() {
+		Connection conn = open();
 		String SQL = "SELECT comment_id FROM COMMENT ORDER BY comment_id DESC";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -64,6 +63,7 @@ public class CommentDAO {
 	}
 
 	public int comment_write(String COMMENT_user_id, int post_id, String Comment_content, int Available) {
+		Connection conn = open();
 		String SQL = "INSERT INTO COMMENT VALUES(?, ?, ?, ?, ?, ?, ?)"; 
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -82,6 +82,7 @@ public class CommentDAO {
 	}
 	
 	public ArrayList<Comment> comment_getList(int post_id){
+		Connection conn = open();
 		String SQL = "SELECT * FROM COMMENT WHERE COMMENT_ID = ? AND Available = 1 ORDER BY COMMENT_NUM DESC"; 
 		//bbsID가 특정일 때, 그리고 댓글이 삭제가 되지 않았을 때
 		ArrayList<Comment> list = new ArrayList<Comment>();
@@ -107,6 +108,7 @@ public class CommentDAO {
 	}
 	
 	public int delete(int comment_id) {
+		Connection conn = open();
 		String SQL = "UPDATE COMMENT SET Available = 0 WHERE COMMENT_ID = ?"; 
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -120,6 +122,7 @@ public class CommentDAO {
 	}
 	
 	public Comment getComment(int comment_id) {
+		Connection conn = open();
 		String SQL = "SELECT * FROM COMMENT WHERE COMMENT_ID = ?"; 
 		//bbsID가 특정 숫자일 경우에 실행
 		try {

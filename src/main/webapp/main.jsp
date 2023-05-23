@@ -10,14 +10,12 @@ pageEncoding="UTF-8"%>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width-device-width, initial-scale=1">
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="./css/main.css">
 <title>씨밀레</title>
 </head>
 <body>
-		<h1 style="padding-top: 10px;"><img src="http://localhost:8080/webserver/img/logo.png"></h1>
-		<jsp:include page="nav/navbar.jsp"/> <!-- 네비바 -->
-		<!-- 뭐가 문제지 -->
-		<!-- 이곳에 글 목록 출력 -->
+		<a class="logo" style="margin-top: 5px;" href="http://localhost:8080/webserver/main.jsp"><img src="http://localhost:8080/webserver/img/logo.png"></a>
+		<jsp:include page="nav/navbar.jsp"/>
 			<div class="container">
 	<table class="posttable">
 		<thead>
@@ -47,10 +45,6 @@ pageEncoding="UTF-8"%>
 		</tbody>
 	</table>
 </div>
-
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script src="./js/bootstrap.js"></script>
-	<script src="./js/bootstrap.min.js"></script>
 
 </body>
 </html>

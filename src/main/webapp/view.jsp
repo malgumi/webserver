@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter" %>
-<%@ page import="post.Post" %> <!-- bbs데이터베이스 사용 가능하도록 해당 클래스 가져오기 -->
+<%@ page import="post.Post" %> 
 <%@ page import="comment.Comment" %>
-<%@ page import="post.PostDAO" %><!-- 데이터베이스 접근 객체도 가져옴 -->
+<%@ page import="post.PostDAO" %>
 <%@ page import="comment.CommentDAO" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="users.Users" %>
 <%@ page import="users.UsersDAO" %>
+<%@ page import="board.BoardDAO" %>
+
 <!DOCTYPE html>
 <html>
 
@@ -16,7 +18,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale= 1">
 <link rel="stylesheet" type="text/css" href="./css/main.css">
-<link rel="stylesheet" type="text/css" href="./css/view.css">
 <title>씨밀레</title>
 </head>
 
@@ -54,22 +55,12 @@
 	
 	
 	<div class="container">
-		<h1 class="boardTitle">
-			<% 
-			if (post.getBoard_id()==1){
+		<p class="board">
+			<% BoardDAO boardDAO = new BoardDAO();
+			String board_name = boardDAO.getBoard_title(post.getBoard_id());
 			%>
-				<span>자유게시판</span>
-			<% } 
-			else if(post.getBoard_id()==2){
-				%>
-				<span>홍보게시판</span>
-				
-			<% } 
-			else {
-				%>
-				<span>공지사항</span>
-			<% } %>
-		</h1>
+			<span><%= board_name %></span>
+		</p>
 		<table class="viewtable">
 			<tr><th colspan="2"><%= post.getPost_title()%></th></tr>
 			<tr class="viewect">
@@ -77,15 +68,12 @@
 				
 			</tr>
 			<tr>
-				<td class="content"><%= post.getPost_content().replaceAll("\" ", "&quot;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("&", "&amp;").replaceAll("\n", "<br>").replaceAll("\"", "&quot;") %></td>
-			</tr>
-			<tr class="white">
-				<td>빈칸</td>
+				<td><%= post.getPost_content().replaceAll("\" ", "&quot;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("&", "&amp;").replaceAll("\n", "<br>").replaceAll("\"", "&quot;") %></td>
 			</tr>
 		</table>
-		<table class="posttable">
+		<table class="commenttable">
 					<br><br>
-			<tr><th class="commentlist" colspan="3">댓글 목록</th></tr>
+			<tr><th colspan="3">댓글 목록</th></tr>
 			<tr>
 				<td>작성자</td>
 				<td>내용</td>
@@ -112,11 +100,11 @@
 		<%
 				if (user_id != null) {
 				%>
-						<form method="post" action="commentAction.jsp?post_id=<%= post_id %>"> <!-- wrtieAction페이지로 내용 숨겨서 전송 -->
-							<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd; width: 100%">
+						<form method="post" action="commentAction.jsp?post_id=<%= post_id %>">
+							<table style="text-align: center; border: 1px solid #dddddd; width: 100%">
 								<tbody>
 									<tr>						
-										<td><textarea class="commentform" placeholder="댓글을 입력하세요." name="Comment_content" maxlength="300"></textarea></td>
+										<td><textarea placeholder="댓글을 입력하세요." name="Comment_content" maxlength="300"></textarea></td>
 										<td></td>
 									</tr>			
 								</tbody>
@@ -198,7 +186,6 @@
 					</table>
 					</div>
 					</div>
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
 </body>
 </html>

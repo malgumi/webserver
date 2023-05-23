@@ -33,11 +33,14 @@
 		UsersDAO UsersDAO = new UsersDAO();
 	//변수 받아서 login 함수로 보내버리기
 		int result = UsersDAO.login(user.getUser_id(), user.getPassword());
-		String link = request.getParameter("link");// 1.23 배정훈 수정 전페이지의 링크 가져옴 
+		String link = request.getParameter("link");
 		if (result == 1) {
 			session.setAttribute("user_id", user.getUser_id()); //유저 ID를 세션번호?로 지정해줌
 			PrintWriter script = response.getWriter();	
-			response.sendRedirect(link);// 1.23 배정훈 수정 로그인 성공시 가져온 링크로 이동 
+			script.println("<script>");
+			script.println("alert('로그인 되었습니다.')");
+			script.println("location.href='http://localhost:8080/webserver/main.jsp'");
+			script.println("</script>");
 		}
 		else if (result == 0) {
 			PrintWriter script = response.getWriter();

@@ -19,10 +19,9 @@ public class UsersDAO {
 	    try {
 	    	Class.forName(JDBC_DRIVER);
 	    	conn = DriverManager.getConnection(JDBC_URL, dbID, dbPassword);
-	    	System.out.println("데이터베이스 연결 성공!!");
 	    } catch (Exception e) {
 	        e.printStackTrace();
-	        System.out.println("데이터베이스 연결 실패");
+	        System.out.println("데이터베이스 연결 실패-userDAO");
 	    }
 	    return conn;
 	}
@@ -55,7 +54,7 @@ public class UsersDAO {
 	public int join(Users users) {
 		String SQL = "INSERT INTO USERS VALUES (?, ?, ?, 1, ?)";
 		try {
-			conn = open();
+			Connection conn = open();
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, users.getUser_id());
 			pstmt.setString(2, users.getPassword());
@@ -74,11 +73,11 @@ public class UsersDAO {
 			try {if(rs != null)   {rs.close();}}   catch (Exception ex) {ex.printStackTrace();}
 			try {if(pstmt != null){pstmt.close();}}catch (Exception ex) {ex.printStackTrace();}
 		}
-		
 		return -1; //DB오류. INSERT문이 실행되면 반드시 0 넘는 숫자가 반환됨
 	}
 	
 	public Users getUserdata(String user_id) {
+		Connection conn = open();
 		String SQL = "SELECT * FROM USERS where user_id = ?";
 		try {
 			pstmt = conn.prepareStatement(SQL); 
@@ -101,6 +100,7 @@ public class UsersDAO {
 	}
 	
 	public int name(String name) {//닉네임 중복 체크 
+		Connection conn = open();
 		String SQL = "SELECT Name from USERS where Name = ?";
 		try {
 			pstmt = conn.prepareStatement(SQL); 
@@ -120,6 +120,7 @@ public class UsersDAO {
 	}
 	
 	public int updateUserdata(String User_id, String Password, String Name, int Permission, String Email) {
+		Connection conn = open();
 		String SQL = "UPDATE USERS SET Password = ?, Name = ?, Email = ? WHERE user_id =?"; 
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -127,7 +128,6 @@ public class UsersDAO {
 			pstmt.setString(2, Name);
 			pstmt.setString(3, Email);
 			
-			//2.3배정훈 추가 닉네임 수정 사항 없으면 그냥 넘어가고 있으면 닉네임 중복되는지 확인 후 수정 
 //			String pname = nameserach(User_id);
 //			int name = name(userNickname);
 //			if(pname.equals(userNickname)) {

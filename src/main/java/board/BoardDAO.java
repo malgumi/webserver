@@ -18,10 +18,9 @@ public class BoardDAO {
 	    try {
 	    	Class.forName(JDBC_DRIVER);
 	    	conn = DriverManager.getConnection(JDBC_URL, dbID, dbPassword);
-	    	System.out.println("데이터베이스 연결 성공!!");
 	    } catch (Exception e) {
 	        e.printStackTrace();
-	        System.out.println("데이터베이스 연결 실패");
+	        System.out.println("데이터베이스 연결 실패-BoardDAO");
 	    }
 	    return conn;
 	}

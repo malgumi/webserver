@@ -19,16 +19,16 @@ public class PostDAO {
 	    try {
 	    	Class.forName(JDBC_DRIVER);
 	    	conn = DriverManager.getConnection(JDBC_URL, dbID, dbPassword);
-	    	System.out.println("데이터베이스 연결 성공!!");
 	    } catch (Exception e) {
 	        e.printStackTrace();
-	        System.out.println("데이터베이스 연결 실패");
+	        System.out.println("데이터베이스 연결 실패-PostDAO");
 	    }
 	    return conn;
 	}
 
 
 	public String getDate() {
+		Connection conn = open();
 		String SQL = "SELECT NOW()";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -44,6 +44,7 @@ public class PostDAO {
 	}
 
 	public int getNext() {
+		Connection conn = open();
 		String SQL = "SELECT post_id FROM POST ORDER BY post_id DESC";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -109,6 +110,7 @@ public class PostDAO {
 	}
 
 	public boolean nextPage(int pageNumber) {
+		Connection conn = open();
 		String SQL = "SELECT * FROM POST WHERE post_id < ? AND available = 1";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -125,6 +127,7 @@ public class PostDAO {
 	}
 
 	public int Paging() {
+		Connection conn = open();
 	    String SQL = "SELECT COUNT(*) FROM POST WHERE available = 1";
 	    try {
 	        PreparedStatement pstmt = conn.prepareStatement(SQL);

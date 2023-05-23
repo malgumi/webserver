@@ -33,7 +33,7 @@
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('유효하지 않은 시도입니다. 다시 시도해주세요.')");
-		script.println("location.href = 'bbs.jsp'");
+		script.println("location.href = 'http://localhost:8080/webserver/bbs/bbs.jsp'");
 		script.println("</script>");
 	}
 		String user_id = null;
@@ -44,7 +44,7 @@
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('로그인을 해주세요.')");
-			script.println("location.href = '../login.jsp'");
+			script.println("location.href = 'http://localhost:8080/webserver/userct/login.jsp'");
 			script.println("</script>");
 		}
 		
@@ -57,9 +57,8 @@
 				script.println("history.back()");
 				script.println("</script>");
 			} 
-			else{ //입력이 됐다면 데이터베이스로 보내버리기
+			else{ 
 				UsersDAO userDAO = new UsersDAO();
-				//String name = userDAO.//nameserach(User_id);//닉네임가져와서 데이터베이스로 저장 
 				PostDAO postDAO = new PostDAO();
 					int result = postDAO.write(post.getPost_title(), user_id, post.getPost_content(), board_id);
 					if (result == -1) { //데이터베이스 오류
@@ -72,7 +71,7 @@
 					else {
 						PrintWriter script = response.getWriter();
 						script.println("<script>");
-						script.println("history.back(-2)"); //★수정필요★
+						script.println("location.href = 'http://localhost:8080/webserver/bbs/bbs.jsp?board_id=" + board_id + "'");
 						script.println("</script>");
 					}
 				}

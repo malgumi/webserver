@@ -24,6 +24,16 @@
 			script.println("location.href = 'bbs.jsp'");
 			script.println("</script>");
 		}
+		if(session.getAttribute("user_id")!= null){ //유저 ID에 해당 세션 값 넣기
+			user_id = (String) session.getAttribute("user_id");
+		}
+		if (user_id == null) {
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('로그인을 해주세요.')");
+			script.println("location.href = 'http://localhost:8080/webserver/userct/login.jsp'");
+			script.println("</script>");
+		}
 	%>
 
 	<div class="container">

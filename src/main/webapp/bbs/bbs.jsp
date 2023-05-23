@@ -33,17 +33,10 @@ pageEncoding="UTF-8"%>
 
 		<div class="container">
 		<p class="board">
-			<% if (board_id==1){ %>
-				<span>자유게시판</span>
-			<% } 
-			else if(board_id==2){
-				%>
-				<span>홍보게시판</span>
-			<% } 
-			else {
-				%>
-				<span>공지사항</span>
-			<% } %>
+			<% BoardDAO boardDAO = new BoardDAO();
+			String board_name = boardDAO.getBoard_title(board_id);
+			%>
+			<span><%= board_name %></span>
 		</p>
 <table class="posttable">
 		<thead>
@@ -59,7 +52,6 @@ pageEncoding="UTF-8"%>
 		<%
 			PostDAO postDAO = new PostDAO();
 			ArrayList<Post> postList = postDAO.getList(pageNumber);
-			BoardDAO boardDAO = new BoardDAO();
 			for(Post post : postList){
 				if (post.getBoard_id() == board_id) {
 		%>
@@ -100,7 +92,7 @@ pageEncoding="UTF-8"%>
 			
 			<%} %>
 							
-			<a href="http://localhost:8080/webserver/write.jsp?board_id=1" class="button">글쓰기</a>
+			<a href="http://localhost:8080/webserver/write.jsp?board_id=<%= board_id %>" class="button">글쓰기</a>
 		</div>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
