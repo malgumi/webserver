@@ -6,22 +6,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width-device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../css/main.css">
 <title>씨밀레</title>
-
-<!-- 글 쓰기, 글 삭제, 글 수정 공용 기능으로 통합하기-->
-
 
 </head>
 <body>
-<%@ include file="../nav/navbar.jsp" %>
+	<%@ include file="../nav/navbar.jsp" %>
+	<%
+		int board_id = 0;
+		if(request.getParameter("board_id") != null){
+			board_id = Integer.parseInt(request.getParameter("board_id"));
+		}
+		else{
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('유효하지 않은 시도입니다. 다시 시도해주세요.')");
+			script.println("location.href = 'bbs.jsp'");
+			script.println("</script>");
+		}
+	%>
 
 	<div class="container">
 		<div class="row">
-		<form method="post" action="writeAction.jsp">
-			<table class="table table-striped" style="text-align: center; border:1px solid #dddddd; width: 100%; height: 450px;">
+		<form method="post" action="http://localhost:8080/webserver/writeAction.jsp?board_id=<%= board_id %>">
+			<table class="viewtable" style="text-align: center; border:1px solid #dddddd; width: 100%; height: 450px;">
 				<thead>
 					<tr>
-						<th colspan="2" style ="background-color: #eeeeee; text-align: center; height: 30px;"> 자유게시판 글 작성 </th>
+						<th colspan="2" style ="background-color: #eeeeee; text-align: center; height: 30px;"> 글 작성 </th>
 					</tr>
 				</thead>
 				<tbody>

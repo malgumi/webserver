@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="post.PostDAO"%> <!-- bbs데이터 객체를 이용해서 받아오는 것 -->
-<%@ page import="post.Post" %> 
+<%@ page import="post.PostDAO" %>
+<%@ page import="post.Post" %>
 <%@ page import="java.io.PrintWriter" %> 
 
- <% request.setCharacterEncoding("UTF-8"); %> <!-- 데이터를 UTF형식으로 받기 -->
+ <% request.setCharacterEncoding("UTF-8"); %>
  <jsp:useBean id="post" class="post.Post" scope="page" />
- <!-- 데이터 받아오는거 -->
  <jsp:setProperty name="post" property="post_title" />
  <jsp:setProperty name="post" property="post_content" />
-  <%@ page import="users.Users" %>
+ <%@ page import="users.Users" %>
  <%@ page import="users.UsersDAO" %>
+
 
 
 <!DOCTYPE html>
@@ -25,11 +25,20 @@
 
 <body>
 	<%
-	
+	int board_id = 0;
+	if(request.getParameter("board_id") != null){
+		board_id = Integer.parseInt(request.getParameter("board_id"));
+	}
+	else{
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('유효하지 않은 시도입니다. 다시 시도해주세요.')");
+		script.println("location.href = 'bbs.jsp'");
+		script.println("</script>");
+	}
 		String user_id = null;
 		if(session.getAttribute("user_id")!= null){ //유저 ID에 해당 세션 값 넣기
 			user_id = (String) session.getAttribute("user_id");
-			
 		}
 		if (user_id == null) {
 			PrintWriter script = response.getWriter();
@@ -49,11 +58,11 @@
 				script.println("</script>");
 			} 
 			else{ //입력이 됐다면 데이터베이스로 보내버리기
-				UsersDAO UsersDAO = new UsersDAO();
+				UsersDAO userDAO = new UsersDAO();
+				//String name = userDAO.//nameserach(User_id);//닉네임가져와서 데이터베이스로 저장 
 				PostDAO postDAO = new PostDAO();
-					int result = postDAO.write(post.getPost_title(), user_id, post.getPost_content(), 3);
+					int result = postDAO.write(post.getPost_title(), user_id, post.getPost_content(), board_id);
 					if (result == -1) { //데이터베이스 오류
-						//System.out.println(name);
 						PrintWriter script = response.getWriter();
 						script.println("<script>");
 						script.println("alert('글쓰기에 실패했습니다.')");
@@ -63,7 +72,7 @@
 					else {
 						PrintWriter script = response.getWriter();
 						script.println("<script>");
-						script.println("location.href = 'notice_bbs.jsp'"); //게시판으로 보냄
+						script.println("history.back(-2)"); //★수정필요★
 						script.println("</script>");
 					}
 				}

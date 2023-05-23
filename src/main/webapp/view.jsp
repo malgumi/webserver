@@ -53,28 +53,28 @@
 	%>
 	
 	
-	<div class="boardview">
+	<div class="container">
 		<h1 class="boardTitle">
-			<% if (post.getBoard_id()==1){%>
+			<% 
+			if (post.getBoard_id()==1){
+			%>
 				<span>자유게시판</span>
-				
 			<% } 
-			else if(post.getBoard_id()==2){%>
+			else if(post.getBoard_id()==2){
+				%>
 				<span>홍보게시판</span>
 				
 			<% } 
-			else {%>
+			else {
+				%>
 				<span>공지사항</span>
-				
 			<% } %>
 		</h1>
-		<table>
-			<tr><h3 class="title"><%= post.getPost_title()%></h3></tr>
-			<tr>
-				<td>작성자: <%= post.getUser_id() %></td>
-			</tr>
-			<tr>
-				<td>작성일: <%= post.getDate().substring(0,11) + post.getDate().substring(11, 13) + ":" + post.getDate().substring(14,16) %></td>
+		<table class="viewtable">
+			<tr><th colspan="2"><%= post.getPost_title()%></th></tr>
+			<tr class="viewect">
+				<td>작성자: <%= post.getUser_id() %> <br> 작성일: <%= post.getDate().substring(0,11) + post.getDate().substring(11, 13) + ":" + post.getDate().substring(14,16) %></td>
+				
 			</tr>
 			<tr>
 				<td class="content"><%= post.getPost_content().replaceAll("\" ", "&quot;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("&", "&amp;").replaceAll("\n", "<br>").replaceAll("\"", "&quot;") %></td>
@@ -83,10 +83,9 @@
 				<td>빈칸</td>
 			</tr>
 		</table>
-		<table class="clistinfo">
-					
-			<tr><h4 class="commentlist">댓글 목록</h4></tr>
-
+		<table class="posttable">
+					<br><br>
+			<tr><th class="commentlist" colspan="3">댓글 목록</th></tr>
 			<tr>
 				<td>작성자</td>
 				<td>내용</td>
@@ -107,9 +106,8 @@
 					%>
 		</table>
 
-		<table>
-			<tr><h4 class="commentlist">댓글 작성</h4></tr>
-		</table>
+		<div>
+			<p class="commentlist"><b>댓글 작성</b></p>
 		<!-- 댓글 입력 -->
 		<%
 				if (user_id != null) {
@@ -125,26 +123,33 @@
 								
 							</table>							
 						</form>		
-						<input type="submit" class="cbtn" value="작성">			
-				<%
-				}
-				else {
-					%>
-					<p class="needlogin" style="text-align: center; border: 1px solid #dddddd">댓글 작성을 위해서 <a href="../login.jsp">로그인이 필요합니다.</a></p>
-				<%
-				}
-				PostDAO postDAO = new PostDAO();
-				%>
-		<!-- 수정 및 삭제 버튼 -->
+								<!-- 수정 및 삭제 버튼 -->
 		
     				<%
 						if (user_id != null && user_id.equals(post.getUser_id())){ //만약 글 쓴 유저가 해당 유저라면 글 수정, 삭제 가능하게 하기
 					%>
-						<a href="update.jsp?post_id=<%= post_id %>" class="modify">수정</a>
-						<a onclick="return confirm('삭제하시겠습니까?')" href="deleteAction.jsp?post_id=<%= post_id %>" class="cdelete">삭제</a>
+					<div>
+						<a href="update.jsp?post_id=<%= post_id %>" class="button">수정</a>
+						<a onclick="return confirm('삭제하시겠습니까?')" href="deleteAction.jsp?post_id=<%= post_id %>" class="button">삭제</a>
 					<%
 						}
 					%>
+						<input type="submit" class="button" style="float: right;" value="작성">		
+					</div>	
+				<%
+				}
+				else {
+					%>
+					<p class="plslogin">댓글 작성을 위해서 <a href="http://localhost:8080/webserver/userct/login.jsp">로그인이 필요합니다.</a></p>
+				<%
+				}
+				PostDAO postDAO = new PostDAO();
+				%>
+				</div>
+				
+				<!-- TODO: 이전글, 다음글이 post_id로 찾아오는 거라서, board_id별로 차별화 필요 -->
+				
+				<div class="container">
 					<table style="width: 100%;">
 					<%
 						if (postDAO.getPost(post_id-1) != null) { // 이전 글이 존재할 경우.
@@ -154,20 +159,20 @@
 						if (postDAO.getPost(post_id-1).getAvailable() != 0) { // 이전 글이 존재하고, 삭제되지 않았을 경우
 					%>
 							<td class="previousp" align="left"><b>이전글&nbsp;</b>
-							<a href="view.jsp?post_id=<%= post_id - 1 %>"><%= postDAO.getPost(post_id-1).getPost_title() %></a></td>
+							<a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id - 1 %>"><%= postDAO.getPost(post_id-1).getPost_title() %></a></td>
 					<%
 						}
 						else if (postDAO.getPost(post_id-2) != null) { // 이전 글이 존재하고, 삭제되었고, 삭제된 글의 이전 글이 존재할 경우
 					%>
 							<td class="previousp" align="left"><b>이전글&nbsp;</b>
-							<td> --><a href="view.jsp?post_id=<%= post_id - 2 %>"><%= postDAO.getPost(post_id-2).getPost_title() %></a></td>
+							<td><a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id - 2 %>"><%= postDAO.getPost(post_id-2).getPost_title() %></a></td>
 					<%	
 						}
 					%>
 					<%
 						}
 					%>
-							<td><a href = "bbs.jsp" class="golist">글 목록&nbsp;</a> <!-- 글 목록으로 되돌아가기 -->
+							<td><a href = "http://localhost:8080/webserver/bbs/bbs.jsp?board_id=<%= post.getBoard_id() %>" class="golist">글 목록&nbsp;</a> <!-- 글 목록으로 되돌아가기 -->
 					<%
 					if (postDAO.getPost(post_id+1) != null) { // 다음 글이 존재할 경우.
 					%>
@@ -176,13 +181,13 @@
 							if (postDAO.getPost(post_id+1).getAvailable() != 0) { // 다음 글이 존재하고, 삭제되지 않았을 경우
 						%>
 							<td class="nextp" align="right"><b>다음글&nbsp;</b>
-							<a href="view.jsp?post_id=<%= post_id + 1 %>"><%= postDAO.getPost(post_id+1).getPost_title() %></a></td>
+							<a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id + 1 %>"><%= postDAO.getPost(post_id+1).getPost_title() %></a></td>
 						<%
 						}
 						else if (postDAO.getPost(post_id+2) != null) { // 다음 글이 존재하고, 삭제되었고, 삭제된 글의 다음 글이 존재하는 경우
 						%>
 							<td class="nextp" align="right"><b>다음글&nbsp;</b>
-							<a href="view.jsp?post_id=<%= post_id + 2 %>"><%= postDAO.getPost(post_id+2).getPost_title() %></a></td>
+							<a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id + 2 %>"><%= postDAO.getPost(post_id+2).getPost_title() %></a></td>
 						<%
 						}
 						%>	
@@ -191,9 +196,8 @@
 					}
 					%>
 					</table>
-		
-    	
-	</div>
+					</div>
+					</div>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
 </body>

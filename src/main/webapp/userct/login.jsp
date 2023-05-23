@@ -11,16 +11,16 @@
 
 <title>씨밀레</title>
 
-<link rel="stylesheet" type="text/css" href="./css/user.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/webserver/css/user.css">
 
 
 </head>
 <body>
-<%@ include file="./nav/navbar.jsp" %>
+<%@ include file="../nav/navbar.jsp" %>
 
 <% String link = request.getHeader("referer"); %>
 	<div class="loginbox">
-		<form method="post" action="loginAction.jsp">
+		<form method="post" action="http://localhost:8080/webserver/userct/loginAction.jsp">
 			<h3 class="ltitle">로그인</h3>
 			<hr>
 			<div class="loginform">

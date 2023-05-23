@@ -180,6 +180,39 @@ margin: auto;
   padding-left: 20px;
 }
 
+/* =====글 내용 출력====== */
+.viewtable {
+  border: 1px solid #ddd;
+  border-collapse: collapse;
+  margin: 0;
+}
+
+.viewtable th,
+.viewtable td {
+  padding: 10px;
+  font-size: 12px;
+  
+}
+
+.viewtable th {
+  background-color: #f5f2ea;
+  font-size: 15px;
+  text-align: center;
+}
+
+.viewect{
+	color: gray;
+	font-size: 10px;
+}
+
+.plslogin{
+	text-align: center; 
+	border: 1px solid #dddddd;
+	color: gray;
+	font-size: 12px;
+	padding: 10px;
+}
+
 /* ==============버튼 디자인================ */
 .button {
   background-color: #f5f2ea;

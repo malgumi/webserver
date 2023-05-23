@@ -17,9 +17,34 @@ pageEncoding="UTF-8"%>
 
 <body>
 <%@ include file="../nav/navbar.jsp" %>
+	<%
+		int board_id = 0;
+		if(request.getParameter("board_id") != null){
+			board_id = Integer.parseInt(request.getParameter("board_id"));
+		}
+		else{
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('유효하지 않은 시도입니다. 다시 시도해주세요.')");
+			script.println("location.href = 'bbs.jsp'");
+			script.println("</script>");
+		}
+	%>
 
 		<div class="container">
-		<p class="board">자유게시판</p>
+		<p class="board">
+			<% if (board_id==1){ %>
+				<span>자유게시판</span>
+			<% } 
+			else if(board_id==2){
+				%>
+				<span>홍보게시판</span>
+			<% } 
+			else {
+				%>
+				<span>공지사항</span>
+			<% } %>
+		</p>
 <table class="posttable">
 		<thead>
 			<tr>
@@ -36,7 +61,7 @@ pageEncoding="UTF-8"%>
 			ArrayList<Post> postList = postDAO.getList(pageNumber);
 			BoardDAO boardDAO = new BoardDAO();
 			for(Post post : postList){
-				if (post.getBoard_id() == 1) { // board_id가 1인 글만 출력
+				if (post.getBoard_id() == board_id) {
 		%>
 			<tr>
 				<td><%=post.getPost_id()%></td>
@@ -64,18 +89,18 @@ pageEncoding="UTF-8"%>
 			
 			<!-- 다음, 이전 페이지 버튼 만들기 -->
 			<% if(pageNumber!=1){ %> <!-- 첫번째 페이지가 아니라면 -->
-				<a href="bbs.jsp?pageNumber=<%= pageNumber - 1 %>">이전</a>
+				<a href="http://localhost:8080/webserver/bbs/bbs.jsp?pageNumber=<%= pageNumber - 1 %>">이전</a>
 			<%} %>
 			<% for(int i=startPage; i<=endPage; i++){ %>
-				<a href="bbs.jsp?pageNumber=<%= i%>"><%= i%></a>
+				<a href="http://localhost:8080/webserver/bbs/bbs.jsp?pageNumber=<%= i%>"><%= i%></a>
 			<%} %>
 			<% if(postDAO.nextPage(pageNumber+1)){ %> <!-- 다음 페이지가 있다면 -->
-				<a href="bbs.jsp?pageNumber=<%= pageNumber + 1 %>">다음</a>
+				<a href="http://localhost:8080/webserver/bbs/bbs.jsp?pageNumber=<%= pageNumber + 1 %>">다음</a>
 			<%} %>
 			
 			<%} %>
 							
-			<a href="write.jsp" class="button">글쓰기</a>
+			<a href="http://localhost:8080/webserver/write.jsp?board_id=1" class="button">글쓰기</a>
 		</div>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>

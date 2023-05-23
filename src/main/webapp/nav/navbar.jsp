@@ -28,9 +28,9 @@
 				<li><a href="http://localhost:8080/webserver/main.jsp"><img src="http://localhost:8080/webserver/img/logo.png"></a></li>
 			</ul></div>
 			<div class="menu"><ul>
-				<li><a href="http://localhost:8080/webserver/notice/notice_bbs.jsp">공지사항</a></li>
-				<li><a href="http://localhost:8080/webserver/bbs/bbs.jsp">자유게시판</a></li>
-				<li><a href="http://localhost:8080/webserver/adv/adv_bbs.jsp">홍보게시판</a></li>
+				<li><a href="http://localhost:8080/webserver/bbs/bbs.jsp?board_id=3">공지사항</a></li>
+				<li><a href="http://localhost:8080/webserver/bbs/bbs.jsp?board_id=1">자유게시판</a></li>
+				<li><a href="http://localhost:8080/webserver/bbs/bbs.jsp?board_id=2">홍보게시판</a></li>
 			</ul></div>
 			<div class="loginmenu">
 				<%
@@ -39,8 +39,8 @@
 			<ul>
 				<li><a href="#">접속하기</a>
 					<ul class="dropdown-menu">
-						<li><a href="http://localhost:8080/webserver/login.jsp">로그인</a></li>
-						<li><a href="http://localhost:8080/webserver/join.jsp">회원가입</a></li>
+						<li><a href="http://localhost:8080/webserver/userct/login.jsp">로그인</a></li>
+						<li><a href="http://localhost:8080/webserver/userct/join.jsp">회원가입</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -57,7 +57,7 @@
 						<li><img src="https://t1.daumcdn.net/cfile/tistory/24283C3858F778CA2E" style="width:80px; height:80px; border-radius:50%; overflow: hidden;"></li>
 						
 						<li><a href="http://localhost:8080/webserver/Userpage/password_Userpage.jsp">회원정보관리</a></li>
-						<li><a href="http://localhost:8080/webserver/logoutAction.jsp">로그아웃</a></li>
+						<li><a href="http://localhost:8080/webserver/userct/logoutAction.jsp">로그아웃</a></li>
 					</ul>
 				</li>
 			</ul>

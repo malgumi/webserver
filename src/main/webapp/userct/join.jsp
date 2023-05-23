@@ -7,10 +7,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width-device-width, initial-scale=1">
 <title>씨밀레</title>
-<link rel="stylesheet" type="text/css" href="./css/user.css">
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/webserver/css/user.css">
 </head>
 <body>
-<%@ include file="./nav/navbar.jsp" %>
+<%@ include file="../nav/navbar.jsp" %>
 <% String link = request.getHeader("referer"); %>
 <%	
 if (user_id != null) {
