@@ -33,7 +33,7 @@
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('유효하지 않은 글입니다.')");
-			script.println("location.href = 'bbs.jsp'");
+			script.println("location.href = 'http://localhost:8080/webserver/main.jsp'");
 			script.println("</script>");
 		}
 		Post post = new PostDAO().getPost(post_id); //해당 글 가져옴
@@ -41,14 +41,14 @@
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('유효하지 않은 글입니다.')");
-			script.println("location.href = 'bbs.jsp'");
+			script.println("location.href = 'http://localhost:8080/webserver/main.jsp'");
 			script.println("</script>");
 		}
 		if(post.getAvailable() == 0){ // 삭제된 글일경우
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('삭제된 글입니다.')");
-			script.println("location.href = 'bbs.jsp'");
+			script.println("location.href = 'http://localhost:8080/webserver/main.jsp'");
 			script.println("</script>");
 		}
 	%>
@@ -88,47 +88,36 @@
 				<td style="text-align: center;"><%= list.get(i).getComment_content() %></td>
 				<td style="text-align: end; font-size: 10px; color: gray;"><%= list.get(i).getDate().substring(0,11) + list.get(i).getDate().substring(11, 13) + "시" + list.get(i).getDate().substring(14,16) + "분" %></td>
 			</tr>
-			<%
-						}
-					%>
+			<% } %>
 		</table>
 
 		<div>
 		<!-- 댓글 입력 -->
-		<%
-				if (user_id != null) {
-				%>
-						<form method="post" action="commentAction.jsp?post_id=<%= post_id %>">
-							<table style="text-align: center; border: 1px solid #dddddd; width: 100%"> 
-									<tr>						
-										<td><textarea class="commentform" placeholder="댓글을 입력하세요." name="Comment_content" maxlength="300"></textarea></td>
-									</tr>		
-							</table>							
-						</form>		
-								<!-- 수정 및 삭제 버튼 -->
-		
-    				<%
-						if (user_id != null && user_id.equals(post.getUser_id())){ //만약 글 쓴 유저가 해당 유저라면 글 수정, 삭제 가능하게 하기
-					%>
-					<div>
-						<a href="update.jsp?post_id=<%= post_id %>" class="button">수정</a>
-						<a onclick="return confirm('삭제하시겠습니까?')" href="http://localhost:8080/webserver/userct/deleteAction.jsp?post_id=<%= post_id %>" class="button">삭제</a>
-					<%
-						}
-					%>
-						<input type="submit" class="button" style="float: right;" value="작성">		
-					</div>	
-				<%
-				}
-				else {
-					%>
-					<p class="plslogin">댓글 작성을 위해서 <a href="http://localhost:8080/webserver/userct/login.jsp">로그인이 필요합니다.</a></p>
-				<%
-				}
-				PostDAO postDAO = new PostDAO();
-				%>
+		<% if (user_id != null) { %>
+		<form method="post" action="http://localhost:8080/webserver/bbs/commentAction.jsp?post_id=<%= post_id %>">
+			<table style="text-align: center; border: 1px solid #dddddd; width: 100%"> 
+				<tr>						
+					<td><textarea class="commentform" placeholder="댓글을 입력하세요." name="comment_content" maxlength="300"></textarea></td>
+				</tr>		
+			</table>			
+			
+			<input type="submit" class="button" style="float: right;" value="작성">
+		</form>
+			<% if (user_id != null && user_id.equals(post.getUser_id())){ //만약 글 쓴 유저가 해당 유저라면 글 수정, 삭제 가능하게 하기
+			%>
+				<div>
+					<a href="http://localhost:8080/webserver/bbs/update.jsp?post_id=<%= post_id %>" class="button">수정</a>
+					<a onclick="return confirm('삭제하시겠습니까?')" href="http://localhost:8080/webserver/bbs/deleteAction.jsp?post_id=<%= post_id %>" class="button">삭제</a>
 				</div>
-				
+			<% }
+	}
+	else { %>
+	<p class="plslogin">댓글 작성을 위해서 <a href="http://localhost:8080/webserver/userct/login.jsp">로그인이 필요합니다.</a></p>
+	<%
+	}
+	PostDAO postDAO = new PostDAO();
+	%>
+	</div>
 				<!-- TODO: 이전글, 다음글이 post_id로 찾아오는 거라서, board_id별로 차별화 필요 -->
 				
 				<div class="container">

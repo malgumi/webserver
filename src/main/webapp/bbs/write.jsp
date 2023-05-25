@@ -17,28 +17,35 @@
 		if(request.getParameter("board_id") != null){
 			board_id = Integer.parseInt(request.getParameter("board_id"));
 		}
-		else{
+		else{ // board_id값이 제대로 넘어오지 않았을 시
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('유효하지 않은 시도입니다. 다시 시도해주세요.')");
-			script.println("location.href = 'bbs.jsp'");
+			script.println("location.href = 'http://localhost:8080/webserver/main.jsp'");
 			script.println("</script>");
 		}
 		if(session.getAttribute("user_id")!= null){ //유저 ID에 해당 세션 값 넣기
 			user_id = (String) session.getAttribute("user_id");
 		}
-		if (user_id == null) {
+		if (user_id == null) { //로그인 안했을 시.
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('로그인을 해주세요.')");
 			script.println("location.href = 'http://localhost:8080/webserver/userct/login.jsp'");
 			script.println("</script>");
 		}
+		if(board_id == 3 && !user_id.equals(admin)){
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('공지사항은 관리자만 작성 가능합니다.')");
+			script.println("location.href = 'http://localhost:8080/webserver/main.jsp'");
+			script.println("</script>");
+		}
 	%>
 
 	<div class="container">
 		<div class="row">
-		<form method="post" action="http://localhost:8080/webserver/writeAction.jsp?board_id=<%= board_id %>">
+		<form method="post" action="http://localhost:8080/webserver/bbs/writeAction.jsp?board_id=<%= board_id %>">
 			<table class="viewtable" style="text-align: center; border:1px solid #dddddd; width: 100%; height: 450px;">
 				<thead>
 					<tr>
@@ -62,10 +69,6 @@
 			
 		</div>
 	</div>
-	
-	
- 
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
 </body>
 </html>

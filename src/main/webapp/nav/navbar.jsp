@@ -54,10 +54,13 @@
 			<ul>
 				<li><a href="#">회원관리</a>
 					<ul class="dropdown-menu">
-						<li><img src="https://t1.daumcdn.net/cfile/tistory/24283C3858F778CA2E" style="width:80px; height:80px; border-radius:50%; overflow: hidden;"></li>
-						
-						<li><a href="http://localhost:8080/webserver/Userpage/password_Userpage.jsp">회원정보관리</a></li>
+						<li style="color: white;"><%= user_id %></li>
+						<hr>
+						<li><a href="http://localhost:8080/webserver/Userpage/password_Userpage.jsp">회원정보<br>관리</a></li>
 						<li><a href="http://localhost:8080/webserver/userct/logoutAction.jsp">로그아웃</a></li>
+						<% if (user_id.equals("admin")) { %>
+							<li><a href="http://localhost:8080/webserver/bbs/adminpage.jsp">관리자<br>페이지</a></li>
+						<% } %>
 					</ul>
 				</li>
 			</ul>

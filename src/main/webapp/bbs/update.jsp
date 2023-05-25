@@ -22,7 +22,7 @@
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('로그인이 필요합니다')");
-			script.println("location.href = '../login.jsp'");
+			script.println("location.href = 'http://localhost:8080/webserver/userct/login.jsp'");
 			script.println("</script>");
 		}
 		int post_id = 0;
@@ -72,8 +72,6 @@
 		</form>
 		</div>
 	</div>	
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
 
 </body>
 </html>

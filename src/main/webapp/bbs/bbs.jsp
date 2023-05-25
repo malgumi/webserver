@@ -62,7 +62,7 @@
 		%>
 			<tr>
 				<td><%=post.getPost_id()%></td>
-				<td><a href="http://localhost:8080/webserver/view.jsp?post_id=<%= post.getPost_id()%>" style="text-decoration: none; color: black;"><%=post.getPost_title()%></a></td>
+				<td><a href="http://localhost:8080/webserver/bbs/view.jsp?post_id=<%= post.getPost_id()%>" style="text-decoration: none; color: black;"><%=post.getPost_title()%></a></td>
 				<td><%=post.getUser_id()%></td>
 				<td><%= post.getDate().substring(0,11) + post.getDate().substring(11, 13) + "시" + post.getDate().substring(14,16) + "분" %></td>
 			</tr>
@@ -103,19 +103,19 @@
 <% } %>
 
 <% } %>
+<% if (board_id != 3) { %>
+<a href="http://localhost:8080/webserver/bbs/write.jsp?board_id=<%= board_id %>" class="button">글쓰기</a>
+<% } else if(session.getAttribute("user_id")!=null && board_id == 3 && user_id.equals("admin")){ %> <!-- 공지사항 게시판일 시, 관리자에게만 글쓰기 버튼 활성화 -->
+<a href="http://localhost:8080/webserver/bbs/write.jsp?board_id=<%= board_id %>" class="button">글쓰기</a>
+<% } %>
 
-<a href="http://localhost:8080/webserver/write.jsp?board_id=<%= board_id %>" class="button">글쓰기</a>
 </div>
 
 	<!-- 검색 기능 추가 -->
-		<form class="search-form" method="get" action="http://localhost:8080/webserver/bbs/bbs.jsp" class="search-form">
+	<form class="search-form" method="get" action="http://localhost:8080/webserver/bbs/bbs.jsp" class="search-form">
 		<input type="hidden" name="board_id" value="<%= board_id %>">
 		<input type="text" name="search" placeholder="검색어를 입력하세요">
 		<button type="submit">검색</button>
 	</form> 
-
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/bootstrap.js"></script>
 </body>
 </html>

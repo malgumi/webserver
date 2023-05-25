@@ -6,6 +6,8 @@ public class Comment {
 	private String user_id;
 	private int post_id;
 	private int available;
+	private String date;
+	
 	public int getComment_id() {
 		return comment_id;
 	}
@@ -42,5 +44,4 @@ public class Comment {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	private String date;
 }

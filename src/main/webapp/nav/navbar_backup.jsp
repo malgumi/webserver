@@ -1,78 +1,72 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+ <%@ page import="users.Users" %>
+ <%@ page import="users.UsersDAO" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width-device-width, initial-scale=1">
-<link rel="stylesheet" href="http://localhost:8080/BBS/css/bootstrap.css">
-<link rel="stylesheet" href="http://localhost:8080/BBS/css/join.css">
-<title>LRAK</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://localhost:8080/webserver/css/main.css">
+
+<title>씨밀레</title>
 </head>
 <body>
 	<%
-		String userID = null;
-		if(session.getAttribute("userID")!=null){
-			userID = (String) session.getAttribute("userID");
+		String user_id = null;
+		if(session.getAttribute("user_id")!=null){
+			user_id = (String) session.getAttribute("user_id");
 		}
 		int pageNumber = 1; //기본 첫 페이지
 		if (request.getParameter("pageNumber") != null){ //파라미터가 넘어오면 페이지 넘버 삽입
 			pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
 		}
 	%>
-	<nav class="navbar navbar-default">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed"
-			data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-			aria-expanded="false">
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="http://localhost:8080/BBS/main.jsp">JSP 게시판</a>
-		</div>
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav">
-				<li><a href="http://localhost:8080/BBS/notice/notice_bbs.jsp">공지사항</a></li>
-				<li><a href="http://localhost:8080/BBS/bbs/bbs.jsp">자유게시판</a></li>
-				<li><a href="http://localhost:8080/BBS/QnA/QnA_bbs.jsp">Q&amp;A게시판</a></li>
-			</ul>
-			<%
-				if(userID == null){
+	<nav>
+		<div class="nav">
+			<div class="logo"><ul>
+				<li><a href="http://localhost:8080/webserver/main.jsp"><img src="http://localhost:8080/webserver/img/logo.png"></a></li>
+			</ul></div>
+			<div class="menu"><ul>
+				<li><a href="http://localhost:8080/webserver/bbs/bbs.jsp?board_id=3">공지사항</a></li>
+				<li><a href="http://localhost:8080/webserver/bbs/bbs.jsp?board_id=1">자유게시판</a></li>
+				<li><a href="http://localhost:8080/webserver/bbs/bbs.jsp?board_id=2">홍보게시판</a></li>
+			</ul></div>
+			<div class="loginmenu">
+				<%
+				if(user_id == null) {
 			%>
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="true">접속하기<span class="caret"></span></a>
+			<ul>
+				<li><a href="#">접속하기</a>
 					<ul class="dropdown-menu">
-						<li><a href="http://localhost:8080/BBS/login.jsp">로그인</a></li>
-						<li><a href="http://localhost:8080/BBS/join.jsp">회원가입</a></li>
+						<li><a href="http://localhost:8080/webserver/userct/login.jsp">로그인</a></li>
+						<li><a href="http://localhost:8080/webserver/userct/join.jsp">회원가입</a></li>
 					</ul>
 				</li>
 			</ul>
 			<%
 				}
-				else{
+				else {
+					UsersDAO UserDAO = new UsersDAO();
+					
+					Users user = new UsersDAO().getUserdata(user_id);
 			%>
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="true">회원관리<span class="caret"></span></a>
+			<ul>
+				<li><a href="#">회원관리</a>
 					<ul class="dropdown-menu">
-						<li><a href="http://localhost:8080/BBS/logoutAction.jsp">로그아웃</a></li>
+						<li style="color: white;"><%= user_id %></li>
+						<hr>
+						<li><a href="http://localhost:8080/webserver/Userpage/password_Userpage.jsp">회원정보관리</a></li>
+						<li><a href="http://localhost:8080/webserver/userct/logoutAction.jsp">로그아웃</a></li>
 					</ul>
 				</li>
 			</ul>
 			<% 
 				}
 			%>
+			</div>
 		</div>
 	</nav>
-
-			<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-			<script src="http://localhost:8080/BBS/js/bootstrap.js"></script>
 
 </body>
 </html>

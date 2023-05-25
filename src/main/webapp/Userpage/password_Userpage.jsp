@@ -9,9 +9,7 @@
 
 
 <title>씨밀레</title>
-<link rel="stylesheet" href="../css/bootstrap.css">
-<link rel="stylesheet" href="../css/loginback.css">
-<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/main.css">
 
 
 </head>
@@ -37,12 +35,5 @@
 			</div>
 		</div>
 	</div>
-			
-
-
-
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
-	<script src="../js/bootstrap.js"></script>
 </body>
 </html>

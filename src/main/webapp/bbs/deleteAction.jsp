@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ page import="post.PostDAO" %>
-  <%@ page import="post.Post" %>
+ <%@ page import="post.Post" %>
  <%@ page import="java.io.PrintWriter" %> 
  <% request.setCharacterEncoding("UTF-8"); %> 
 <!DOCTYPE html>
@@ -24,32 +24,33 @@
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('로그인을 해주세요.')");
-			script.println("location.href = '../login.jsp'");
+			script.println("location.href = 'http://localhost:8080/webserver/userct/login.jsp'");
 			script.println("</script>");
 		}
 		
-		int Post_id = 0;
-		if(request.getParameter("Post_id") != null){ //Post_id가 존재한다면
-			Post_id = Integer.parseInt(request.getParameter("Post_id")); //Post_id에 그걸 담아서 처리할 수 있게 함
+		int post_id = 0;
+		if(request.getParameter("post_id") != null){
+			post_id = Integer.parseInt(request.getParameter("post_id"));
 		}
-		if(Post_id == 0){ //0이니까 Post_id가 없는 경우임. 왜냐? 위에서 번호 담았으니까
+		if(post_id == 0){ //0이니까 bbsID가 없는 경우임. 왜냐? 위에서 번호 담았으니까
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('유효하지 않은 글입니다.')");
 			script.println("history.back()");
 			script.println("</script>");
 		}
-		Post Post = new PostDAO().getPost(Post_id);
-		if (!user_id.equals(Post.getUser_id())){ //글 작성자 본인이 아닐 경우
+		Post post = new PostDAO().getPost(post_id);
+		if (!user_id.equals(post.getUser_id())){ //글 작성자 본인이 아닐 경우
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
-			script.println("alert('글 작성자만 삭제 가능합니다.')");
+			script.println("alert('글 작성자만 수정 가능합니다.')");
 			script.println("history.back()");
 			script.println("</script>");
 		}
 		else{ //권한이 있는 사람이라면.
 					PostDAO PostDAO = new PostDAO();
-					int result = PostDAO.deletePost(Post_id); //삭제기능 수행
+					int board_id = PostDAO.getPost(post_id).getBoard_id();
+					int result = PostDAO.deletePost(post_id); //삭제기능 수행
 					if (result == -1) { //데이터베이스 오류
 						PrintWriter script = response.getWriter();
 						script.println("<script>");
@@ -61,7 +62,7 @@
 						PrintWriter script = response.getWriter();
 						script.println("<script>");
 						script.println("alert('글을 삭제했습니다.')");
-						script.println("location.href='bbs.jsp'");
+						script.println("location.href='http://localhost:8080/webserver/bbs/bbs.jsp?board_id=" + board_id + "'");
 						script.println("</script>");
 					}
 		}

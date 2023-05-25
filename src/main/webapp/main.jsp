@@ -15,7 +15,7 @@ pageEncoding="UTF-8"%>
 </head>
 <body>
 		<a class="logo" style="margin-top: 5px;" href="http://localhost:8080/webserver/main.jsp"><img src="http://localhost:8080/webserver/img/logo.png"></a>
-		<jsp:include page="nav/navbar.jsp"/>
+		<%@ include file="../nav/navbar.jsp" %>
 			<div class="container">
 	<table class="posttable">
 		<thead>
@@ -37,8 +37,8 @@ pageEncoding="UTF-8"%>
 		%>
 			<tr>
 				<td><%=board_title%></td>
-				<td><a href="http://localhost:8080/webserver/view.jsp?post_id=<%= post.getPost_id()%>" style="text-decoration: none; color: black;"><%=post.getPost_title()%></a></td>
-				<td><%=post.getUser_id()%></td>
+				<td><a href="http://localhost:8080/webserver/bbs/view.jsp?post_id=<%= post.getPost_id()%>" style="text-decoration: none; color: black;"><%=post.getPost_title()%></a></td>
+				<td><%= post.getUser_id() %></td>
 				<td><%= post.getDate().substring(0,11) + post.getDate().substring(11, 13) + "시" + post.getDate().substring(14,16) + "분" %></td>
 			</tr>
 			<%}%>

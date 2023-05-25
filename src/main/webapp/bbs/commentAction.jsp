@@ -32,19 +32,19 @@
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('로그인을 해주세요.')");
-			script.println("location.href = 'login.jsp'");
+			script.println("location.href = 'http://localhost:8080/webserver/userct/login.jsp'");
 			script.println("</script>");
 		}
 		else{
-			int Post_id = 0;
-			if(request.getParameter("Post_id") != null){ //Post_id가 존재한다면
-				Post_id = Integer.parseInt(request.getParameter("Post_id")); //Post_id에 그걸 담아서 처리할 수 있게 함
+			int post_id = 0;
+			if(request.getParameter("post_id") != null){ //Post_id가 존재한다면
+				post_id = Integer.parseInt(request.getParameter("post_id")); //Post_id에 그걸 담아서 처리할 수 있게 함
 			}
-			if(Post_id == 0){ //0이니까 Post_id가 없는 경우임. 왜냐? 위에서 번호 담았으니까
+			if(post_id == 0){ //0이니까 Post_id가 없는 경우임. 왜냐? 위에서 번호 담았으니까
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('유효하지 않은 글입니다.')");
-				script.println("location.href = 'bbs.jsp'");
+				script.println("location.href = 'http://localhost:8080/webserver/bbs/bbs.jsp'");
 				script.println("</script>");
 			}
 			//뭔가 입력이 안됐을때
@@ -59,7 +59,7 @@
 			else{ //입력이 됐다면 데이터베이스로 보내버리기
 				UsersDAO UsersDAO = new UsersDAO();
 				CommentDAO commentDAO = new CommentDAO();
-					int result = commentDAO.comment_write(user_id, Post_id, comment.getComment_content(), 1);//1<-아마 available
+					int result = commentDAO.comment_write(user_id, post_id, comment.getComment_content(), 1);//1<-아마 available
 					if (result == -1) { //데이터베이스 오류
 						PrintWriter script = response.getWriter();
 						script.println("<script>");
@@ -70,7 +70,7 @@
 					else {
 						PrintWriter script = response.getWriter();
 						script.println("<script>");
-						script.println("location.href = 'view.jsp?Post_id="+Post_id+"'"); //게시글로 보냄
+						script.println("location.href = 'http://localhost:8080/webserver/bbs/view.jsp?post_id="+post_id+"'"); //게시글로 보냄
 						script.println("</script>");
 					}
 				}
