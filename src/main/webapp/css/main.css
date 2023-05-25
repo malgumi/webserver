@@ -204,6 +204,33 @@ margin: auto;
 	font-size: 12px;
 	padding: 10px;
 }
+
+/* 검색부분 */
+.search-form {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 20px;
+	text-align: center;
+    margin-top: 20px;
+}
+
+.search-form input[type="text"] {
+	padding: 10px;
+	font-size: 13px;
+	border: 1px solid #ccc;
+	border-radius: 5px 0 0 5px;
+	outline: none;
+}
+
+.search-form button {
+	padding: 10px 20px;
+	font-size: 13px;
+	background-color: #f5f2ea;
+	border: none;
+	border-radius: 0 5px 5px 0;
+	cursor: pointer;
+}
+
 /* ========댓글========== */
 .commentlist {
 	font-size: 12px;

@@ -174,7 +174,6 @@ public class PostDAO {
 	    return null;
 	}
 
-
 	public int updatePost(int post_id, String post_title, String post_content) {
 		Connection conn = open();
 	    String SQL = "UPDATE POST SET post_title = ?, post_content = ? WHERE post_id =?";
@@ -202,5 +201,51 @@ public class PostDAO {
 	    }
 	    return -1; //데이터베이스 오류
 	}
-
+	
+	public int getSearchCount(String searchKeyword) {
+		Connection conn = open();
+		String SQL = "SELECT COUNT(*) FROM POST WHERE (post_title LIKE ? OR post_content LIKE ?) AND available = 1";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, "%" + searchKeyword + "%");
+			pstmt.setString(2, "%" + searchKeyword + "%");
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
+			return 0;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+	
+	public ArrayList<Post> getSearchList(String searchKeyword, int pageNumber) {
+		Connection conn = open();
+		String SQL = "SELECT * FROM POST WHERE (post_title LIKE ? OR post_content LIKE ?) AND available = 1 ORDER BY post_id DESC LIMIT ?, 10";
+		ArrayList<Post> list = new ArrayList<Post>();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, "%" + searchKeyword + "%");
+			pstmt.setString(2, "%" + searchKeyword + "%");
+			pstmt.setInt(3, (pageNumber - 1) * 10);
+			ResultSet rs = pstmt.executeQuery();
+			try(conn; pstmt; rs) {
+				while (rs.next()) {
+					Post post = new Post();
+					post.setPost_id(rs.getInt(1));
+					post.setPost_title(rs.getString(2));
+					post.setPost_content(rs.getString(3));
+					post.setUser_id(rs.getString(4));
+					post.setBoard_id(rs.getInt(5));
+					post.setDate(rs.getString(6));
+					post.setAvailable(rs.getInt(7));
+					list.add(post);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 }
