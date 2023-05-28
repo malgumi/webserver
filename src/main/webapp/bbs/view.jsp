@@ -80,13 +80,13 @@
 			</tr>
 			<%
 						CommentDAO CommentDAO = new CommentDAO();
-						ArrayList<Comment> list = CommentDAO.comment_getList(post_id);
-						for(int i = list.size()-1; i>=0; i--){
-					%>
-			<tr>
-				<td style="text-align: center;"><%= list.get(i).getUser_id() %></td>
-				<td style="text-align: center;"><%= list.get(i).getComment_content() %></td>
-				<td style="text-align: end; font-size: 10px; color: gray;"><%= list.get(i).getDate().substring(0,11) + list.get(i).getDate().substring(11, 13) + "시" + list.get(i).getDate().substring(14,16) + "분" %></td>
+			ArrayList<Comment> list = CommentDAO.comment_getList(post_id);
+			for (Comment comment : list) { // 향상된 for문 사용
+		%>
+		<tr>
+			<td style="text-align: center;"><%= comment.getUser_id() %></td>
+			<td style="text-align: center;"><%= comment.getComment_content() %></td>
+				<td style="text-align: end; font-size: 10px; color: gray;"><%= comment.getDate().substring(0,11) + comment.getDate().substring(11, 13) + "시" + comment.getDate().substring(14,16) + "분" %></td>
 			</tr>
 			<% } %>
 		</table>
