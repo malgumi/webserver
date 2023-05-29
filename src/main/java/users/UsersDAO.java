@@ -127,6 +127,8 @@ public class UsersDAO {
 			pstmt.setString(1, Password);
 			pstmt.setString(2, Name);
 			pstmt.setString(3, Email);
+			pstmt.setString(4, User_id); // user_id를 WHERE 절에 추가
+			return pstmt.executeUpdate();
 			
 //			String pname = nameserach(User_id);
 //			int name = name(userNickname);

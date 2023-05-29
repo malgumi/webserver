@@ -16,7 +16,7 @@
 		session.invalidate();
 	%>
 	<script>
-		location.href='main.jsp';
+		location.href='http://localhost:8080/webserver/main.jsp';
 	</script>
 </body>
 

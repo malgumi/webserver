@@ -12,12 +12,8 @@
 <body>
 	<%
 		session.invalidate(); //로그아웃하는 회원들 세션 뺏기
+		response.sendRedirect("http://localhost:8080/webserver/main.jsp"); //로그아웃시 메인 페이지로 돌아가
 	%>
-	<script>
-		<%String link = request.getHeader("referer");
-		response.sendRedirect(link);%>//로그아웃시 전 페이지로 돌아가
-		
-	</script>
 </body>
 
 </html>

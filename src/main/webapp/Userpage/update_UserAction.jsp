@@ -13,19 +13,21 @@
 
 <body>
 	<%
-		String user_id = null;
-		int permission = 0;
-		if(session.getAttribute("user_id")!= null){ //유저 ID에 해당 세션 값 넣기
-			user_id = (String) session.getAttribute("user_id");
-			permission = (int) session.getAttribute("permission");
-		}
-		if (user_id == null) {
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('로그인을 해주세요.')");
-			script.println("location.href = 'http://localhost:8080/webserver/login.jsp'");
-			script.println("</script>");
-		}
+	String user_id = null;
+	int permission = 0;
+	if(session.getAttribute("user_id")!= null){ //유저 ID에 해당 세션 값 넣기
+		user_id = (String) session.getAttribute("user_id");
+	}
+	if(session.getAttribute("permission") != null && session.getAttribute("permission") instanceof Integer){
+		permission = (int) session.getAttribute("permission");
+	}
+	if (user_id == null) {
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('로그인을 해주세요.')");
+		script.println("location.href = 'http://localhost:8080/webserver/login.jsp'");
+		script.println("</script>");
+	}
 		Users user = new UsersDAO().getUserdata(user_id);
 		if (!user_id.equals(user.getUser_id())){
 			PrintWriter script = response.getWriter();
@@ -47,8 +49,8 @@
 			} 
 			else{
 				UsersDAO UserDAO = new UsersDAO();
-					int result = UserDAO.updateUserdata(user_id, request.getParameter("password"), request.getParameter("name"), permission, 
-							request.getParameter("email"));
+				int result = UserDAO.updateUserdata(user_id, request.getParameter("password"), request.getParameter("name"), permission, 
+						request.getParameter("email"));
 					if (result == -1) { //데이터베이스 오류
 						PrintWriter script = response.getWriter();
 						script.println("<script>");
