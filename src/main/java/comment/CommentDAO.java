@@ -83,7 +83,7 @@ public class CommentDAO {
 	
 	public ArrayList<Comment> comment_getList(int post_id){
 		Connection conn = open();
-		String SQL = "SELECT * FROM COMMENT WHERE COMMENT_ID = ? AND Available = 1 ORDER BY COMMENT_ID DESC"; 
+		String SQL = "SELECT * FROM COMMENT WHERE POST_ID = ? AND Available = 1 ORDER BY COMMENT_ID DESC"; 
 		//bbsID가 특정일 때, 그리고 댓글이 삭제가 되지 않았을 때
 		ArrayList<Comment> list = new ArrayList<Comment>();
 		try {
