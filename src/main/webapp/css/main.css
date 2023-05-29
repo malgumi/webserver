@@ -288,3 +288,13 @@ margin: auto;
 .button:hover {
   background-color: #e2dfd5;
 }
+
+/* =============관리자 페이지=============== */
+
+.hidden {
+  display: none; /* 초기에는 숨김 처리 */
+}
+.visible {
+  display: table-row; /* 클릭 시 펼쳐지도록 설정 */
+}
+    

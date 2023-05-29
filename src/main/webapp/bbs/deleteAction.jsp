@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
  <%@ page import="post.PostDAO" %>
  <%@ page import="post.Post" %>
+ <%@ page import="users.Users" %>
+ <%@ page import="users.UsersDAO" %>
  <%@ page import="java.io.PrintWriter" %> 
  <% request.setCharacterEncoding("UTF-8"); %> 
 <!DOCTYPE html>
@@ -40,14 +42,8 @@
 			script.println("</script>");
 		}
 		Post post = new PostDAO().getPost(post_id);
-		if (!user_id.equals(post.getUser_id())){ //글 작성자 본인이 아닐 경우
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('글 작성자만 수정 가능합니다.')");
-			script.println("history.back()");
-			script.println("</script>");
-		}
-		else{ //권한이 있는 사람이라면.
+		Users user = new UsersDAO().getUserdata(user_id);
+		if (user_id.equals(post.getUser_id()) || user.getPermission() == 2){ //권한이 있는 사람이라면.
 					PostDAO PostDAO = new PostDAO();
 					int board_id = PostDAO.getPost(post_id).getBoard_id();
 					int result = PostDAO.deletePost(post_id); //삭제기능 수행
@@ -62,9 +58,16 @@
 						PrintWriter script = response.getWriter();
 						script.println("<script>");
 						script.println("alert('글을 삭제했습니다.')");
-						script.println("location.href='http://localhost:8080/webserver/bbs/bbs.jsp?board_id=" + board_id + "'");
+						script.println("history.back()");
 						script.println("</script>");
 					}
+		}
+		else{ //글 작성자 본인이 아니고 권한도 없다면.
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('글 작성자만 삭제 가능합니다."+ user.getPermission() +"')");
+			script.println("history.back()");
+			script.println("</script>");
 		}
 	%>
 </body>
