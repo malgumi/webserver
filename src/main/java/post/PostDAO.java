@@ -109,12 +109,13 @@ public class PostDAO {
 		return list;
 	}
 
-	public boolean nextPage(int pageNumber) {
+	public boolean nextPage(int pageNumber, int board_id) {
 		Connection conn = open();
-		String SQL = "SELECT * FROM POST WHERE post_id < ? AND available = 1";
+		String SQL = "SELECT * FROM POST WHERE post_id < ? AND board_id = ? AND available = 1";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
+			pstmt.setInt(2, board_id);
 			rs = pstmt.executeQuery();
 			if(rs.next()) { 
 				return true;
@@ -126,11 +127,12 @@ public class PostDAO {
 		return false;
 	}
 
-	public int Paging() {
+	public int Paging(int board_id) {
 		Connection conn = open();
-	    String SQL = "SELECT COUNT(*) FROM POST WHERE available = 1";
+	    String SQL = "SELECT COUNT(*) FROM POST WHERE available = 1 AND board_id = ?";
 	    try {
 	        PreparedStatement pstmt = conn.prepareStatement(SQL);
+	        pstmt.setInt(1, board_id);
 	        rs = pstmt.executeQuery();
 	        if (rs.next()) {
 	            int result = rs.getInt(1);

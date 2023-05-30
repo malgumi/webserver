@@ -72,13 +72,13 @@
 		%>
 		</tbody>
 	</table>
-
+ 
 <%
 	int cnt;
 	if (searchKeyword != null && !searchKeyword.isEmpty()) {
 		cnt = postDAO.getSearchCount(searchKeyword);
 	} else {
-		cnt = postDAO.Paging(); // 게시판에 존재하는 전체 글 수
+		cnt = postDAO.Paging(board_id); // 게시판에 존재하는 전체 글 수
 	}
 	int pageBlock = 10; // 한 페이지에 보여줄 글 수
 	if (cnt > pageBlock) { // 전체 글 수가 한 페이지에 보여지는 글 수보다 많다면
@@ -98,14 +98,15 @@
 <% for (int i = startPage; i <= endPage; i++) { %>
 	<a href="http://localhost:8080/webserver/bbs/bbs.jsp?pageNumber=<%= i %>"><%= i %></a>
 <% } %>
-<% if (postDAO.nextPage(pageNumber + 1)) { %> <!-- 다음 페이지가 있다면 -->
+<% if (postDAO.nextPage(pageNumber + 1, board_id)) { %> <!-- 다음 페이지가 있다면 --> 
 	<a href="http://localhost:8080/webserver/bbs/bbs.jsp?pageNumber=<%= pageNumber + 1 %>">다음</a>
 <% } %>
 
-<% } %>
+<% } 
+	Users user = new UsersDAO().getUserdata(user_id); %>
 <% if (board_id != 3) { %>
 <a href="http://localhost:8080/webserver/bbs/write.jsp?board_id=<%= board_id %>" class="button">글쓰기</a>
-<% } else if(session.getAttribute("user_id")!=null && board_id == 3 && user_id.equals("admin")){ %> <!-- 공지사항 게시판일 시, 관리자에게만 글쓰기 버튼 활성화 -->
+<% } else if(session.getAttribute("user_id")!=null && board_id == 3 && user.getPermission() == 2){ %> <!-- 공지사항 게시판일 시, 관리자에게만 글쓰기 버튼 활성화 -->
 <a href="http://localhost:8080/webserver/bbs/write.jsp?board_id=<%= board_id %>" class="button">글쓰기</a>
 <% } %>
 
