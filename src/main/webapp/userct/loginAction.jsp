@@ -46,11 +46,11 @@
 			script.println("location.href='http://localhost:8080/webserver/bbs/adminpage.jsp'");
 			script.println("</script>");
 		}
-		if (result == 1) {
-			session.setAttribute("user_id", user.getUser_id()); //유저 ID를 세션번호?로 지정해줌
+		else if (result == 1 && users.getPermission() != 2) {
+			session.setAttribute("user_id", user.getUser_id());
 			PrintWriter script = response.getWriter();	
 			script.println("<script>");
-			script.println("alert('로그인 되었습니다.");
+			script.println("alert('로그인 되었습니다.')");
 			script.println("location.href='http://localhost:8080/webserver/main.jsp'");
 			script.println("</script>");
 		}
