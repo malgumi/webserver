@@ -109,7 +109,7 @@ public class PostDAO {
 	    return list;
 	}
 	
-	public ArrayList<Post> getListTen() {
+	public ArrayList<Post> getListTen() { //main용 최신글 출력
 	    Connection conn = open();
 	    String SQL = "SELECT * FROM POST WHERE available = 1 ORDER BY post_id DESC LIMIT 0, 10";
 	    ArrayList<Post> list = new ArrayList<Post>();
@@ -134,6 +134,52 @@ public class PostDAO {
 	    }
 	    return list;
 	}
+	
+	public ArrayList<Post> getAll() {
+	    Connection conn = open();
+	    String SQL = "SELECT * FROM POST WHERE available = 1 ORDER BY post_id DESC";
+	    ArrayList<Post> list = new ArrayList<Post>();
+	    try {
+	        PreparedStatement pstmt = conn.prepareStatement(SQL);
+	        ResultSet rs = pstmt.executeQuery();
+	        try(conn; pstmt; rs) {
+	            while (rs.next()) {
+	                Post post = new Post();
+	                post.setPost_id(rs.getInt(1));
+	                post.setPost_title(rs.getString(2));
+	                post.setPost_content(rs.getString(3));
+	                post.setUser_id(rs.getString(4));
+	                post.setBoard_id(rs.getInt(5));
+	                post.setDate(rs.getString(6));
+	                post.setAvailable(rs.getInt(7));
+	                list.add(post);
+	            }
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return list;
+	}
+	
+	public int getPaging(int pageNumber) {
+	    Connection conn = open();
+	    String SQL = "SELECT COUNT(*) FROM POST WHERE available = 1";
+	    try {
+	        PreparedStatement pstmt = conn.prepareStatement(SQL);
+	        ResultSet rs = pstmt.executeQuery();
+	        try(conn; pstmt; rs) {
+	            if (rs.next()) {
+	                int totalCount = rs.getInt(1);
+	                int pageCount = (int) Math.ceil((double) totalCount / 10);
+	                return pageCount;
+	            }
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return -1; // DB 오류
+	}
+
 
 	public boolean nextPage(int pageNumber, int board_id) {
 		Connection conn = open();

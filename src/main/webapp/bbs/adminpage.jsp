@@ -27,6 +27,10 @@ pageEncoding="UTF-8"%>
             button.textContent = "⇨ 글 관리하기";
         }
     }
+
+    function goToPage(pageNumber) {
+        window.location.href = "http://localhost:8080/webserver/bbs/adminpage.jsp#" + pageNumber;
+    }
 </script>
 
 </head>
@@ -35,7 +39,7 @@ pageEncoding="UTF-8"%>
 <%@ include file="../nav/navbar.jsp" %>
 <h2 style="text-align: center;">관리자 전용 페이지입니다.</h2>
 <%
-	Users users = new UsersDAO().getUserdata(user_id);
+    Users users = new UsersDAO().getUserdata(user_id);
     if(user_id == null || users.getPermission() != 2){
         PrintWriter script = response.getWriter();
         script.println("<script>");
