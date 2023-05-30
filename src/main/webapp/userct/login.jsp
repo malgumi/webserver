@@ -1,19 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter" %> 
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width-device-width, initial-scale=1">
-
-
 <title>씨밀레</title>
-
 <link rel="stylesheet" type="text/css" href="http://localhost:8080/webserver/css/user.css">
-
-
 </head>
 <body>
 <%@ include file="../nav/navbar.jsp" %>
@@ -39,9 +33,7 @@
 				<input type="submit" value="로그인하기" id="loginbtn">
 			</div>
 		</form>
-		
 	</div>
 
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </body>
 </html>

@@ -11,14 +11,8 @@
 <link rel="stylesheet" href="../css/main.css">
 <title>씨밀레</title>
 </head>
-
-
-<!-- 23.01.21 유말그미 추가 -->
 <body style ="background-color:#f5f1ee;">
 <%@ include file="../nav/navbar.jsp" %>
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script src="../js/bootstrap.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
 	
 	<% 
 		Users user = new UsersDAO().getUserdata(user_id);
@@ -30,8 +24,6 @@
 		script.println("</script>");
 	}
 	%>
-	<!--왜 깃에 안올라가지   -->
-	
 	<div class="container">
 		<div>
 			<div style="margin-top:100px;">
@@ -58,7 +50,7 @@
 						<input type="email" placeholder="이메일" name="email" maxlength="50" style="width: 258px; border:none;" value="<%= user.getEmail() %>">		
 					</label>
 					<br><br>
-					<input onclick="return confirm('수정하시겠습니까?')" type="submit" class="btn btn-primary pull-right" value="수정하기">
+					<input onclick="return confirm('수정하시겠습니까?')" type="submit" class="button" value="수정하기">
 				</form>
 			</div>
 		</div>

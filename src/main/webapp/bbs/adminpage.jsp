@@ -64,7 +64,7 @@ pageEncoding="UTF-8"%>
         <tbody>
             <%
                 PostDAO postDAO = new PostDAO();
-                ArrayList<Post> postList = postDAO.getList(1);
+                ArrayList<Post> postList = postDAO.getListTen();
                 BoardDAO boardDAO = new BoardDAO();
                 for(Post post : postList){
                     String board_title = boardDAO.getBoard_title(post.getBoard_id());

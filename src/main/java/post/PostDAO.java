@@ -81,32 +81,58 @@ public class PostDAO {
 		return -1;
 	}
 
-	public ArrayList<Post> getList(int pageNumber){
-		Connection conn = open();
-		String SQL = "SELECT * FROM POST WHERE available = 1 ORDER BY post_id DESC LIMIT ?, 10";
-		ArrayList<Post> list = new ArrayList<Post>();
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, (pageNumber - 1) * 10);
-			ResultSet rs = pstmt.executeQuery();
-			try(conn; pstmt; rs){
-				while (rs.next()) { 
-					Post post = new Post();
-					post.setPost_id(rs.getInt(1));
-					post.setPost_title(rs.getString(2));
-					post.setPost_content(rs.getString(3));
-					post.setUser_id(rs.getString(4));
-					post.setBoard_id(rs.getInt(5));
-					post.setDate(rs.getString(6));
-					post.setAvailable(rs.getInt(7));
-					list.add(post);
-				}
-			}
-		}
-		catch (Exception e){
-			e.printStackTrace();
-		}
-		return list;
+	public ArrayList<Post> getListByBoard(int board_id, int pageNumber) {
+	    Connection conn = open();
+	    String SQL = "SELECT * FROM POST WHERE available = 1 AND board_id = ? ORDER BY post_id DESC LIMIT ?, 10";
+	    ArrayList<Post> list = new ArrayList<Post>();
+	    try {
+	        PreparedStatement pstmt = conn.prepareStatement(SQL);
+	        pstmt.setInt(1, board_id);
+	        pstmt.setInt(2, (pageNumber - 1) * 10);
+	        ResultSet rs = pstmt.executeQuery();
+	        try(conn; pstmt; rs) {
+	            while (rs.next()) {
+	                Post post = new Post();
+	                post.setPost_id(rs.getInt(1));
+	                post.setPost_title(rs.getString(2));
+	                post.setPost_content(rs.getString(3));
+	                post.setUser_id(rs.getString(4));
+	                post.setBoard_id(rs.getInt(5));
+	                post.setDate(rs.getString(6));
+	                post.setAvailable(rs.getInt(7));
+	                list.add(post);
+	            }
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return list;
+	}
+	
+	public ArrayList<Post> getListTen() {
+	    Connection conn = open();
+	    String SQL = "SELECT * FROM POST WHERE available = 1 ORDER BY post_id DESC LIMIT 0, 10";
+	    ArrayList<Post> list = new ArrayList<Post>();
+	    try {
+	        PreparedStatement pstmt = conn.prepareStatement(SQL);
+	        ResultSet rs = pstmt.executeQuery();
+	        try(conn; pstmt; rs) {
+	            while (rs.next()) {
+	                Post post = new Post();
+	                post.setPost_id(rs.getInt(1));
+	                post.setPost_title(rs.getString(2));
+	                post.setPost_content(rs.getString(3));
+	                post.setUser_id(rs.getString(4));
+	                post.setBoard_id(rs.getInt(5));
+	                post.setDate(rs.getString(6));
+	                post.setAvailable(rs.getInt(7));
+	                list.add(post);
+	            }
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return list;
 	}
 
 	public boolean nextPage(int pageNumber, int board_id) {
@@ -204,13 +230,14 @@ public class PostDAO {
 	    return -1; //데이터베이스 오류
 	}
 	
-	public int getSearchCount(String searchKeyword) {
+	public int getSearchCount(String searchKeyword, int board_id) {
 		Connection conn = open();
-		String SQL = "SELECT COUNT(*) FROM POST WHERE (post_title LIKE ? OR post_content LIKE ?) AND available = 1";
+		String SQL = "SELECT COUNT(*) FROM POST WHERE (post_title LIKE ? OR post_content LIKE ?) AND available = 1 AND board_id = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, "%" + searchKeyword + "%");
 			pstmt.setString(2, "%" + searchKeyword + "%");
+			pstmt.setInt(3, board_id);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				return rs.getInt(1);
@@ -222,15 +249,16 @@ public class PostDAO {
 		return -1;
 	}
 	
-	public ArrayList<Post> getSearchList(String searchKeyword, int pageNumber) {
+	public ArrayList<Post> getSearchList(String searchKeyword, int pageNumber, int board_id) {
 		Connection conn = open();
-		String SQL = "SELECT * FROM POST WHERE (post_title LIKE ? OR post_content LIKE ?) AND available = 1 ORDER BY post_id DESC LIMIT ?, 10";
+		String SQL = "SELECT * FROM POST WHERE (post_title LIKE ? OR post_content LIKE ?) AND available = 1 AND board_id = ? ORDER BY post_id DESC LIMIT ?, 10";
 		ArrayList<Post> list = new ArrayList<Post>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, "%" + searchKeyword + "%");
 			pstmt.setString(2, "%" + searchKeyword + "%");
-			pstmt.setInt(3, (pageNumber - 1) * 10);
+			pstmt.setInt(3, board_id);
+			pstmt.setInt(4, (pageNumber - 1) * 10);
 			ResultSet rs = pstmt.executeQuery();
 			try(conn; pstmt; rs) {
 				while (rs.next()) {

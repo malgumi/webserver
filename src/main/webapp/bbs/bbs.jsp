@@ -49,16 +49,16 @@
 		<!-- 글 목록 출력 -->
 		<tbody>
 		<%
-			PostDAO postDAO = new PostDAO();
-			String searchKeyword = request.getParameter("search");
-			ArrayList<Post> postList;
-			if (searchKeyword != null && !searchKeyword.isEmpty()) {
-				postList = postDAO.getSearchList(searchKeyword, pageNumber);
-			} else {
-				postList = postDAO.getList(pageNumber);
-			}
-			for(Post post : postList) {
-				if (post.getBoard_id() == board_id) {
+		    PostDAO postDAO = new PostDAO();
+		    String searchKeyword = request.getParameter("search");
+		    ArrayList<Post> postList;
+		    if (searchKeyword != null && !searchKeyword.isEmpty()) {
+		        postList = postDAO.getSearchList(searchKeyword, pageNumber, board_id);
+		    } else {
+		        postList = postDAO.getListByBoard(board_id, pageNumber);
+		    }
+		    for (Post post : postList) {
+		        if (post.getBoard_id() == board_id) {
 		%>
 			<tr>
 				<td><%=post.getPost_id()%></td>
@@ -76,7 +76,7 @@
 <%
 	int cnt;
 	if (searchKeyword != null && !searchKeyword.isEmpty()) {
-		cnt = postDAO.getSearchCount(searchKeyword);
+		cnt = postDAO.getSearchCount(searchKeyword, board_id);
 	} else {
 		cnt = postDAO.Paging(board_id); // 게시판에 존재하는 전체 글 수
 	}
@@ -93,13 +93,13 @@
 
 <!-- 다음, 이전 페이지 버튼 만들기 -->
 <% if (pageNumber != 1) { %> <!-- 첫번째 페이지가 아니라면 -->
-	<a href="http://localhost:8080/webserver/bbs/bbs.jsp?pageNumber=<%= pageNumber - 1 %>">이전</a>
+	<a href="http://localhost:8080/webserver/bbs/bbs.jsp?board_id=<%= board_id %>&pageNumber=<%= pageNumber - 1 %>&user_id=<%= user_id %>">이전</a>
 <% } %>
 <% for (int i = startPage; i <= endPage; i++) { %>
-	<a href="http://localhost:8080/webserver/bbs/bbs.jsp?pageNumber=<%= i %>"><%= i %></a>
+	<a href="http://localhost:8080/webserver/bbs/bbs.jsp?board_id=<%= board_id %>&pageNumber=<%= i %>&user_id=<%= user_id %>"><%= i %></a>
 <% } %>
 <% if (postDAO.nextPage(pageNumber + 1, board_id)) { %> <!-- 다음 페이지가 있다면 --> 
-	<a href="http://localhost:8080/webserver/bbs/bbs.jsp?pageNumber=<%= pageNumber + 1 %>">다음</a>
+	<a href="http://localhost:8080/webserver/bbs/bbs.jsp?board_id=<%= board_id %>&pageNumber=<%= pageNumber + 1 %>&user_id=<%= user_id %>">다음</a>
 <% } %>
 
 <% } 
