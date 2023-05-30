@@ -59,7 +59,7 @@ public class UsersDAO {
 			pstmt.setString(1, users.getUser_id());
 			pstmt.setString(2, users.getPassword());
 			pstmt.setString(3, users.getName());
-			pstmt.setInt(4, users.getPermission());
+			//pstmt.setInt(4, users.getPermission());
 			pstmt.setString(4, users.getEmail());
 			//pstmt.setString(6, users.getUserNickname());
 

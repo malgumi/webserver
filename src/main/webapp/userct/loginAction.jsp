@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%@ page import="users.Users" %>
  <%@ page import="users.UsersDAO" %>
  <%@ page import="java.io.PrintWriter" %> 
+ 
  <% request.setCharacterEncoding("UTF-8"); %> <!-- 데이터를 UTF형식으로 받기 -->
  <jsp:useBean id="user" class="users.Users" scope="page" />
  <jsp:setProperty name="user" property="user_id" /> <!-- user ID 받아오는거 -->
@@ -22,6 +24,7 @@
 		String user_id = null;
 		if(session.getAttribute("user_id")!= null){ //유저 ID에 해당 세션 값 넣기
 			user_id = (String) session.getAttribute("user_id");
+		
 		}
 		if (user_id != null) {
 			PrintWriter script = response.getWriter();
@@ -33,8 +36,9 @@
 		UsersDAO UsersDAO = new UsersDAO();
 	//변수 받아서 login 함수로 보내버리기
 		int result = UsersDAO.login(user.getUser_id(), user.getPassword());
+		Users users = new UsersDAO().getUserdata(user.getUser_id());
 		String link = request.getParameter("link");
-		if (result == 1 && user.getUser_id().equals("admin")) {
+		if (result == 1 && users.getPermission() == 2) {
 			session.setAttribute("user_id", user.getUser_id()); //유저 ID를 세션번호?로 지정해줌
 			PrintWriter script = response.getWriter();	
 			script.println("<script>");
@@ -46,7 +50,7 @@
 			session.setAttribute("user_id", user.getUser_id()); //유저 ID를 세션번호?로 지정해줌
 			PrintWriter script = response.getWriter();	
 			script.println("<script>");
-			script.println("alert('로그인 되었습니다.')");
+			script.println("alert('로그인 되었습니다.");
 			script.println("location.href='http://localhost:8080/webserver/main.jsp'");
 			script.println("</script>");
 		}
