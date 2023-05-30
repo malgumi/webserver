@@ -289,6 +289,19 @@ margin: auto;
   background-color: #e2dfd5;
 }
 
+.page-buttons a {
+        color: black;
+        text-decoration: none;
+    }
+    
+.page-buttons a:hover {
+        background-color: #f2f2f2;
+    }
+
+.page-buttons a:not(:last-child) {
+        margin-right: 10px;
+    }
+
 /* =============관리자 페이지=============== */
 
 .hidden {

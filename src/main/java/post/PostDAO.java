@@ -180,23 +180,41 @@ public class PostDAO {
 	    return -1; // DB 오류
 	}
 
-
 	public boolean nextPage(int pageNumber, int board_id) {
+	    Connection conn = open();
+	    String SQL = "SELECT COUNT(*) FROM POST WHERE board_id = ? AND available = 1";
+	    try {
+	        PreparedStatement pstmt = conn.prepareStatement(SQL);
+	        pstmt.setInt(1, board_id);
+	        rs = pstmt.executeQuery();
+	        if (rs.next()) {
+	            int totalCount = rs.getInt(1);
+	            int page = pageNumber * 10;
+	            if((page-totalCount) < 10 )
+	            return true;
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return false;
+	}
+	
+	public int getNextByBoard(int board_id) {
 		Connection conn = open();
-		String SQL = "SELECT * FROM POST WHERE post_id < ? AND board_id = ? AND available = 1";
+		String SQL = "SELECT COUNT(*) FROM POST WHERE board_id = ?  AND available = 1";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
-			pstmt.setInt(2, board_id);
+			pstmt.setInt(1, board_id);
 			rs = pstmt.executeQuery();
-			if(rs.next()) { 
-				return true;
+			if (rs.next()) {
+				return rs.getInt(1)+1;
 			}
+			return 1;
 		}
 		catch (Exception e){
 			e.printStackTrace();
 		}
-		return false;
+		return -1;
 	}
 
 	public int Paging(int board_id) {
