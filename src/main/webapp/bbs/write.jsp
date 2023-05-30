@@ -34,7 +34,8 @@
 			script.println("location.href = 'http://localhost:8080/webserver/userct/login.jsp'");
 			script.println("</script>");
 		}
-		if(board_id == 3 && !user_id.equals("admin")){
+		Users user = new UsersDAO().getUserdata(user_id);
+		if(board_id == 3 && user.getPermission() != 2){
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('공지사항은 관리자만 작성 가능합니다.')");

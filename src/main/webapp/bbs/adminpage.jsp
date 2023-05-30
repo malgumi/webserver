@@ -3,6 +3,7 @@ pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="post.Post" %>
+<%@ page import="users.Users" %>
 <%@ page import="post.PostDAO" %>
 <%@ page import="board.BoardDAO" %>
 <!DOCTYPE html>
@@ -34,7 +35,8 @@ pageEncoding="UTF-8"%>
 <%@ include file="../nav/navbar.jsp" %>
 <h2 style="text-align: center;">관리자 전용 페이지입니다.</h2>
 <%
-    if(user_id == null || !user_id.equals("admin")){
+	Users users = new UsersDAO().getUserdata(user_id);
+    if(user_id == null || users.getPermission() != 2){
         PrintWriter script = response.getWriter();
         script.println("<script>");
         script.println("alert('관리자 페이지는 관리자만이 접속 가능합니다.')");

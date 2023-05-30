@@ -37,7 +37,6 @@
 	//변수 받아서 login 함수로 보내버리기
 		int result = UsersDAO.login(user.getUser_id(), user.getPassword());
 		Users users = new UsersDAO().getUserdata(user.getUser_id());
-		String link = request.getParameter("link");
 		if (result == 1 && users.getPermission() == 2) {
 			session.setAttribute("user_id", user.getUser_id()); //유저 ID를 세션번호?로 지정해줌
 			PrintWriter script = response.getWriter();	

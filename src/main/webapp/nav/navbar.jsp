@@ -58,7 +58,7 @@
 						<hr>
 						<li><a href="http://localhost:8080/webserver/Userpage/password_Userpage.jsp">회원정보<br>관리</a></li>
 						<li><a href="http://localhost:8080/webserver/userct/logoutAction.jsp">로그아웃</a></li>
-						<% if (user_id.equals("admin")) { %>
+						<% if (user.getPermission() == 2) { %>
 							<li><a href="http://localhost:8080/webserver/bbs/adminpage.jsp">관리자<br>페이지</a></li>
 						<% } %>
 					</ul>
