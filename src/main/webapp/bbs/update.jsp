@@ -50,25 +50,25 @@
 		<div class="row">
 		 <!-- updateAction페이지로 내용 숨겨서 전송 -->
 		<form method="post" action="updateAction.jsp?post_id=<%= post_id %>">
-			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
+			<table class="viewtable" style="text-align: center; border: 1px solid #dddddd; width: 100%; height: 450px;">
 				<thead>
 					<tr>
-						<th colspan="2" style="background-color: #eeeeee; text-align: center;">글 수정</th>
+						<th colspan="2" style="background-color: #eeeeee; text-align: center; height: 30px;">글 수정</th>
 
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 					<!-- value 부분은 자기가 전에 작성했던 글 보여주는거임! -->
-						<td><input type="text" class="form-control" placeholder="글 제목" name="post_title" maxlength="50" value="<%= post.getPost_title() %>"></td>
+						<td><input type="text" class="form-control" placeholder="글 제목" name="post_title" maxlength="50" style="width: 90%; height: 25px; margin-top: 10px; padding-left: 5px;" value="<%= post.getPost_title() %>"></td>
 					</tr>
 					<tr>						
-						<td><textarea class="form-control" placeholder="글 내용" name="post_content" maxlength="2048" style="height: 350px"><%= post.getPost_content() %></textarea></td>
+						<td><textarea class="form-control" placeholder="글 내용" name="post_content" maxlength="2048" style="height: 350px; width: 90%; padding-left: 5px; padding-top: 5px;"><%= post.getPost_content() %></textarea></td>
 					</tr>
 
 				</tbody>
 			</table>
-			<input onclick="return confirm('수정하시겠습니까?')" type="submit" class="btn btn-primary pull-right" value="수정하기">
+			<input onclick="return confirm('수정하시겠습니까?')" type="submit" class="btn btn-primary pull-right" value="수정하기" style="height: 30px; width: 80px; margin-top: 10px;">
 		</form>
 		</div>
 	</div>	
