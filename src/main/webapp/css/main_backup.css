@@ -1,0 +1,115 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+/* ===============네비바 css=================== */
+
+.nav {
+  margin: auto;
+  padding: 7px 0 7px 0;
+  border-top: 5px;
+  list-style: none;
+  background-color: transparent;
+  text-decoration: none;
+  height: auto;
+  max-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* 요소를 가로 중앙에 정렬 */
+}
+
+.nav > div > ul > li > a {
+  color: black; /* 글씨 색상을 검정색으로 설정 */
+}
+.nav img {
+  object-fit: contain; 
+}
+.nav after{
+	content : "";
+  	display : block;
+  	clear : both;
+}
+.nav > div > ul {
+	list-style-type:none;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	vertical-align: center;
+}
+
+.nav > div > ul > li {
+	display:inline;
+	position: relative;
+	margin: 5px 30px;
+	padding: 0;
+	text-decoration: none;
+	vertical-align: center;
+}
+.nav > div > ul > li > a {
+	font-size: 18px;
+ 	position: relative;
+  	padding: 10px 15px;
+  	text-decoration: none;
+  	vertical-align: center;
+}
+.nav > div > ul > li > a:hover{
+	color: #2d2d2d;
+}
+.menu {
+  position: relative;
+  margin: auto !important; /* 가로 중앙 정렬 */
+}
+
+.menu ul {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    justify-content: center;
+  }
+.menu > ul > li{
+	margin-right: 5% !important;
+	
+}
+.loginmenu{
+	cursor : pointer;
+	flex-grow: 0;
+}
+.dropdown-menu {
+	box-sizing: border-box;
+	border-radius: 3%;
+    position: absolute;
+    display:none !important;
+    z-index: 100;
+    list-style: none;
+    background-color: gray;
+    font-size: 15px;
+    min-width: 120px;
+    padding: 10% 0;
+    margin-top: 8%;
+    margin-left: 20%;
+    left: auto;
+    top: auto;
+    box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
+    text-align: center;
+}
+.dropdown-menu > li{
+	padding: 5% 0;
+}
+.dropdown-menu > li > a:hover{
+	background-color: #c2c2c2;
+	color: white;
+}
+.dropdown-menu > li > a{
+	color: white;
+	text-decoration: none;
+	padding: 3px 20px;
+	display: block;
+}
+.loginmenu ul > li:hover .dropdown-menu{
+	display:block !important;
+	opacity: 1;
+}
+.logo{
+	display:block;
+	margin: auto;
+	padding: 0;
+	text-align: center;
+}    

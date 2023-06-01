@@ -60,7 +60,7 @@
 				<tbody>
 					<tr>
 					<!-- value 부분은 자기가 전에 작성했던 글 보여주는거임! -->
-						<td><input type="text" class="form-control" placeholder="글 제목" name="post_title" maxlength="50" style="width: 90%; height: 25px; margin-top: 10px; padding-left: 5px;" value="<%= post.getPost_title() %>"></td>
+						<td><input type="text" class="form-control" placeholder="글 제목" name="post_title" maxlength="50" style="width: 90%; height: 25px; margin-top: 10px; padding-left: 5px;" value="<%= post.getPost_title().replace("[입양가능] ","").replace("[입양완료] ","") %>"></td>
 					</tr>
 					<tr>						
 						<td><textarea class="form-control" placeholder="글 내용" name="post_content" maxlength="2048" style="height: 350px; width: 90%; padding-left: 5px; padding-top: 5px;"><%= post.getPost_content() %></textarea></td>

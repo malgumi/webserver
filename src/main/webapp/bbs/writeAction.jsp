@@ -57,6 +57,24 @@
 				script.println("history.back()");
 				script.println("</script>");
 			} 
+			else if(board_id == 2){ //홍보게시판일시
+				UsersDAO userDAO = new UsersDAO();
+				PostDAO postDAO = new PostDAO();
+					int result = postDAO.write("[입양가능] "+post.getPost_title(), user_id, post.getPost_content(), board_id);
+					if (result == -1) { //데이터베이스 오류
+						PrintWriter script = response.getWriter();
+						script.println("<script>");
+						script.println("alert('글쓰기에 실패했습니다.')");
+						script.println("history.back()"); //이전 페이지로 되돌려보냄
+						script.println("</script>");
+					}
+					else {
+						PrintWriter script = response.getWriter();
+						script.println("<script>");
+						script.println("location.href = 'http://localhost:8080/webserver/bbs/bbs.jsp?board_id=" + board_id + "'");
+						script.println("</script>");
+					}
+			}
 			else{ 
 				UsersDAO userDAO = new UsersDAO();
 				PostDAO postDAO = new PostDAO();

@@ -56,6 +56,33 @@
 			} 
 			else{ //입력이 됐다면 데이터베이스로 보내버리기
 				PostDAO postDAO = new PostDAO();
+				if(post.getBoard_id() == 2){ //홍보게시판이라면
+					String content = post.getPost_title();
+					String head = "";
+					if (content.startsWith("[입양완료]") == true) {
+					  head = "[입양완료] ";
+					  content = content.substring(6).trim();
+					} else if (content.startsWith("[입양가능]") == true) {
+					  head = "[입양가능] ";
+					  content = content.substring(6).trim();
+					}
+					int result = postDAO.updatePost(post_id, head+request.getParameter("post_title"), request.getParameter("post_content"));
+					if (result == -1) { //데이터베이스 오류
+						PrintWriter script = response.getWriter();
+						script.println("<script>");
+						script.println("alert('글 수정에 실패했습니다.')");
+						script.println("history.back()"); //이전 페이지로 되돌려보냄
+						script.println("</script>");
+					}
+					else {
+						PrintWriter script = response.getWriter();
+						script.println("<script>");
+						script.println("alert('글을 수정했습니다.')");
+						script.println("location.href='view.jsp?post_id="+post_id+"'");
+						script.println("</script>");
+					}
+				}
+				else{
 					int result = postDAO.updatePost(post_id, request.getParameter("post_title"), request.getParameter("post_content"));
 					if (result == -1) { //데이터베이스 오류
 						PrintWriter script = response.getWriter();
@@ -71,6 +98,10 @@
 						script.println("location.href='view.jsp?post_id="+post_id+"'");
 						script.println("</script>");
 					}
+				}
+				
+				
+					
 				}
 		}
 	%>

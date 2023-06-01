@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="http://localhost:8080/webserver/css/main.css">
+<link rel="stylesheet" href="http://localhost:8080/webserver/css/main_backup.css">
 
 <title>씨밀레</title>
 </head>
@@ -24,20 +24,16 @@
 	%>
 	<nav>
 		<div class="nav">
-			<div class="logo"><ul>
-				<li><a href="http://localhost:8080/webserver/main.jsp"><img src="http://localhost:8080/webserver/img/logo.png"></a></li>
-			</ul></div>
 			<div class="menu"><ul>
 				<li><a href="http://localhost:8080/webserver/bbs/bbs.jsp?board_id=3">공지사항</a></li>
 				<li><a href="http://localhost:8080/webserver/bbs/bbs.jsp?board_id=1">자유게시판</a></li>
 				<li><a href="http://localhost:8080/webserver/bbs/bbs.jsp?board_id=2">홍보게시판</a></li>
-			</ul></div>
-			<div class="loginmenu">
+				<li class="loginmenu">
 				<%
 				if(user_id == null) {
 			%>
 			<ul>
-				<li><a href="#">접속하기</a>
+				<li><a style="font-size: 18px; text-decoration: none; color: black;" href="#">접속하기</a>
 					<ul class="dropdown-menu">
 						<li><a href="http://localhost:8080/webserver/userct/login.jsp">로그인</a></li>
 						<li><a href="http://localhost:8080/webserver/userct/join.jsp">회원가입</a></li>
@@ -56,15 +52,21 @@
 					<ul class="dropdown-menu">
 						<li style="color: white;"><%= user_id %></li>
 						<hr>
-						<li><a href="http://localhost:8080/webserver/Userpage/password_Userpage.jsp">회원정보관리</a></li>
+						<li><a href="http://localhost:8080/webserver/Userpage/password_Userpage.jsp">회원정보<br>관리</a></li>
 						<li><a href="http://localhost:8080/webserver/userct/logoutAction.jsp">로그아웃</a></li>
+						<% if (user.getPermission() == 2) { %>
+							<li><a href="http://localhost:8080/webserver/bbs/adminpage.jsp">관리자<br>페이지</a></li>
+						<% } %>
 					</ul>
 				</li>
 			</ul>
 			<% 
 				}
 			%>
+			</li>
+			</ul>
 			</div>
+			
 		</div>
 	</nav>
 

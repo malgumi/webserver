@@ -13,9 +13,9 @@ html{
 body{
 	line-height: 1.42857143;
 }
-nav{
+/* nav{
 	margin-bottom: 40px;
-}
+} */
 img{
 	vertical-align: unset;
 }
@@ -24,7 +24,7 @@ img{
 
 .nav {
   	margin: auto;
-  	padding: 7px 0 10px 0;
+  	padding: 7px 0 7px 0;
   	border-top: 5px;
   	list-style: none;
   	background-color: #cec7b4;
@@ -73,6 +73,12 @@ img{
 .menu{
 	flex-grow: 7;
 	position: relative;
+}
+.menu ul {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    justify-content: center;
 }
 .menu > ul > li{
 	padding-right: 5% !important;
@@ -156,7 +162,7 @@ img{
 }
 
 .container {
-padding: 1% 5%; 
+padding: 1% 5%;
 display: flex; 
 justify-content: center;
 flex-direction: column;
@@ -305,9 +311,38 @@ margin: auto;
 /* =============관리자 페이지=============== */
 
 .hidden {
-  display: none; /* 초기에는 숨김 처리 */
+  display: none;
 }
 .visible {
-  display: table-row; /* 클릭 시 펼쳐지도록 설정 */
+  display: table-row;
 }
+
+/* ==============메인페이지 슬라이드=============== */
+    .slideshow {
+      width: 100%; /* 슬라이드쇼 컨테이너의 가로 크기 */
+      overflow: hidden; /* 넘치는 이미지 숨김 처리 */
+      margin-bottom: 3%;
+    }
+
+    .slideshow img {
+      width: 100%; /* 이미지의 가로 크기 */
+      height: auto; /* 이미지의 세로 크기 자동 조정 */
+      display: none; /* 초기에 이미지 숨김 처리 */
+    }
+
+    /* 슬라이드 전환 애니메이션 */
+    @keyframes slide {
+      0% {
+        transform: translateX(0); /* 시작 위치 */
+      }
+      100% {
+        transform: translateX(-100%); /* 왼쪽으로 이동 */
+      }
+    }
+
+    /* 슬라이드 이미지가 보이도록 표시 */
+    .slideshow img.active {
+      display: block;
+      animation: slide 5s infinite; /* 3초마다 애니메이션 반복 */
+    }
     
