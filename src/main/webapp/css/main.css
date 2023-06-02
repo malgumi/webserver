@@ -45,7 +45,6 @@ img{
 }
 .nav > div > ul {
 	list-style-type:none;
-	/*text-align: center;  메뉴 가운데 정렬*/
 	margin: 0;
 	padding: 0;
 	vertical-align: center;

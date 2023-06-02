@@ -33,7 +33,7 @@
 				if(user_id == null) {
 			%>
 			<ul>
-				<li><a style="font-size: 18px; text-decoration: none; color: black;" href="#">접속하기</a>
+				<li><a style="text-decoration: none; color: black;" href="#">접속하기</a>
 					<ul class="dropdown-menu">
 						<li><a href="http://localhost:8080/webserver/userct/login.jsp">로그인</a></li>
 						<li><a href="http://localhost:8080/webserver/userct/join.jsp">회원가입</a></li>
