@@ -83,6 +83,37 @@ pageEncoding="UTF-8"%>
             <%}%>
         </tbody>
     </table>
+    
+	<table class="posttable">
+        <thead>
+            <tr>
+                <th>아이디</th>
+                <th>비밀번호</th>
+                <th>이름</th>
+                <th>이메일</th>
+                <th>수정</th>
+            </tr>
+        </thead>
+
+        <!-- 유저 목록 출력 -->
+        <tbody>
+            <%
+                UsersDAO userDAO = new UsersDAO();
+                ArrayList<Users> userList = userDAO.getList();
+                for(Users user : userList){
+                    
+            %>
+            <tr>
+            	<td><%=user.getUser_id()%></td>
+                <td><%=user.getPassword()%></td>
+                <td><%=user.getName()%></td>
+                <td><%=user.getEmail()%></td>
+                <td><a href="http://localhost:8080/webserver/Userpage/main_Userpage.jsp?user_id=<%= user.getUser_id() %>" style="text-decoration: none; color: red;">수정</a></td>
+            </tr>
+            <%}%>
+        </tbody>
+    </table>
+    
 </div>
 
 </body>

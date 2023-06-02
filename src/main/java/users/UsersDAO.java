@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import post.Post;
 
 public class UsersDAO {
 	private Connection conn;
@@ -150,6 +153,30 @@ public class UsersDAO {
 		}
 		
 		return -1; //데이터베이스 오류
+	}
+	
+	public ArrayList<Users> getList() { //main용 최신글 출력
+	    Connection conn = open();
+	    String SQL = "SELECT * FROM USERS WHERE permission = 1";
+	    ArrayList<Users> list = new ArrayList<Users>();
+	    try {
+	        PreparedStatement pstmt = conn.prepareStatement(SQL);
+	        ResultSet rs = pstmt.executeQuery();
+	        try(conn; pstmt; rs) {
+	            while (rs.next()) {
+	                Users user = new Users();
+	                user.setUser_id(rs.getString(1));
+	                user.setPassword(rs.getString(2));
+	                user.setName(rs.getString(3));
+	                user.setEmail(rs.getString(5));
+	                //user.setPermission(rs.getInt(5));
+	                list.add(user);
+	            }
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return list;
 	}
 	
 }
