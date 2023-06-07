@@ -15,8 +15,10 @@
 <%@ include file="../nav/navbar.jsp" %>
 	
 	<% 
-		Users user = new UsersDAO().getUserdata(user_id);
-	if (user_id == null) {
+		request.setCharacterEncoding("UTF-8");
+    	String userId = request.getParameter("user_id");
+		Users user = new UsersDAO().getUserdata(userId);
+	if (userId == null) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('로그인을 해주세요.')");
@@ -27,8 +29,8 @@
 	<div class="container">
 		<div>
 			<div style="margin-top:100px;">
-				<form method="post" action="update_UserAction.jsp?user_id=<%= user_id %>">
-					<h3 style="text-align: center;">회원 정보 수정</h3> 
+				<form method="post" action="admin_update_UserAction.jsp?user_id=<%= userId %>">
+					<h3 style="text-align: center;"><%= userId %> 회원 정보 수정</h3> 
 					<hr>
 					<label style="text-align: left; font-size: 14px; color: #666">
 						<span >아이디</span><br>

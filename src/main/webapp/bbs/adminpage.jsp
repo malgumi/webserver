@@ -31,6 +31,13 @@ pageEncoding="UTF-8"%>
     function goToPage(pageNumber) {
         window.location.href = "http://localhost:8080/webserver/bbs/adminpage.jsp#" + pageNumber;
     }
+    
+    function updateUser(user_id) {
+        var form = document.getElementById("updateForm");
+        form.action = "update_UserAction.jsp";
+        form.elements["user_id"].value = user_id;
+        form.submit();
+    }
 </script>
 
 </head>
@@ -108,7 +115,7 @@ pageEncoding="UTF-8"%>
                 <td><%=user.getPassword()%></td>
                 <td><%=user.getName()%></td>
                 <td><%=user.getEmail()%></td>
-                <td><a href="http://localhost:8080/webserver/Userpage/main_Userpage.jsp?user_id=<%= user.getUser_id() %>" style="text-decoration: none; color: red;">수정</a></td>
+                <td><a href="http://localhost:8080/webserver/Userpage/admin_main_Userpage.jsp?user_id=<%= user.getUser_id() %>" style="text-decoration: none; color: red;">수정</a></td>
             </tr>
             <%}%>
         </tbody>
