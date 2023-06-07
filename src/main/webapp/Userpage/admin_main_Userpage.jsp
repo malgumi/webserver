@@ -39,7 +39,7 @@
 						<br><br>
 					<label style="text-align: left; font-size: 14px; color: #666">
 						<span >비밀번호</span><br>
-						<input type="password" name="password" maxlength="50" style="width: 258px; border:none;" value="<%=user.getPassword()%>">	
+						<input type="text" name="password" maxlength="50" style="width: 258px; border:none;" value="<%=user.getPassword()%>">	
 					</label>
 					<br><br>
 					<label style="text-align: left; font-size: 14px; color: #666">
@@ -50,6 +50,11 @@
 					<label style="text-align: left; font-size: 14px; color: #666">
 						<span>이메일</span><br>
 						<input type="email" placeholder="이메일" name="email" maxlength="50" style="width: 258px; border:none;" value="<%= user.getEmail() %>">		
+					</label>
+					<br><br>
+					<label style="text-align: left; font-size: 14px; color: #666">
+						<span>권한</span><br>
+						<input type="number" placeholder="권한" name="permission" maxlength="2" style="width: 258px; border:none;" value="<%= user.getPermission() %>">		
 					</label>
 					<br><br>
 					<input onclick="return confirm('수정하시겠습니까?')" type="submit" class="button" value="수정하기">

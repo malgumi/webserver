@@ -155,6 +155,26 @@ public class UsersDAO {
 		return -1; //데이터베이스 오류
 	}
 	
+	public int AdminUpdateUserdata(String User_id, String Password, String Name, int Permission, String Email) {
+		Connection conn = open();
+		String SQL = "UPDATE USERS SET Password = ?, Name = ?, Email = ?, Permission = ? WHERE user_id =?"; 
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, Password);
+			pstmt.setString(2, Name);
+			pstmt.setString(3, Email);
+			pstmt.setInt(4, Permission);
+			pstmt.setString(5, User_id); // user_id를 WHERE 절에 추가
+			return pstmt.executeUpdate();
+			
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		}
+		
+		return -1; //데이터베이스 오류
+	}
+	
 	public ArrayList<Users> getList() { //main용 최신글 출력
 	    Connection conn = open();
 	    String SQL = "SELECT * FROM USERS WHERE permission = 1";

@@ -43,7 +43,9 @@
 			} 
 			else{
 				UsersDAO UserDAO = new UsersDAO();
-				int result = UserDAO.updateUserdata(userId, request.getParameter("password"), request.getParameter("name"), permission, 
+				permission = Integer.parseInt(request.getParameter("permission"));
+
+				int result = UserDAO.AdminUpdateUserdata(userId, request.getParameter("password"), request.getParameter("name"), permission, 
 						request.getParameter("email"));
 					if (result == -1) { //데이터베이스 오류
 						PrintWriter script = response.getWriter();
