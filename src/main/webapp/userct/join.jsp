@@ -24,19 +24,20 @@ if (user_id != null) {
 		<form method="post" action="joinAction.jsp">
 			<h3 class ="ltitle">회원가입</h3>
 			<hr>
-			<div class ="loginform">
-				아이디<br><br>
-				<input type="text" class="insert" placeholder="아이디" name="user_id" maxlength="20">
-				<br><br>비밀번호<br><br>
-				<input type="password" class="insert" placeholder="비밀번호" name="password" maxlength="20">
-				<br><br>이름<br><br>
-				<input type="text" class="insert" placeholder="이름" name="name" maxlength="20">
-				<br><br>이메일<br><br>
-				<input type="email" class="insert" placeholder="이메일" name="email" maxlength="20">
-				<br><br><br>
-				<input type="hidden" name="link" value=<%= link %>>
-				<input type="submit" id="submitbtn" value="회원가입">
-			</div>
+			<div class="loginform">
+    		아이디<br><br>
+    		<input type="text" class="insert" placeholder="아이디" name="user_id" maxlength="20">
+    		<br><br>비밀번호<br><br>
+    		<input type="password" class="insert" placeholder="비밀번호" name="password" maxlength="20" pattern="(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{8,}" title="최소 8자, 영문자/숫자/특수문자 모두 포함">
+    		<br><br>이름<br><br>
+    		<input type="text" class="insert" placeholder="이름" name="name" maxlength="20">
+    		<br><br>이메일<br><br>
+    		<input type="email" class="insert" placeholder="이메일" name="email" maxlength="20">
+    		<br><br><br>
+    		<input type="hidden" name="link" value="<%= link %>">
+    		<input type="submit" id="submitbtn" value="회원가입">
+		</div>
+
 			<%-- <%
 			PrintWriter script = response.getWriter();
 			script.println("<script>");

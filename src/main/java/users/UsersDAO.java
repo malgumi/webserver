@@ -64,7 +64,6 @@ public class UsersDAO {
 			pstmt.setString(3, users.getName());
 			//pstmt.setInt(4, users.getPermission());
 			pstmt.setString(4, users.getEmail());
-			//pstmt.setString(6, users.getUserNickname());
 
 			return pstmt.executeUpdate(); //결과를 집어넣는거??
 		}
