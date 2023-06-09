@@ -31,6 +31,8 @@
 				<input type="hidden" name="link" value=<%= link %>>
 				<br><br>
 				<input type="submit" value="로그인하기" id="loginbtn">
+				<br><br>
+				<a class="findinfo" href="http://localhost:8080/webserver/userct/findUser.jsp">아이디/비밀번호 찾기</a>				
 			</div>
 		</form>
 	</div>

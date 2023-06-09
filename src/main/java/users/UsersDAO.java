@@ -174,6 +174,28 @@ public class UsersDAO {
 		return -1; //데이터베이스 오류
 	}
 	
+	public Users findUserByEmail(String Email) {
+	    Connection conn = open();
+	    String SQL = "SELECT * FROM USERS WHERE email = ?";
+	    try {
+	        PreparedStatement pstmt = conn.prepareStatement(SQL);
+	        pstmt.setString(1, Email);
+	        ResultSet rs = pstmt.executeQuery();
+	        if (rs.next()) {
+	            Users user = new Users();
+	            user.setUser_id(rs.getString("user_id"));
+	            user.setPassword(rs.getString("password"));
+	            user.setName(rs.getString("name"));
+	            user.setPermission(rs.getInt("permission"));
+	            user.setEmail(rs.getString("email"));
+	            return user;
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return null;
+	}
+	
 	public ArrayList<Users> getList() { //main용 최신글 출력
 	    Connection conn = open();
 	    String SQL = "SELECT * FROM USERS WHERE permission = 1";

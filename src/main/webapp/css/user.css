@@ -82,8 +82,21 @@ hr{
 	border: none;
 	background-color: #F5ECCE;
 }
-
-
+/*===========회원정보찾기==================*/
+.find {
+	font-weight: bold;
+	font-size: 30px;
+}
+.back {
+	text-decoration: none;
+	margin-left: 45%;
+	padding: 5px;
+}
+.findinfo {
+	text-decoration: none;
+	margin-left: 80%;
+	padding: 5px;
+}
 
 
 
