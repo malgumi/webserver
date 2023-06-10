@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
 <meta name="viewport" content="width-device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="../css/main.css">
 <title>씨밀레</title>
@@ -46,7 +46,7 @@
 
 	<div class="container">
 		<div class="row">
-		<form method="post" action="http://localhost:8080/webserver/bbs/writeAction.jsp?board_id=<%= board_id %>">
+		<form method="post" enctype="multipart/form-data" action="http://localhost:8080/webserver/bbs/writeAction.jsp?board_id=<%= board_id %>">
 			<table class="viewtable" style="text-align: center; border:1px solid #dddddd; width: 100%; height: 450px;">
 				<thead>
 					<tr>
@@ -63,9 +63,8 @@
 				</tbody>
 				
 			</table>
+			<input type="file" name="file">
 			<input type="submit" class = "btn btn-primary pull-right" value="제출" style="height: 30px; width: 50px; margin-top: 10px;">
-		
-		
 		</form>
 			
 		</div>
