@@ -32,8 +32,10 @@
 				<%out.println(user.getPassword());%>
 			</span>
 			&nbsp;입니다.<br><br>
-			
-			<a class="back" href="http://localhost:8080/webserver/userct/login.jsp">로그인</a>	
+			<div id="backbtn">
+				<a class="back" href="http://localhost:8080/webserver/userct/login.jsp">로그인</a>
+			</div>
+				
 		</div>
 		<%}
 		//찾지못한경우

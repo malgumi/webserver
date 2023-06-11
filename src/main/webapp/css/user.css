@@ -89,15 +89,19 @@ hr{
 }
 .back {
 	text-decoration: none;
-	margin-left: 45%;
-	padding: 5px;
 }
 .findinfo {
 	text-decoration: none;
 	margin-left: 80%;
 	padding: 5px;
 }
-
+#backbtn {
+	padding: 5px;
+	width: 20%;
+	margin-left: 40%;
+	text-align: center;
+	background-color: #F5ECCE;
+}
 
 
 
