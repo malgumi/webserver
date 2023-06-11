@@ -17,9 +17,6 @@
 
 <!DOCTYPE html>
 <html>
-
-<!-- 글쓰기 기능 TODO! 첨부파일 글 id가 -1로 저장되는 부분 수정 -->
-
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>씨밀레</title>

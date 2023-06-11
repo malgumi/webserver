@@ -39,16 +39,16 @@ public class FileDAO {
 		}
 		return -1;
 	}
-	// 글쓰기 기능 TODO! 첨부파일 글 id가 -1로 저장되는 부분 수정 
 	
 	public int recent(int board_id) {
-		String SQL = "SELECT MAX(POST_ID) FROM POST WHERE BOARD_ID = ?";
+		open();
+		String SQL = "SELECT POST_ID FROM POST WHERE BOARD_ID = ? ORDER BY POST_ID DESC";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, board_id);
 			rs = pstmt.executeQuery();
-			System.out.println("rs.getInt(1)는 이겁니다: "+rs.getInt(0));
-			if (rs.next()) { 
+			
+			if (rs.next()) {
 				return rs.getInt(1);
 			}
 			return 1;
