@@ -58,4 +58,21 @@ public class FileDAO {
 		return -1;
 	}
 	
+	public String getFileRealName(int post_id) {
+	    open();
+	    String SQL = "SELECT FILEREALNAME FROM FILE WHERE POST_ID = ?";
+	    try {
+	        PreparedStatement pstmt = conn.prepareStatement(SQL);
+	        pstmt.setInt(1, post_id);
+	        rs = pstmt.executeQuery();
+	        if (rs.next()) {
+	            return rs.getString("FILEREALNAME");
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return null;
+	}
+
+	
 }

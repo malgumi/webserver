@@ -8,7 +8,9 @@
 <%@ page import="users.Users" %>
 <%@ page import="users.UsersDAO" %>
 <%@ page import="board.BoardDAO" %>
-
+<%@ page import="file.FileDTO" %>
+<%@ page import="file.FileDAO" %>
+<%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %>
 <!DOCTYPE html>
 <html>
 
@@ -51,6 +53,9 @@
 			script.println("location.href = 'http://localhost:8080/webserver/main.jsp'");
 			script.println("</script>");
 		}
+		
+		FileDAO fileDAO = new FileDAO();
+	    String fileRealName = fileDAO.getFileRealName(post_id);
 	%>
 	
 	
@@ -67,7 +72,12 @@
 				<td>작성자: <%= post.getUser_id() %> <br> 작성일: <%= post.getDate().substring(0,11) + post.getDate().substring(11, 13) + ":" + post.getDate().substring(14,16) %></td>	
 			</tr>
 			<tr>
-				<td><%= post.getPost_content().replaceAll("\" ", "&quot;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("&", "&amp;").replaceAll("\n", "<br>").replaceAll("\"", "&quot;") %></td>
+				<td>
+				<% 
+			if (fileRealName != null) { %>
+		<img src="../img/<%= fileRealName %>" alt="이미지"><br>
+				<% } %>
+				<%= post.getPost_content().replaceAll("\" ", "&quot;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("&", "&amp;").replaceAll("\n", "<br>").replaceAll("\"", "&quot;") %></td>
 			</tr>
 		</table>
 		<br><br>
