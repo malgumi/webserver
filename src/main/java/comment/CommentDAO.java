@@ -124,7 +124,6 @@ public class CommentDAO {
 	public Comment getComment(int comment_id) {
 		Connection conn = open();
 		String SQL = "SELECT * FROM COMMENT WHERE COMMENT_ID = ?"; 
-		//bbsID가 특정 숫자일 경우에 실행
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, comment_id);
@@ -137,7 +136,7 @@ public class CommentDAO {
 				comment.setPost_id(rs.getInt(4));
 				comment.setAvailable(rs.getInt(5));
 				comment.setDate(rs.getString(6));
-				return comment; //bbs에 있는 내용 그대로 반환 및 함수에 전달
+				return comment;
 			}
 		}
 		catch (Exception e){

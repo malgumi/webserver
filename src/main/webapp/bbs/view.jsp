@@ -86,7 +86,7 @@
 			<tr>
 				<th>작성자</th>
 				<th>내용</th>
-				<th>작성일</th>
+				<th></th>
 			</tr>
 			<%
 						CommentDAO CommentDAO = new CommentDAO();
@@ -96,7 +96,13 @@
 		<tr>
 			<td style="text-align: center;"><%= comment.getUser_id() %></td>
 			<td style="text-align: center;"><%= comment.getComment_content() %></td>
-				<td style="text-align: end; font-size: 10px; color: gray;"><%= comment.getDate().substring(0,11) + comment.getDate().substring(11, 13) + "시" + comment.getDate().substring(14,16) + "분" %></td>
+				<td style="text-align: end; font-size: 10px; color: gray;"><%= comment.getDate().substring(0,11) + comment.getDate().substring(11, 13) + "시" + comment.getDate().substring(14,16) + "분" %>&nbsp;&nbsp;&nbsp;
+				<a href="http://localhost:8080/webserver/bbs/comment_deleteAction.jsp?comment_id=<%= comment.getComment_id() %>"
+    style="color: red; text-decoration: none;"
+    onclick="return confirm('정말 삭제하시겠습니까?');">
+    삭제
+</a>
+</td>
 			</tr>
 			<% } %>
 		</table>
