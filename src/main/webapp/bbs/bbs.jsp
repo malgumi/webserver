@@ -4,6 +4,8 @@
 <%@ page import="post.Post" %>
 <%@ page import="post.PostDAO" %>
 <%@ page import="board.BoardDAO" %>
+<%@ page import="file.FileDTO" %>
+<%@ page import="file.FileDAO" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,14 +28,49 @@
             script.println("location.href = 'bbs.jsp'");
             script.println("</script>");
         }
+        BoardDAO boardDAO = new BoardDAO();
+        String board_name = boardDAO.getBoard_title(board_id);
     %>
 
-    <div class="container">
-        <p class="board">
+    
+            <!-- 글 목록 출력 -->
             <%
-                BoardDAO boardDAO = new BoardDAO();
-                String board_name = boardDAO.getBoard_title(board_id);
+            String searchKeyword = "";
+            PostDAO postDAO = new PostDAO();
+            	if(board_id == 2){ //홍보게시판이라면 출력을 다르게.
             %>
+            <p class="board">
+            <span><%= board_name %></span>
+        </p>
+            <div class="container" style="flex-direction: row; flex-wrap: wrap;">
+            <%
+                searchKeyword = request.getParameter("search");
+                ArrayList<Post> postList;
+                if (searchKeyword != null && !searchKeyword.isEmpty()) {
+                    postList = postDAO.getSearchList(searchKeyword, pageNumber, board_id);
+                } else {
+                    postList = postDAO.getListByBoard(board_id, pageNumber);
+                }
+                for (Post post : postList) {
+                    if (post.getBoard_id() == board_id) {
+                    	FileDAO fileDAO = new FileDAO();
+                	    String fileRealName = fileDAO.getFileRealName(post.getPost_id());
+            %>
+                <div>
+                    <p><a href="http://localhost:8080/webserver/bbs/view.jsp?post_id=<%= post.getPost_id()%>" style="text-decoration: none; color: black;"><img src="../img/<%= fileRealName %>" onerror="this.src='../img/default.PNG'" width="300px" height="300px" style="border: 1px solid #ddd;"><br><%=post.getPost_title()%></a></p>
+                    <p><%=post.getUser_id()%></p>
+                    <p><%= post.getDate().substring(0,11) + post.getDate().substring(11, 13) + "시" + post.getDate().substring(14,16) + "분" %></p>
+                </div>
+                <br>
+            <%
+                    }
+                }
+            %>
+            </div>
+            <div class="container"><a href="http://localhost:8080/webserver/bbs/write.jsp?board_id=<%= board_id %>" class="button">글쓰기</a></div>
+            <% } else{ %>
+            <div class="container">
+        <p class="board">
             <span><%= board_name %></span>
         </p>
 
@@ -46,11 +83,9 @@
                     <th>작성일</th>
                 </tr>
             </thead>
-            <!-- 글 목록 출력 -->
             <tbody>
             <%
-                PostDAO postDAO = new PostDAO();
-                String searchKeyword = request.getParameter("search");
+                searchKeyword = request.getParameter("search");
                 ArrayList<Post> postList;
                 if (searchKeyword != null && !searchKeyword.isEmpty()) {
                     postList = postDAO.getSearchList(searchKeyword, pageNumber, board_id);
@@ -71,6 +106,8 @@
                 }
             %>
             </tbody>
+            
+            
         </table>
 
         <%
@@ -111,7 +148,7 @@
         <% } else if(session.getAttribute("user_id")!=null && board_id == 3 && user.getPermission() == 2){ %> <!-- 공지사항 게시판일 시, 관리자에게만 글쓰기 버튼 활성화 -->
             <a href="http://localhost:8080/webserver/bbs/write.jsp?board_id=<%= board_id %>" class="button">글쓰기</a>
         <% } %>
-
+<% } %>
     </div>
 
     <!-- 검색 기능 추가 -->
