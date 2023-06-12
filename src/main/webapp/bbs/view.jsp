@@ -118,6 +118,11 @@
 				<div>
 					<a href="http://localhost:8080/webserver/bbs/update.jsp?post_id=<%= post_id %>" class="button">수정</a>
 					<a onclick="return confirm('삭제하시겠습니까?')" href="http://localhost:8080/webserver/bbs/deleteAction.jsp?post_id=<%= post_id %>" class="button">삭제</a>
+					<%
+						if (post.getBoard_id() == 2){
+					%>
+					<a onclick="return confirm('입양 상태를 변경하시겠습니까?')" href="http://localhost:8080/webserver/bbs/updateState.jsp?post_id=<%= post_id %>" class="button">상태변경</a>
+					<% } %>
 				</div>
 			<% }
 	}

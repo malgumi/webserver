@@ -342,4 +342,19 @@ public class PostDAO {
 		}
 		return list;
 	}
+	
+	public int updateState(int post_id, String post_title) {
+		Connection conn = open();
+	    String SQL = "UPDATE POST SET post_title = ? WHERE post_id =?";
+	    try {
+	        PreparedStatement pstmt = conn.prepareStatement(SQL);
+	        pstmt.setString(1, post_title);
+	        pstmt.setInt(2, post_id);
+	        return pstmt.executeUpdate();
+	    } catch (Exception e){
+	        e.printStackTrace();
+	    }
+	    return -1; //데이터베이스 오류
+	}
+	
 }
