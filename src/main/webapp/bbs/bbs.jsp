@@ -32,16 +32,16 @@
         String board_name = boardDAO.getBoard_title(board_id);
     %>
 
-    
             <!-- 글 목록 출력 -->
             <%
             String searchKeyword = "";
             PostDAO postDAO = new PostDAO();
             	if(board_id == 2){ //홍보게시판이라면 출력을 다르게.
             %>
-            <p class="board">
+            <div class="container">
+            <div class="board">
             <span><%= board_name %></span>
-        </p>
+        </div></div> 
             <div class="container" style="flex-direction: row; flex-wrap: wrap;">
             <%
                 searchKeyword = request.getParameter("search");
@@ -56,23 +56,56 @@
                     	FileDAO fileDAO = new FileDAO();
                 	    String fileRealName = fileDAO.getFileRealName(post.getPost_id());
             %>
-                <div>
+                <div style="padding-bottom: 10px;">
                     <p><a href="http://localhost:8080/webserver/bbs/view.jsp?post_id=<%= post.getPost_id()%>" style="text-decoration: none; color: black;"><img src="../img/<%= fileRealName %>" onerror="this.src='../img/default.PNG'" width="300px" height="300px" style="border: 1px solid #ddd;"><br><%=post.getPost_title()%></a></p>
                     <p><%=post.getUser_id()%></p>
                     <p><%= post.getDate().substring(0,11) + post.getDate().substring(11, 13) + "시" + post.getDate().substring(14,16) + "분" %></p>
                 </div>
-                <br>
             <%
                     }
                 }
             %>
             </div>
-            <div class="container"><a href="http://localhost:8080/webserver/bbs/write.jsp?board_id=<%= board_id %>" class="button">글쓰기</a></div>
+            <div class="container">
+            <%
+            int cnt;
+            if (searchKeyword != null && !searchKeyword.isEmpty()) {
+                cnt = postDAO.getSearchCount(searchKeyword, board_id);
+            } else {
+                cnt = postDAO.Paging(board_id); // 게시판에 존재하는 전체 글 수
+            }
+            int pageBlock = 10; // 한 페이지에 보여줄 글 수
+            if (cnt > pageBlock) { // 전체 글 수가 한 페이지에 보여지는 글 수보다 많다면
+                // 추가 페이지 번호 표시
+                int pageCount = cnt / pageBlock + (cnt % pageBlock == 0 ? 0 : 1); // 전체 페이지수 계산
+                int startPage = ((pageNumber - 1) / pageBlock) * pageBlock + 1; // 시작 페이지 계산
+                int endPage = startPage + pageBlock - 1; // 끝 페이지 계산
+                if (endPage > pageCount) {
+                    endPage = pageCount;
+                }
+        %>
+
+        <!-- 다음, 이전 페이지 버튼 만들기 -->
+        <div class="page-buttons" style="align-self: center;">
+            <% if (pageNumber != 1) { %> <!-- 첫번째 페이지가 아니라면 -->
+                <a href="http://localhost:8080/webserver/bbs/bbs.jsp?board_id=<%= board_id %>&pageNumber=<%= pageNumber - 1 %>">이전</a>
+            <% } %>
+            <% for (int i = startPage; i <= endPage; i++) { %>
+                <a href="http://localhost:8080/webserver/bbs/bbs.jsp?board_id=<%= board_id %>&pageNumber=<%= i %>"><%= i %></a>
+            <% } %>
+            <% if (postDAO.nextPage(pageNumber + 1, board_id) == true ) { %> <!-- 다음 페이지가 있다면 --> 
+                <a href="http://localhost:8080/webserver/bbs/bbs.jsp?board_id=<%= board_id %>&pageNumber=<%= pageNumber + 1 %>">다음</a>
+            <% } %>
+        </div>
+
+        <% } %>
+            <a href="http://localhost:8080/webserver/bbs/write.jsp?board_id=<%= board_id %>" class="button">글쓰기</a>
+            </div>
             <% } else{ %>
             <div class="container">
         <p class="board">
             <span><%= board_name %></span>
-        </p>
+        </p> <br>
 
         <table class="posttable">
             <thead>

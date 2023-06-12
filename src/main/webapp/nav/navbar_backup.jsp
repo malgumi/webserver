@@ -48,7 +48,7 @@
 					Users user = new UsersDAO().getUserdata(user_id);
 			%>
 			<ul>
-				<li><a href="#">회원관리</a>
+				<li><a href="#" style="text-decoration: none; color: black;">회원관리</a>
 					<ul class="dropdown-menu">
 						<li style="color: white;"><%= user_id %></li>
 						<hr>
