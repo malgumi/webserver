@@ -13,6 +13,7 @@ pageEncoding="UTF-8"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale= 1">
 <link rel="stylesheet" type="text/css" href="../css/main.css">
+<link rel="stylesheet" type="text/css" href="../css/admin.css">
 <title>씨밀레</title>
 <script>
     function toggleRows() {
@@ -27,7 +28,25 @@ pageEncoding="UTF-8"%>
             button.textContent = "⇨ 글 관리하기";
         }
     }
+    
+ // toggleRows() 함수를 페이지 로드 시에 호출하여 글 목록을 보이도록 설정
+    window.onload = function() {
+        toggleRows();
+    };
 
+    function toggleUsers() {
+        var tableBody = document.getElementById("userTableBody");
+        var button = document.getElementById("toggleButtonUsers");
+
+        if (tableBody.classList.contains("hidden")) {
+            tableBody.classList.remove("hidden");
+            button.textContent = "⇨ 유저 목록 숨기기";
+        } else {
+            tableBody.classList.add("hidden");
+            button.textContent = "⇨ 유저 관리하기";
+        }
+    }
+    
     function goToPage(pageNumber) {
         window.location.href = "http://localhost:8080/webserver/bbs/adminpage.jsp#" + pageNumber;
     }
@@ -38,13 +57,14 @@ pageEncoding="UTF-8"%>
         form.elements["user_id"].value = user_id;
         form.submit();
     }
+    
 </script>
 
 </head>
 
 <body>
 <a class="logo" href="http://localhost:8080/webserver/main.jsp" style="margin-top:5px;"><img src="http://localhost:8080/webserver/img/logo.png"></a>
-    <%@ include file="../nav/navbar_backup.jsp" %>
+<%@ include file="../nav/navbar_backup.jsp" %>
 <h2 style="text-align: center; margin-top: 20px;">관리자 전용 페이지입니다.</h2>
 <%
     Users users = new UsersDAO().getUserdata(user_id);
@@ -56,12 +76,22 @@ pageEncoding="UTF-8"%>
         script.println("</script>");
     }
 %>
-
+<div class="sidebox">
+	<table>
+		<tr>
+			<td><button id="toggleButton" class="button" onclick="toggleRows()">&#8680; 글 관리하기</button></td>
+		</tr>
+		<tr>
+			<td><button id="toggleButtonUsers" class="button" onclick="toggleUsers()">&#8680; 유저 관리하기</button></td>
+		</tr>
+	</table>
+</div>
 <div class="container">
     <!-- 글 목록 펼치기/접기 버튼 -->
-    <button id="toggleButton" class="button" onclick="toggleRows()">&#8680; 글 관리하기</button>
+    
 
     <table id="postTableBody" class="posttable hidden">
+    <caption class="tabletitle">글 목록 관리</caption>
         <thead>
             <tr>
                 <th>게시판</th>
@@ -76,7 +106,7 @@ pageEncoding="UTF-8"%>
         <tbody>
             <%
                 PostDAO postDAO = new PostDAO();
-                ArrayList<Post> postList = postDAO.getListTen();
+                ArrayList<Post> postList = postDAO.getAll();
                 BoardDAO boardDAO = new BoardDAO();
                 for(Post post : postList){
                     String board_title = boardDAO.getBoard_title(post.getBoard_id());
@@ -92,7 +122,8 @@ pageEncoding="UTF-8"%>
         </tbody>
     </table>
     
-	<table class="posttable">
+	<table id="userTableBody" class="posttable hidden">
+		<caption class="tabletitle">유저 관리</caption>
         <thead>
             <tr>
                 <th>아이디</th>

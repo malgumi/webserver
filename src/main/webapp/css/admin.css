@@ -1,0 +1,52 @@
+@charset "EUC-KR";
+* {
+	font-family: 'Nanum Gothic';
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box; 
+}
+
+html{
+	background-size: cover;
+	-webkit-text-size-adjust: 100%;
+}
+
+body{
+	line-height: 1.42857143;
+}
+
+nav{
+	margin-bottom: 40px;
+}
+
+h1 {
+	font-family: 'Hanna';
+	text-align: center;
+}
+
+h2 {
+	font-family: 'Hanna';
+}
+
+h4 {
+	font-family: 'Hanna';
+}
+
+img{
+	vertical-align: unset;
+}
+/*===============사이드바==================*/
+.sidebox {
+	width: 12%;
+	padding: 5px;
+}
+.togglebtn {
+	width: 12%;
+	background-color: #f5f2ea;
+}
+.tabletitle {
+	font-size: 200%;
+	margin-bottom: 10px;
+}
+
+
