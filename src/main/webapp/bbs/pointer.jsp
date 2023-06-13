@@ -1,13 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-      <img id="img1" style="position:absolute; left:0; top:0; z-index:999;" src="pointer.png" height=80px;>
+      <img id="img1" style="position:absolute; left:0; top:0; z-index:999;" src="img/pointer.png" height=80px;>
  
 <script>
 
@@ -15,31 +15,31 @@
     var mouseY = 0; 
  
     function getMousePosition(e){
-        var eObj = window.event? window.event : e; // IE, FF ¿¡ µû¶ó ÀÌº¥Æ® Ã³¸® ÇÏ±â
-        mouseX = eObj.clientX;
-        mouseY = eObj.clientY + document.documentElement.scrollTop; // È­¸éÀ» ½ºÅ©·Ñ ÇßÀ»¶§¸¦ À§ÇÑ Ã³¸® (½ºÅ©·Ñ ÇÑ ¸¸Å­ ¸¶¿ì½º YÁÂÇ¥¿¡ + )
-        // documentElement °¡ ¾ÈµÈ´Ù¸é body ¹Ù²ã¾ß ÇÑ´Ù. Å©·ÒÀÇ °æ¿ì.. (ÀÚµ¿ÆÄ¾Ç ·ÎÁ÷ ÇÊ¿ä)
+        var eObj = window.event? window.event : e; // IE, FF ì— ë”°ë¼ ì´ë²¤íŠ¸ ì²˜ë¦¬ í•˜ê¸°
+        mouseX = eObj.clientX + 10;
+        mouseY = eObj.clientY + document.documentElement.scrollTop + 15; // í™”ë©´ì„ ìŠ¤í¬ë¡¤ í–ˆì„ë•Œë¥¼ ìœ„í•œ ì²˜ë¦¬ (ìŠ¤í¬ë¡¤ í•œ ë§Œí¼ ë§ˆìš°ìŠ¤ Yì¢Œí‘œì— + )
+        // documentElement ê°€ ì•ˆëœë‹¤ë©´ body ë°”ê¿”ì•¼ í•œë‹¤. í¬ë¡¬ì˜ ê²½ìš°.. (ìë™íŒŒì•… ë¡œì§ í•„ìš”)
     }
  
     function moveImg(){
-        // ÀÌ¹ÌÁö À§Ä¡ ÆÄ¾ÇÇÏ±â
+        // ì´ë¯¸ì§€ ìœ„ì¹˜ íŒŒì•…í•˜ê¸°
         var m_x = parseInt(document.getElementById('img1').style.left.replace('px', ''));
         var m_y = parseInt(document.getElementById('img1').style.top.replace('px', ''));
  
-        // ÀÌ¹ÌÁö ¿òÁ÷ÀÌ±â
+        // ì´ë¯¸ì§€ ì›€ì§ì´ê¸°
         document.getElementById('img1').style.left = Math.round(m_x + ((mouseX - m_x) / 3)) + 'px';
         document.getElementById('img1').style.top = Math.round(m_y + ((mouseY - m_y) / 3)) + 'px';
  
-        // ºÎµå·´°Ô µû¶ó¿À´Â °ø½Ä ´ë·«..
-        // ÇöÀç ÀÌ¹ÌÁöÀ§Ä¡ = ÇöÀçÀÌ¹ÌÁö À§Ä¡ + (ÀÌ¹ÌÁö À§Ä¡±âÁØ ¸¶¿ì½º Ä¿¼­ À§Ä¡ / ÀûÀıÇÑ ³ª´©±â °ª)
-        // ¹İº¹ Ã³¸® ÇØÁÖ¸é µË´Ï´Ù.
+        // ë¶€ë“œëŸ½ê²Œ ë”°ë¼ì˜¤ëŠ” ê³µì‹ ëŒ€ëµ..
+        // í˜„ì¬ ì´ë¯¸ì§€ìœ„ì¹˜ = í˜„ì¬ì´ë¯¸ì§€ ìœ„ì¹˜ + (ì´ë¯¸ì§€ ìœ„ì¹˜ê¸°ì¤€ ë§ˆìš°ìŠ¤ ì»¤ì„œ ìœ„ì¹˜ / ì ì ˆí•œ ë‚˜ëˆ„ê¸° ê°’)
+        // ë°˜ë³µ ì²˜ë¦¬ í•´ì£¼ë©´ ë©ë‹ˆë‹¤.
          
-        // ¡Ø ÀÌ¹ÌÁö À§Ä¡ ±âÁØ ¸¶¿ì½º Ä¿¼­ À§Ä¡¶õ?
-        // ÀÌ¹ÌÁö¸¦ ±âÁØÀ¸·Î ±× ÀÌ¹ÌÁö¿¡¼­ Ä¿¼­°¡ ¾ó¸¶³ª ¶³¾îÁ® ÀÖ´ÂÁö ¿©ºÎ
+        // â€» ì´ë¯¸ì§€ ìœ„ì¹˜ ê¸°ì¤€ ë§ˆìš°ìŠ¤ ì»¤ì„œ ìœ„ì¹˜ë€?
+        // ì´ë¯¸ì§€ë¥¼ ê¸°ì¤€ìœ¼ë¡œ ê·¸ ì´ë¯¸ì§€ì—ì„œ ì»¤ì„œê°€ ì–¼ë§ˆë‚˜ ë–¨ì–´ì ¸ ìˆëŠ”ì§€ ì—¬ë¶€
     }
  
-    document.onmousemove = getMousePosition; // ¸¶¿ì½º°¡ ¿òÁ÷ÀÌ¸é getMousePosition ÇÔ¼ö ½ÇÇà
-    setInterval("moveImg()", 50); // moveImg ÇÔ¼ö ¹İº¹ ½ÇÇàÇÏ¿© ÀÌ¹ÌÁö ¿òÁ÷ÀÌ±â
+    document.onmousemove = getMousePosition; // ë§ˆìš°ìŠ¤ê°€ ì›€ì§ì´ë©´ getMousePosition í•¨ìˆ˜ ì‹¤í–‰
+    setInterval("moveImg()", 50); // moveImg í•¨ìˆ˜ ë°˜ë³µ ì‹¤í–‰í•˜ì—¬ ì´ë¯¸ì§€ ì›€ì§ì´ê¸°
 </script>
 </body>
 </html>

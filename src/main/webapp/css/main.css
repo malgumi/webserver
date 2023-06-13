@@ -188,7 +188,6 @@ margin: auto;
 
 .container img {
         max-width: 100%;
-        height: auto;
     }
 
 /* 게시판 어딘지 표시하는거 */
@@ -372,7 +371,7 @@ margin: auto;
    font-weight: bold;
    color: black;
 }
-.previousp {
+/* .previousp {
    padding-top: 10px;
    margin-top: 10px;
    text-align: left;
@@ -383,7 +382,7 @@ margin: auto;
    margin-top: 10px;
    text-align: right;
    width: 32%;
-}
+} */
 .noneline {
    text-decoration: none;
 }

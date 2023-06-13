@@ -15,6 +15,7 @@ pageEncoding="UTF-8"%>
 <title>씨밀레</title>
 </head>
 <body style="background-color: #fffdf2;">
+<%@ include file="bbs/pointer.jsp" %>
 	<br><a class="logo" href="http://localhost:8080/webserver/main.jsp"><img src="http://localhost:8080/webserver/img/logo2.png"></a><br>
 	<%@ include file="../nav/navbar_backup.jsp" %>
 			<div class="slideshow">

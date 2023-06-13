@@ -144,7 +144,7 @@
 	</div>
 				<!-- TODO: 이전글, 다음글이 post_id로 찾아오는 거라서, board_id별로 차별화 필요 -->
 				
-				
+				<br>
 					<table style="width: 100%;">
 					<!-- 이전 글 -->
 					<%if (post.getBoard_id() == 1) {//자유게시판일 경우

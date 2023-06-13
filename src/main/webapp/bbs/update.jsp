@@ -11,7 +11,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale= 1">
-<link rel="stylesheet" href="../css/bootstrap.css">
+<link rel="stylesheet" href="../css/main.css">
 <title>씨밀레</title>
 </head>
 
@@ -46,15 +46,14 @@
 			script.println("</script>");
 		}
 	%>
-	
-	<div class="container">
-		<div class="row">
+	<br><br><br>
+	<div class="container" style="width: 60%;">
 		 <!-- updateAction페이지로 내용 숨겨서 전송 -->
 		<form method="post" action="updateAction.jsp?post_id=<%= post_id %>">
 			<table class="viewtable" style="text-align: center; border: 1px solid #dddddd; width: 100%; height: 450px;">
 				<thead>
 					<tr>
-						<th colspan="2" style="background-color: #eeeeee; text-align: center; height: 30px;">글 수정</th>
+						<th colspan="2" style="background-color: #f5f2ea; text-align: center; height: 30px;">글 수정</th>
 
 					</tr>
 				</thead>
@@ -69,9 +68,8 @@
 
 				</tbody>
 			</table>
-			<input onclick="return confirm('수정하시겠습니까?')" type="submit" class="btn btn-primary pull-right" value="수정하기" style="height: 30px; width: 80px; margin-top: 10px;">
+			<input onclick="return confirm('수정하시겠습니까?')" type="submit" class="button" value="수정하기" style="height: 30px; width: 80px; margin-top: 10px;">
 		</form>
-		</div>
 	</div>	
 
 </body>

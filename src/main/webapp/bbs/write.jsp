@@ -44,31 +44,28 @@
 			script.println("</script>");
 		}
 	%>
-
-	<div class="container">
-		<div class="row">
+<br><br><br>
+	<div class="container" style="width: 60%;">
 		<form method="post" enctype="multipart/form-data" action="http://localhost:8080/webserver/bbs/writeAction.jsp?board_id=<%= board_id %>">
 			<table class="viewtable" style="text-align: center; border:1px solid #dddddd; width: 100%; height: 450px;">
 				<thead>
 					<tr>
-						<th colspan="2" style ="background-color: #eeeeee; text-align: center; height: 30px;"> 글 작성 </th>
+						<th colspan="2" style ="background-color: #f5f2ea; text-align: center; height: 30px;"> 글 작성 </th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td><input type= "text" class="form-control" placeholder="제목을 입력하세요" name="post_title" maxlength="50" style="width: 90%; height: 25px; margin-top: 10px; padding-left: 5px;"></td>
+						<td><input type= "text" placeholder="제목을 입력하세요" name="post_title" maxlength="50" style="width: 90%; height: 25px; margin-top: 10px; padding-left: 5px;"></td>
 					</tr>
 					<tr>
-						<td><textarea class="form-control" placeholder="작성할 내용을 입력하세요" name="post_content" maxlength="2048" style="height:350px; width: 90%; padding-left: 5px; padding-top: 5px;"></textarea></td>
+						<td><textarea placeholder="작성할 내용을 입력하세요" name="post_content" maxlength="2048" style="height:350px; width: 90%; padding-left: 5px; padding-top: 5px;"></textarea></td>
 					</tr>
 				</tbody>
 				
 			</table>
 			<input type="file" name="file">
-			<input type="submit" class = "btn btn-primary pull-right" value="제출" style="height: 30px; width: 50px; margin-top: 10px;">
+			<input type="submit" class = "button" value="제출" style="height: 30px; width: 50px; margin-top: 10px;">
 		</form>
-			
-		</div>
 	</div>
 
 </body>

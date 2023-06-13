@@ -14,6 +14,7 @@
     <%@ include file="../nav/navbar_backup.jsp" %>
 
 <% String link = request.getHeader("referer"); %>
+<br><br><br><br>
 	<div class="loginbox">
 		<form method="post" action="http://localhost:8080/webserver/userct/loginAction.jsp">
 			<h3 class="ltitle">로그인</h3>
@@ -33,6 +34,7 @@
 				<br><br>
 				<input type="submit" value="로그인하기" id="loginbtn">
 				<br><br>
+				<a href="http://localhost:8080/webserver/userct/join.jsp" style="text-decoration: none;">회원가입</a>	
 				<a class="findinfo" href="http://localhost:8080/webserver/userct/findUser.jsp">아이디/비밀번호 찾기</a>				
 			</div>
 		</form>
