@@ -44,7 +44,7 @@ pageEncoding="UTF-8"%>
 
 <body>
 <%@ include file="../nav/navbar.jsp" %>
-<h2 style="text-align: center;">관리자 전용 페이지입니다.</h2>
+<h2 style="text-align: center; margin-top: 20px;">관리자 전용 페이지입니다.</h2>
 <%
     Users users = new UsersDAO().getUserdata(user_id);
     if(user_id == null || users.getPermission() != 2){

@@ -148,70 +148,70 @@
 					<%if (post.getBoard_id() == 1) {//자유게시판일 경우
 						int board_id = post.getBoard_id();
 						for (int i = 1; i < post_id ; i++) {
-						if (postDAO.getPost(post_id-i) != null && postDAO.getPost(post_id-i).getBoard_id() == 1) { // 이전 글이 존재할 경우.
+							if (postDAO.getPost(post_id-i) != null && postDAO.getPost(post_id-i).getBoard_id() == 1) { // 이전 글이 존재할 경우.
 					%>
-						<tr style="border: 1px solid #dddddd">
+							<tr style="border: 1px solid #dddddd">
 					<%
-						if (postDAO.getPost(post_id-i).getAvailable() != 0 && postDAO.getPost(post_id-i).getBoard_id() == 1) { // 이전 글이 존재하고, 삭제되지 않았을 경우
+								if (postDAO.getPost(post_id-i).getAvailable() != 0 && postDAO.getPost(post_id-i).getBoard_id() == 1) { // 이전 글이 존재하고, 삭제되지 않았을 경우
 					%>
-							<td class="previousp" align="left"><b>이전글&nbsp;</b>
-							<a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id - i %>"><%= postDAO.getPost(post_id-i).getPost_title() %></a></td>
+								<td class="previousp" align="left"><b>이전글&nbsp;</b>
+								<a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id - i %>"><%= postDAO.getPost(post_id-i).getPost_title() %></a></td>
 					<%
-						break;}
-						for (int j=1; j < post_id-1; i++) {
-						if (postDAO.getPost(post_id-i-j) != null && postDAO.getPost(post_id-i-j).getBoard_id() == 1) { // 이전 글이 존재하고, 삭제되었고, 삭제된 글의 이전 글이 존재할 경우
+								break;}
+								for (int j=1; j < post_id-1; i++) {
+									if (postDAO.getPost(post_id-i).getAvailable() != 0 &&postDAO.getPost(post_id-i-j) != null && postDAO.getPost(post_id-i-j).getBoard_id() == 1) { // 이전 글이 존재하고, 삭제되었고, 삭제된 글의 이전 글이 존재할 경우
 					%>
-							<td class="previousp" align="left"><b>이전글&nbsp;</b>
-							<td><a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id - i-j %>"><%= postDAO.getPost(post_id- i-j).getPost_title() %></a></td>
+										<td class="previousp" align="left"><b>이전글&nbsp;</b>
+										<td><a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id - i - j %>"><%= postDAO.getPost(post_id - i - j).getPost_title() %></a></td>
 					<%	
-					break;}
+									break;}
 								}	
-							}
+							break;}
 						}
 					} else if (post.getBoard_id() ==2) {//홍보게시판
 						for (int i = 1; i < post_id ; i++) {
 							if (postDAO.getPost(post_id-i) != null && postDAO.getPost(post_id-i).getBoard_id() == 2) { // 이전 글이 존재할 경우.
-						%>
+					%>
 							<tr style="border: 1px solid #dddddd">
-						<%
-							if (postDAO.getPost(post_id-i).getAvailable() != 0 && postDAO.getPost(post_id-i).getBoard_id() == 2) { // 이전 글이 존재하고, 삭제되지 않았을 경우
-						%>
+					<%
+								if (postDAO.getPost(post_id-i).getAvailable() != 0 && postDAO.getPost(post_id-i).getBoard_id() == 2) { // 이전 글이 존재하고, 삭제되지 않았을 경우
+					%>
 								<td class="previousp" align="left"><b>이전글&nbsp;</b>
 								<a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id - i %>"><%= postDAO.getPost(post_id-i).getPost_title() %></a></td>
-						<%
+					<%
+								break;}
+								for (int j=1; j < post_id-1; i++) {
+									if (postDAO.getPost(post_id-i).getAvailable() != 0 &&postDAO.getPost(post_id-i-j) != null && postDAO.getPost(post_id-i-j).getBoard_id() == 2) { // 이전 글이 존재하고, 삭제되었고, 삭제된 글의 이전 글이 존재할 경우
+					%>
+										<td class="previousp" align="left"><b>이전글&nbsp;</b>
+										<td><a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id - i - j %>"><%= postDAO.getPost(post_id - i - j).getPost_title() %></a></td>
+					<%	
+									break;}
+								}	
 							break;}
-							else if (postDAO.getPost(post_id-i-1) != null && postDAO.getPost(post_id-i-1).getBoard_id() == 2) { // 이전 글이 존재하고, 삭제되었고, 삭제된 글의 이전 글이 존재할 경우
-						%>
-								<td class="previousp" align="left"><b>이전글&nbsp;</b>
-								<td><a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id - i-1 %>"><%= postDAO.getPost(post_id- i-1).getPost_title() %></a></td>
-						<%	
-						break;}
-						%>
-						<%
-							break;}
-							}
+						}
 					} else if (post.getBoard_id() == 3) {
 						for (int i = 1; i < post_id ; i++) {
 							if (postDAO.getPost(post_id-i) != null && postDAO.getPost(post_id-i).getBoard_id() == 3) { // 이전 글이 존재할 경우.
-						%>
+					%>
 							<tr style="border: 1px solid #dddddd">
-						<%
-							if (postDAO.getPost(post_id-i).getAvailable() != 0 && postDAO.getPost(post_id-i).getBoard_id() == 3) { // 이전 글이 존재하고, 삭제되지 않았을 경우
-						%>
+					<%
+								if (postDAO.getPost(post_id-i).getAvailable() != 0 && postDAO.getPost(post_id-i).getBoard_id() == 3) { // 이전 글이 존재하고, 삭제되지 않았을 경우
+					%>
 								<td class="previousp" align="left"><b>이전글&nbsp;</b>
 								<a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id - i %>"><%= postDAO.getPost(post_id-i).getPost_title() %></a></td>
-						<%
+					<%
+								break;}
+								for (int j=1; j < post_id-1; i++) {
+									if (postDAO.getPost(post_id-i).getAvailable() != 0 &&postDAO.getPost(post_id-i-j) != null && postDAO.getPost(post_id-i-j).getBoard_id() == 3) { // 이전 글이 존재하고, 삭제되었고, 삭제된 글의 이전 글이 존재할 경우
+					%>
+										<td class="previousp" align="left"><b>이전글&nbsp;</b>
+										<td><a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id - i - j %>"><%= postDAO.getPost(post_id - i - j).getPost_title() %></a></td>
+					<%	
+									break;}
+								}	
 							break;}
-							else if (postDAO.getPost(post_id-i-1) != null && postDAO.getPost(post_id-i-1).getBoard_id() == 3) { // 이전 글이 존재하고, 삭제되었고, 삭제된 글의 이전 글이 존재할 경우
-						%>
-								<td class="previousp" align="left"><b>이전글&nbsp;</b>
-								<td><a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id - i-1 %>"><%= postDAO.getPost(post_id- i-1).getPost_title() %></a></td>
-						<%	
-						break;}
-						%>
-						<%
-							break;}
-							}
+						}
 					}
 					%>
 					
@@ -220,70 +220,70 @@
 					<%if (post.getBoard_id() == 1) {//자유게시판일 경우
 						int board_id = post.getBoard_id();
 						for (int i = 1; i < post_id ; i++) {
-						if (postDAO.getPost(post_id+i) != null && postDAO.getPost(post_id+i).getBoard_id() == 1) { // 다음 글이 존재할 경우.
+							if (postDAO.getPost(post_id+i) != null && postDAO.getPost(post_id+i).getBoard_id() == 1) { // 다음 글이 존재할 경우.
 					%>
-						<tr style="border: 1px solid #dddddd">
+							<tr style="border: 1px solid #dddddd">
 					<%
-						if (postDAO.getPost(post_id+i).getAvailable() != 0 && postDAO.getPost(post_id+i).getBoard_id() == 1) { // 다음 글이 존재하고, 삭제되지 않았을 경우
+								if (postDAO.getPost(post_id+i).getAvailable() != 0 && postDAO.getPost(post_id+i).getBoard_id() == 1) { // 다음 글이 존재하고, 삭제되지 않았을 경우
 					%>
-							<td class="nextp" align="right"><b>다음글&nbsp;</b>
-							<a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id + i %>"><%= postDAO.getPost(post_id+i).getPost_title() %></a></td>
+								<td class="nextp" align="right"><b>다음글&nbsp;</b>
+								<a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id + i %>"><%= postDAO.getPost(post_id+i).getPost_title() %></a></td>
 					<%
-						break;}
-						else if (postDAO.getPost(post_id+i+1) != null && postDAO.getPost(post_id+i+1).getBoard_id() == 1) { // 다음 글이 존재하고, 삭제되었고, 삭제된 글의 다음 글이 존재할 경우
+								break;}
+								for (int j=1; j < post_id+1; i++) {
+									if (postDAO.getPost(post_id+i).getAvailable() != 0 &&postDAO.getPost(post_id+i+j) != null && postDAO.getPost(post_id+i+j).getBoard_id() == 1) { // 다음 글이 존재하고, 삭제되었고, 삭제된 글의 이전 글이 존재할 경우
 					%>
-							<td class="nextp" align="right"><b>다음글&nbsp;</b>
-							<td><a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id + i+1 %>"><%= postDAO.getPost(post_id + i + 1).getPost_title() %></a></td>
+										<td class="nextp" align="right"><b>다음글&nbsp;</b>
+										<td><a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id + i + j %>"><%= postDAO.getPost(post_id + i + j).getPost_title() %></a></td>
 					<%	
-					break;}
-					%>
-					<%
-						break;}
+									break;}
+								}	
+							break;}
 						}
 					} else if (post.getBoard_id() ==2) {//홍보게시판
 						for (int i = 1; i < post_id ; i++) {
-							if (postDAO.getPost(post_id-i) != null && postDAO.getPost(post_id+i).getBoard_id() == 2) { // 다음 글이 존재할 경우.
-						%>
+							if (postDAO.getPost(post_id+i) != null && postDAO.getPost(post_id+i).getBoard_id() == 2) { // 다음 글이 존재할 경우.
+					%>
 							<tr style="border: 1px solid #dddddd">
-						<%
-							if (postDAO.getPost(post_id+i).getAvailable() != 0 && postDAO.getPost(post_id+i).getBoard_id() == 2) { // 다음 글이 존재하고, 삭제되지 않았을 경우
-						%>
+					<%
+								if (postDAO.getPost(post_id+i).getAvailable() != 0 && postDAO.getPost(post_id+i).getBoard_id() == 2) { // 다음 글이 존재하고, 삭제되지 않았을 경우
+					%>
 								<td class="nextp" align="right"><b>다음글&nbsp;</b>
 								<a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id + i %>"><%= postDAO.getPost(post_id+i).getPost_title() %></a></td>
-						<%
+					<%
+								break;}
+								for (int j=1; j < post_id+1; i++) {
+									if (postDAO.getPost(post_id+i).getAvailable() != 0 &&postDAO.getPost(post_id+i+j) != null && postDAO.getPost(post_id+i+j).getBoard_id() == 2) { // 다음 글이 존재하고, 삭제되었고, 삭제된 글의 이전 글이 존재할 경우
+					%>
+										<td class="nextp" align="right"><b>다음글&nbsp;</b>
+										<td><a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id + i + j %>"><%= postDAO.getPost(post_id + i + j).getPost_title() %></a></td>
+					<%	
+									break;}
+								}	
 							break;}
-							else if (postDAO.getPost(post_id+i+1) != null && postDAO.getPost(post_id+i+1).getBoard_id() == 2) { // 다음 글이 존재하고, 삭제되었고, 삭제된 글의 다음 글이 존재할 경우
-						%>
-								<td class="nextp" align="right"><b>다음글&nbsp;</b>
-								<td><a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id + i + 1 %>"><%= postDAO.getPost(post_id + i + 1).getPost_title() %></a></td>
-						<%	
-						break;}
-						%>
-						<%
-							break;}
-							}
-					} else if (post.getBoard_id() == 3) {
+						}
+					} else if (post.getBoard_id() == 3) {//공지사항
 						for (int i = 1; i < post_id ; i++) {
-							if (postDAO.getPost(post_id + i) != null && postDAO.getPost(post_id + i).getBoard_id() == 3) { // 이전 글이 존재할 경우.
-						%>
+							if (postDAO.getPost(post_id+i) != null && postDAO.getPost(post_id+i).getBoard_id() == 3) { // 다음 글이 존재할 경우.
+					%>
 							<tr style="border: 1px solid #dddddd">
-						<%
-							if (postDAO.getPost(post_id + i).getAvailable() != 0 && postDAO.getPost(post_id + i).getBoard_id() == 3) { // 이전 글이 존재하고, 삭제되지 않았을 경우
-						%>
+					<%
+								if (postDAO.getPost(post_id+i).getAvailable() != 0 && postDAO.getPost(post_id+i).getBoard_id() == 3) { // 다음 글이 존재하고, 삭제되지 않았을 경우
+					%>
 								<td class="nextp" align="right"><b>다음글&nbsp;</b>
-								<a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id + i %>"><%= postDAO.getPost(post_id + i).getPost_title() %></a></td>
-						<%
+								<a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id + i %>"><%= postDAO.getPost(post_id+i).getPost_title() %></a></td>
+					<%
+								break;}
+								for (int j=1; j < post_id+1; i++) {
+									if (postDAO.getPost(post_id+i).getAvailable() != 0 &&postDAO.getPost(post_id+i+j) != null && postDAO.getPost(post_id+i+j).getBoard_id() == 3) { // 다음 글이 존재하고, 삭제되었고, 삭제된 글의 이전 글이 존재할 경우
+					%>
+										<td class="nextp" align="right"><b>다음글&nbsp;</b>
+										<td><a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id + i + j %>"><%= postDAO.getPost(post_id + i + j).getPost_title() %></a></td>
+					<%	
+									break;}
+								}	
 							break;}
-							else if (postDAO.getPost(post_id +i + 1) != null && postDAO.getPost(post_id + i + 1).getBoard_id() == 3) { // 이전 글이 존재하고, 삭제되었고, 삭제된 글의 이전 글이 존재할 경우
-						%>
-								<td class="nextp" align="right"><b>다음글&nbsp;</b>
-								<td><a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id + i + 1 %>"><%= postDAO.getPost(post_id + i + 1).getPost_title() %></a></td>
-						<%	
-						break;}
-						%>
-						<%
-							break;}
-							}
+						}
 					}
 					%>
 					
