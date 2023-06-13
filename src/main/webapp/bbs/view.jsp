@@ -165,6 +165,9 @@
 										<td><a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id - i - j %>"><%= postDAO.getPost(post_id - i - j).getPost_title() %></a></td>
 					<%	
 									break;}
+									else {
+										break;
+									}
 								}	
 							break;}
 						}
@@ -187,6 +190,9 @@
 										<td><a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id - i - j %>"><%= postDAO.getPost(post_id - i - j).getPost_title() %></a></td>
 					<%	
 									break;}
+									else {
+										break;
+									}
 								}	
 							break;}
 						}
@@ -209,6 +215,9 @@
 										<td><a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id - i - j %>"><%= postDAO.getPost(post_id - i - j).getPost_title() %></a></td>
 					<%	
 									break;}
+									else {
+										break;
+									}
 								}	
 							break;}
 						}
@@ -231,12 +240,15 @@
 					<%
 								break;}
 								for (int j=1; j < post_id+1; i++) {
-									if (postDAO.getPost(post_id+i).getAvailable() != 0 &&postDAO.getPost(post_id+i+j) != null && postDAO.getPost(post_id+i+j).getBoard_id() == 1) { // 다음 글이 존재하고, 삭제되었고, 삭제된 글의 이전 글이 존재할 경우
+									if (postDAO.getPost(post_id+i).getAvailable() != 0 && postDAO.getPost(post_id+i+j) != null && postDAO.getPost(post_id+i+j).getBoard_id() == 1) { // 다음 글이 존재하고, 삭제되었고, 삭제된 글의 이전 글이 존재할 경우
 					%>
 										<td class="nextp" align="right"><b>다음글&nbsp;</b>
 										<td><a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id + i + j %>"><%= postDAO.getPost(post_id + i + j).getPost_title() %></a></td>
 					<%	
 									break;}
+									else {
+										break;
+									}
 								}	
 							break;}
 						}
@@ -259,6 +271,9 @@
 										<td><a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id + i + j %>"><%= postDAO.getPost(post_id + i + j).getPost_title() %></a></td>
 					<%	
 									break;}
+									else {
+										break;
+									}
 								}	
 							break;}
 						}
@@ -281,6 +296,9 @@
 										<td><a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id + i + j %>"><%= postDAO.getPost(post_id + i + j).getPost_title() %></a></td>
 					<%	
 									break;}
+									else {
+										break;
+									}
 								}	
 							break;}
 						}
