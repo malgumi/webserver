@@ -28,7 +28,7 @@ if (user_id != null) {
 			<hr>
 			<div class="loginform">
     		아이디<br><br>
-    		<input type="text" class="insert" placeholder="아이디" name="user_id" maxlength="20">
+    		<input type="text" class="insert" placeholder="아이디" name="user_id" maxlength="20" pattern=".{4,}" title="아이디는 최소 4글자 이상이어야 합니다.">
     		<br><br>비밀번호<br><br>
     		<input type="password" class="insert" placeholder="비밀번호는 최소 8자 이상, 영문자/숫자/특수문자가 모두 포함되어야 합니다" name="password" maxlength="20" pattern="(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{8,}" title="최소 8자, 최대20자 영문자/숫자/특수문자 모두 포함">
     		<br><br>이름<br><br>
