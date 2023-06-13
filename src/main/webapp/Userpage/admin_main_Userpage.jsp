@@ -11,8 +11,9 @@
 <link rel="stylesheet" href="../css/main.css">
 <title>씨밀레</title>
 </head>
-<body style ="background-color:#f5f1ee;">
-<%@ include file="../nav/navbar.jsp" %>
+<body>
+<a class="logo" href="http://localhost:8080/webserver/main.jsp" style="margin-top:5px;"><img src="http://localhost:8080/webserver/img/logo.png"></a>
+    <%@ include file="../nav/navbar_backup.jsp" %>
 	
 	<% 
 		request.setCharacterEncoding("UTF-8");

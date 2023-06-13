@@ -11,7 +11,8 @@
 <link rel="stylesheet" type="text/css" href="http://localhost:8080/webserver/css/user.css">
 </head>
 <body>
-<%@ include file="../nav/navbar.jsp" %>
+<a class="logo" href="http://localhost:8080/webserver/main.jsp" style="margin-top:5px;"><img src="http://localhost:8080/webserver/img/logo.png"></a>
+    <%@ include file="../nav/navbar_backup.jsp" %>
 	<div class="loginbox">
 		<%
 		String Email = request.getParameter("email");

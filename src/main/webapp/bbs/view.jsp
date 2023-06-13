@@ -19,12 +19,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale= 1">
-<link rel="stylesheet" type="text/css" href="./css/main.css">
+<link rel="stylesheet" type="text/css" href="../css/main.css">
 <title>씨밀레</title>
 </head>
 
 <body>
-<%@ include file="../nav/navbar.jsp" %>
+<a class="logo" href="http://localhost:8080/webserver/main.jsp" style="margin-top:5px;"><img src="http://localhost:8080/webserver/img/logo.png"></a>
+    <%@ include file="../nav/navbar_backup.jsp" %>
 	<%
 		String link = request.getHeader("referer");
 		int post_id = 0;

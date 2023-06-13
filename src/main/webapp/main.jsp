@@ -11,7 +11,7 @@ pageEncoding="UTF-8"%>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width-device-width, initial-scale=1">
-<link rel="stylesheet" href="http://localhost:8080/webserver/css/main_backup.css">
+<link rel="stylesheet" href="http://localhost:8080/webserver/css/main.css">
 <title>씨밀레</title>
 </head>
 <body style="background-color: #fffdf2;">

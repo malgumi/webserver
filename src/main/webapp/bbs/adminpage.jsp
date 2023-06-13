@@ -43,7 +43,8 @@ pageEncoding="UTF-8"%>
 </head>
 
 <body>
-<%@ include file="../nav/navbar.jsp" %>
+<a class="logo" href="http://localhost:8080/webserver/main.jsp" style="margin-top:5px;"><img src="http://localhost:8080/webserver/img/logo.png"></a>
+    <%@ include file="../nav/navbar_backup.jsp" %>
 <h2 style="text-align: center; margin-top: 20px;">관리자 전용 페이지입니다.</h2>
 <%
     Users users = new UsersDAO().getUserdata(user_id);

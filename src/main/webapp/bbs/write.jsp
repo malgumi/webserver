@@ -11,7 +11,8 @@
 
 </head>
 <body>
-	<%@ include file="../nav/navbar.jsp" %>
+<a class="logo" href="http://localhost:8080/webserver/main.jsp" style="margin-top:5px;"><img src="http://localhost:8080/webserver/img/logo.png"></a>
+    <%@ include file="../nav/navbar_backup.jsp" %>
 	<%
 		int board_id = 0;
 		if(request.getParameter("board_id") != null){

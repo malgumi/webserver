@@ -16,7 +16,8 @@
 </head>
 
 <body>
-<%@ include file="../nav/navbar.jsp" %>
+<a class="logo" href="http://localhost:8080/webserver/main.jsp" style="margin-top:5px;"><img src="http://localhost:8080/webserver/img/logo.png"></a>
+    <%@ include file="../nav/navbar_backup.jsp" %>
 	<%
 		if(user_id == null){ //ID값이 null이면 아직 로그인 안한거
 			PrintWriter script = response.getWriter();
