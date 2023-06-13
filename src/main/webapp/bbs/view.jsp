@@ -20,6 +20,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale= 1">
 <link rel="stylesheet" type="text/css" href="../css/main.css">
+<link rel="stylesheet" type="text/css" href="../css/view.css">
 <title>씨밀레</title>
 </head>
 
@@ -143,7 +144,7 @@
 	</div>
 				<!-- TODO: 이전글, 다음글이 post_id로 찾아오는 거라서, board_id별로 차별화 필요 -->
 				
-				<div class="container">
+				
 					<table style="width: 100%;">
 					<!-- 이전 글 -->
 					<%if (post.getBoard_id() == 1) {//자유게시판일 경우
@@ -153,7 +154,7 @@
 							if (postDAO.getPost(post_id-i).getAvailable() != 0 && postDAO.getPost(post_id-i) != null && postDAO.getPost(post_id-i).getBoard_id() == 1) { // 다음 글이 존재할 경우.
 					%>
 								<tr style="border: 1px solid #dddddd">
-								<td class="nextp" align="right"><b>이전글&nbsp;</b>
+								<td class="previousp" align="left"><b>이전글&nbsp;</b>
 								<a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id - i %>"><%= postDAO.getPost(post_id-i).getPost_title() %></a></td>
 					<%
 							break;}
@@ -163,8 +164,7 @@
 							if (postDAO.getPost(post_id-i) == null) {break;}
 							if (postDAO.getPost(post_id-i).getAvailable() != 0 && postDAO.getPost(post_id-i) != null && postDAO.getPost(post_id-i).getBoard_id() == 2) { // 다음 글이 존재할 경우.
 					%>
-								<tr style="border: 1px solid #dddddd">
-								<td class="nextp" align="right"><b>이전글&nbsp;</b>
+								<td class="previousp" align="left"><b>이전글&nbsp;</b>
 								<a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id - i %>"><%= postDAO.getPost(post_id-i).getPost_title() %></a></td>
 					<%
 							break;}
@@ -175,7 +175,7 @@
 							if (postDAO.getPost(post_id-i).getAvailable() != 0 && postDAO.getPost(post_id-i) != null && postDAO.getPost(post_id-i).getBoard_id() == 3) { // 다음 글이 존재할 경우.
 					%>
 								<tr style="border: 1px solid #dddddd">
-								<td class="nextp" align="right"><b>이전글&nbsp;</b>
+								<td class="previousp" align="left"><b>이전글&nbsp;</b>
 								<a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id - i %>"><%= postDAO.getPost(post_id-i).getPost_title() %></a></td>
 					<%
 							break;}
@@ -183,7 +183,7 @@
 					}
 					%>
 					
-							<td><a href = "http://localhost:8080/webserver/bbs/bbs.jsp?board_id=<%= post.getBoard_id() %>" class="golist">글 목록&nbsp;</a> <!-- 글 목록으로 되돌아가기 -->
+							<td class="golist"><a href = "http://localhost:8080/webserver/bbs/bbs.jsp?board_id=<%= post.getBoard_id() %>" class="noneline">글 목록&nbsp;</a> <!-- 글 목록으로 되돌아가기 -->
 					
 					<%if (post.getBoard_id() == 1) {//자유게시판일 경우
 						int board_id = post.getBoard_id();						
@@ -191,7 +191,7 @@
 							if (postDAO.getPost(post_id+i) == null) {break;}
 							if (postDAO.getPost(post_id+i).getAvailable() != 0 && postDAO.getPost(post_id+i) != null && postDAO.getPost(post_id+i).getBoard_id() == 1) { // 다음 글이 존재할 경우.
 					%>
-								<tr style="border: 1px solid #dddddd">
+								
 								<td class="nextp" align="right"><b>다음글&nbsp;</b>
 								<a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id + i %>"><%= postDAO.getPost(post_id+i).getPost_title() %></a></td>
 					<%
@@ -202,7 +202,6 @@
 							if (postDAO.getPost(post_id+i) == null) {break;}
 							if (postDAO.getPost(post_id+i).getAvailable() != 0 && postDAO.getPost(post_id+i) != null && postDAO.getPost(post_id+i).getBoard_id() == 2) { // 다음 글이 존재할 경우.
 					%>
-								<tr style="border: 1px solid #dddddd">
 								<td class="nextp" align="right"><b>다음글&nbsp;</b>
 								<a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id + i %>"><%= postDAO.getPost(post_id+i).getPost_title() %></a></td>
 					<%
@@ -213,7 +212,6 @@
 							if (postDAO.getPost(post_id+i) == null) {break;}
 							if (postDAO.getPost(post_id+i).getAvailable() != 0 && postDAO.getPost(post_id+i) != null && postDAO.getPost(post_id+i).getBoard_id() == 3) { // 다음 글이 존재할 경우.
 					%>
-								<tr style="border: 1px solid #dddddd">
 								<td class="nextp" align="right"><b>다음글&nbsp;</b>
 								<a style="text-decoration: none;" href="view.jsp?post_id=<%= post_id + i %>"><%= postDAO.getPost(post_id+i).getPost_title() %></a></td>
 					<%
@@ -223,7 +221,7 @@
 					%>
 					
 					</table>
-					</div>
+					
 					</div>
 
 </body>
