@@ -2,17 +2,17 @@
 
 ## 목차
 
-[0. 개요 및 목적](https://github.com/malgumi/web#0-%EA%B0%9C%EC%9A%94-%EB%B0%8F-%EB%AA%A9%EC%A0%81)
+[0. 개요 및 목적](https://github.com/malgumi/webserver?tab=readme-ov-file#0-%EA%B0%9C%EC%9A%94-%EB%B0%8F-%EB%AA%A9%EC%A0%81)
 
-[1. 초기 화면 구상도](https://github.com/malgumi/web#1-%EB%A9%94%EB%89%B4-%EA%B5%AC%EC%A1%B0%EB%8F%84)
+[1. 초기 화면 구상도](https://github.com/malgumi/webserver?tab=readme-ov-file#1-%EC%B4%88%EA%B8%B0-%ED%99%94%EB%A9%B4-%EA%B5%AC%EC%83%81%EB%8F%84)
 
-[2. 주요 기능](https://github.com/malgumi/web#2-%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5)
+[2. 주요 기능](https://github.com/malgumi/webserver?tab=readme-ov-file#2-%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5)
 
-[3. 개발환경 및 DBMS](https://github.com/malgumi/web#3-%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD-%EB%B0%8F-dbms)
+[3. 개발환경 및 DBMS](https://github.com/malgumi/webserver?tab=readme-ov-file#3-%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD-%EB%B0%8F-dbms)
 
-[4. 개발환경 통일](https://github.com/malgumi/web#4-%EC%B6%94%EA%B0%80-%EC%98%88%EC%A0%95-%EA%B8%B0%EB%8A%A5)
+[4. 개발환경 통일](https://github.com/malgumi/webserver?tab=readme-ov-file#4-%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD-%ED%86%B5%EC%9D%BC)
 
-[4. 기말 보고서 제출](https://github.com/malgumi/web#4-%EC%B6%94%EA%B0%80-%EC%98%88%EC%A0%95-%EA%B8%B0%EB%8A%A5)
+[5. 기말 보고서 제출](https://github.com/malgumi/webserver?tab=readme-ov-file#5-%EA%B8%B0%EB%A7%90-%EB%B3%B4%EA%B3%A0%EC%84%9C-%EC%A0%9C%EC%B6%9C)
 
 ## 0. 개요 및 목적
 
@@ -20,6 +20,7 @@
 반려동물을 입양하거나 홍보를 할 수 있는 커뮤니티
 
 ## 1. 초기 화면 구상도
+
 <br>회원가입
 ![회원가입_화면구상도](https://github.com/malgumi/webserver/assets/97935451/27ef04f7-3eb7-4005-97d2-9fdc6bb9f860)
 <br>자유게시판
@@ -52,6 +53,7 @@
 
 
 ## 4. 개발환경 통일
+
 1. 프로젝트 이름 오른쪽 클릭<br>
 2. Properties 클릭
 <img width="1439" alt="1" src="https://user-images.githubusercontent.com/26024730/211736255-e30f8a4c-271d-4282-a1e6-beb90f603791.png">
@@ -63,4 +65,6 @@
 
 
 ## 5. 기말 보고서 제출 
+
+[다운로드 링크](https://drive.google.com/file/d/1139tnn8AR7KyhbiPP-kzHwGtruGx-J3t/view?usp=sharing)
 
