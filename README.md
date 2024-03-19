@@ -6,13 +6,12 @@
 
 [1. 초기 화면 구상도](https://github.com/malgumi/webserver?tab=readme-ov-file#1-%EC%B4%88%EA%B8%B0-%ED%99%94%EB%A9%B4-%EA%B5%AC%EC%83%81%EB%8F%84)
 
-[2. 주요 기능](https://github.com/malgumi/webserver?tab=readme-ov-file#2-%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5)
+[2. DB 설계](https://github.com/malgumi/webserver?tab=readme-ov-file#2-%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5)
 
 [3. 개발환경 및 DBMS](https://github.com/malgumi/webserver?tab=readme-ov-file#3-%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD-%EB%B0%8F-dbms)
 
-[4. 개발환경 통일](https://github.com/malgumi/webserver?tab=readme-ov-file#4-%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD-%ED%86%B5%EC%9D%BC)
+[4. 기능](https://github.com/malgumi/webserver?tab=readme-ov-file#3-%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD-%EB%B0%8F-dbms)
 
-[5. 기말 보고서 제출](https://github.com/malgumi/webserver?tab=readme-ov-file#5-%EA%B8%B0%EB%A7%90-%EB%B3%B4%EA%B3%A0%EC%84%9C-%EC%A0%9C%EC%B6%9C)
 
 ## 0. 개요 및 목적
 
@@ -32,37 +31,46 @@
 <br>글보기
 ![글보기_화면구상도](https://github.com/malgumi/webserver/assets/97935451/03ddd73f-1295-428d-87d0-197cfb7bb56e)
 
+## 2. DB 설계
 
-## 2. 주요 기능
-
-1. 회원가입 및 로그인, 로그아웃<br>
-2. 관리자 기능(글 관리, 유저 관리)<br>
-3. 홍보글 작성, 삭제, 수정<br>
-4. 댓글 작성, 삭제, 수정<br>
-5. 입양 완료<->홍보중 변경 가능<br>
-6. 회원 찾기<br>
-
+![image](https://github.com/malgumi/webserver/assets/97935451/565914b0-09a6-40ac-a7f4-bb0ac8acb38b)
 
 ## 3. 개발환경 및 DBMS
 
  - H2
  - 아파치 톰캣 9.0
  - Maven
+ - JAVA 1.8
+
+## 4. 기능
+![image](https://github.com/malgumi/webserver/assets/97935451/292fc5af-b7c3-4ad3-b89d-32d856950ff4)
+<br>
+
+- 주요 기능
+1. 회원가입 및 로그인, 로그아웃<br>
+2. 관리자 기능 차별화(글 관리, 유저 관리)<br>
+3. 게시판 CRUD<br>
+4. 댓글 작성, 삭제<br>
+5. 페이징 및 검색 기능<br><br>
+
+홍보게시판 - 이미지 미리보기 제공<br>
+![image](https://github.com/malgumi/webserver/assets/97935451/fd53127d-2f06-4fe5-b01a-6c68390826a2)<br>
+자유게시판 - 이미지 미리보기 제공X<br>
+![image](https://github.com/malgumi/webserver/assets/97935451/92e0ad73-f8e7-41be-83dc-9e29193a669e)
+<br>
+
+- 부가 기능
+1. 홍보게시판 게시글의 입양 완료<->홍보중 상태 변경<br>
+2. 회원 찾기 기능<br>
+3. 유효성 제약<br>
+4. 메인페이지 슬라이드 광고<br>
+5. 메인페이지에서 마우스 포인터를 고양이 얼굴 사진이 따라다님<br>
+6. 로그인 전, 후 상황에 따라 네비게이션바의 드롭다운 메뉴가 달라짐<br>
+7. 첨부파일 업로드 및 이미지 미리보기<br>
+8. 이전 글, 다음 글 출력<br>
 
 
-## 4. 개발환경 통일
-
-1. 프로젝트 이름 오른쪽 클릭<br>
-2. Properties 클릭
-<img width="1439" alt="1" src="https://user-images.githubusercontent.com/26024730/211736255-e30f8a4c-271d-4282-a1e6-beb90f603791.png">
-1. Project Facets에서 Java 버전 1.8로 맞추기
-<img width="962" alt="2" src="https://user-images.githubusercontent.com/26024730/211722123-0fc11778-3c33-4dad-8fa5-2c573b0676c6.png">
-1. Java Compiler 에서 Compiler compliance level 1.8로 맞추기<br>
-2. 오른쪽 아래 Apply and Close
-<img width="961" alt="3" src="https://user-images.githubusercontent.com/26024730/211722128-a5393c67-b973-40d6-9e53-8a7529f82013.png">
-
-
-## 5. 기말 보고서 제출 
+## 결과 보고서(기말제출용)
 
 [다운로드 링크](https://drive.google.com/file/d/1139tnn8AR7KyhbiPP-kzHwGtruGx-J3t/view?usp=sharing)
 
