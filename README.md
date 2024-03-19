@@ -6,7 +6,7 @@
 
 [1. 초기 화면 구상도](https://github.com/malgumi/webserver?tab=readme-ov-file#1-%EC%B4%88%EA%B8%B0-%ED%99%94%EB%A9%B4-%EA%B5%AC%EC%83%81%EB%8F%84)
 
-[2. DB 설계](https://github.com/malgumi/webserver?tab=readme-ov-file#2-%EC%A3%BC%EC%9A%94-%EA%B8%B0%EB%8A%A5)
+[2. DB 설계](https://github.com/malgumi/webserver?tab=readme-ov-file#2-db-%EC%84%A4%EA%B3%84)
 
 [3. 개발환경 및 DBMS](https://github.com/malgumi/webserver?tab=readme-ov-file#3-%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD-%EB%B0%8F-dbms)
 
