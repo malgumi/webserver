@@ -10,7 +10,7 @@
 
 [3. 개발환경 및 DBMS](https://github.com/malgumi/webserver?tab=readme-ov-file#3-%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD-%EB%B0%8F-dbms)
 
-[4. 기능](https://github.com/malgumi/webserver?tab=readme-ov-file#3-%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD-%EB%B0%8F-dbms)
+[4. 기능](https://github.com/malgumi/webserver?tab=readme-ov-file#4-%EA%B8%B0%EB%8A%A5)
 
 
 ## 0. 개요 및 목적
